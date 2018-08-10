@@ -2,6 +2,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+
 public class LoginSQLConfig_Controller {
     public TextField ServerIP_TextField,ServerPort_TextField,SQLTableName_TextField,SQLUserName_TextField;
     public PasswordField SQLPassword_PasswordField;
@@ -52,12 +54,13 @@ public class LoginSQLConfig_Controller {
         //单击"返回"按钮，对原有数据库服务器信息不进行修改直接返回登录主界面
         back_Login();
     }
-    public void back_Login(){
+    void back_Login(){
         //返回登录主窗口
         try {
             Parent Login_Root = FXMLLoader.load(getClass().getResource("/LoginMain/LoginMain_GUI.fxml"));
             Main.Login_Stage.setTitle("小区物业管理系统-登录");
             Main.Login_Stage.setScene(new Scene(Login_Root, 300, 250));
+            Main.Login_Stage.getIcons().setAll(new Image("/image/logo.png"));
         }
         catch (Exception e) {
             e.printStackTrace();
