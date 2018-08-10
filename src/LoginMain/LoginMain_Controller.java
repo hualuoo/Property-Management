@@ -37,7 +37,7 @@ public class LoginMain_Controller {
     }
     public void check_SQL(){
         SQL_Connect sql_connect = new SQL_Connect();
-        checksql = sql_connect.getConnection();
+        checksql = sql_connect.getConnection(Main.serverIP,Main.serverPort,Main.SQLTableName,Main.SQLUserName,Main.SQLPassword);
         if (checksql == 0) {
             SQL_Info.setText("数据库连接失败");
             SQL_Info.setTextFill(Color.web("#ff1a00"));
@@ -50,7 +50,7 @@ public class LoginMain_Controller {
     }
     public void edit_LabelClick(){
         try {
-            Parent SQLEdit_Root = FXMLLoader.load(getClass().getResource("SQLConfigGUI.fxml"));
+            Parent SQLEdit_Root = FXMLLoader.load(getClass().getResource("/LoginSQLConfig/LoginSQLConfig_GUI.fxml"));
             Main.Login_Stage.setTitle("数据库配置");
             Main.Login_Stage.setScene(new Scene(SQLEdit_Root, 300, 250));
             //Main.Login_Stage.getIcons().add(new Image("/image/logo2.png"));

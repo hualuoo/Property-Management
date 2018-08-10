@@ -11,10 +11,11 @@ public class Main extends Application {
     public static Stage Login_Stage;
     public static int width = Toolkit.getDefaultToolkit().getScreenSize().width;
     public static int height = Toolkit.getDefaultToolkit().getScreenSize().height;
-    public static String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-    public static String url = "jdbc:sqlserver://sh1.hualuoo.com:1433;DatabaseName=Sql_Curriculum_Design";
-    public static String userName = "sa";
-    public static String userPassword = "Qq111111";
+    public static String serverIP = "sh1.hualuoo.com";
+    public static String serverPort = "1433";
+    public static String SQLTableName = "Sql_Curriculum_Design";
+    public static String SQLUserName = "sa";
+    public static String SQLPassword = "Qq111111";
     public static String loginUser;
     public void start(Stage primaryStage) throws Exception{
         Parent Login_Root = FXMLLoader.load(getClass().getResource("/LoginMain/LoginMain_GUI.fxml"));
