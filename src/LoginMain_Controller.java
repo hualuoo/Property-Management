@@ -99,7 +99,7 @@ public class LoginMain_Controller {
     void Load_IndexGUI() {
         //加载主界面
         try {
-            Parent Index_Root = FXMLLoader.load(getClass().getResource("/IndexMain/IndexMain_GUI.fxml"));
+            Parent Index_Root = FXMLLoader.load(getClass().getResource("IndexMain_GUI.fxml"));
             Main.Login_Stage.setTitle("小区物业管理系统-主界面");
             Main.Login_Stage.setScene(new Scene(Index_Root, 1000, 615));
             Main.Login_Stage.setX((Main.width-1000)/2);

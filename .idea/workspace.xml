@@ -23,25 +23,25 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="fxml" value="6" />
-          <entry key="java" value="13" />
+          <entry key="fxml" value="10" />
+          <entry key="java" value="35" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="13" />
-          <entry key="XML" value="6" />
+          <entry key="JAVA" value="35" />
+          <entry key="XML" value="10" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="fxml" value="2" />
-          <entry key="java" value="816" />
+          <entry key="java" value="1432" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="816" />
+          <entry key="JAVA" value="1432" />
           <entry key="XML" value="2" />
         </counts>
       </usages-collector>
@@ -55,22 +55,76 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="473">
-              <caret line="33" column="1" lean-forward="true" selection-start-line="33" selection-start-column="1" selection-end-line="33" selection-end-column="1" />
+            <state relative-caret-position="570">
+              <caret line="30" column="31" selection-start-line="30" selection-start-column="31" selection-end-line="30" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1317#1318#0" expanded="true" />
-                <element signature="e#1345#1346#0" expanded="true" />
+                <element signature="e#1339#1340#0" expanded="true" />
+                <element signature="e#1367#1368#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/LoginMain/LoginMain_Controller.java">
+        <entry file="file://$PROJECT_DIR$/src/LoginMain_Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="627">
-              <caret line="39" column="28" lean-forward="true" selection-start-line="39" selection-start-column="28" selection-end-line="39" selection-end-column="28" />
+            <state relative-caret-position="245">
+              <caret line="101" column="72" selection-start-line="101" selection-start-column="72" selection-end-line="101" selection-end-column="72" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/LoginSQLConfig_Controller.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/IndexNewHouse_Controller.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="189">
+              <caret line="16" column="11" selection-start-line="16" selection-start-column="11" selection-end-line="16" selection-end-column="11" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/HouseTableData.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/HouseEdit_Controller.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/IndexMain_Controller.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="484">
+              <caret line="166" column="48" lean-forward="true" selection-start-line="166" selection-start-column="48" selection-end-line="166" selection-end-column="48" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -81,50 +135,44 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SQL_Connect.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="494">
-              <caret line="30" column="32" selection-start-line="30" selection-start-column="32" selection-end-line="30" selection-end-column="32" />
+            <state relative-caret-position="95">
+              <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/IndexMain/IndexMain_Controller.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3865">
-              <caret line="350" column="52" lean-forward="true" selection-start-line="350" selection-start-column="52" selection-end-line="350" selection-end-column="52" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/IndexMain/IndexMain_GUI.fxml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="18" column="54" selection-start-line="18" selection-start-column="54" selection-end-line="18" selection-end-column="54" />
-            </state>
-          </provider>
-          <provider editor-type-id="JavaFX-Scene-Builder" />
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>ResultSet</find>
+      <find>list</find>
+    </findStrings>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/LoginMain/LoginMain_GUI.fxml" />
         <option value="$PROJECT_DIR$/src/LoginSQLConfig/LoginSQLConfig_GUI.fxml" />
-        <option value="$PROJECT_DIR$/src/SQL_Connect.java" />
-        <option value="$PROJECT_DIR$/src/LoginSQLConfig/LoginSQLConfig_Controller.java" />
         <option value="$PROJECT_DIR$/src/IndexMain/IndexMain_GUI.fxml" />
+        <option value="$PROJECT_DIR$/src/IndexNewHouse/IndexNewHouse_GUI.fxml" />
+        <option value="$PROJECT_DIR$/src/IndexNewHouse/IndexNewHouse_Controller.java" />
+        <option value="$PROJECT_DIR$/src/IndexMain/HouseTableData.java" />
+        <option value="$PROJECT_DIR$/src/LoginSQLConfig/LoginSQLConfig_Controller.java" />
         <option value="$PROJECT_DIR$/src/LoginMain/LoginMain_Controller.java" />
-        <option value="$PROJECT_DIR$/src/Main.java" />
         <option value="$PROJECT_DIR$/src/IndexMain/IndexMain_Controller.java" />
+        <option value="$PROJECT_DIR$/src/IndexMain/IndexNewHouse_Controller.java" />
+        <option value="$PROJECT_DIR$/src/SQL_Connect.java" />
+        <option value="$PROJECT_DIR$/src/Main.java" />
+        <option value="$PROJECT_DIR$/src/LoginSQLConfig_Controller.java" />
+        <option value="$PROJECT_DIR$/src/IndexNewHouse_Controller.java" />
+        <option value="$PROJECT_DIR$/src/HouseTableData.java" />
+        <option value="$PROJECT_DIR$/src/HouseEdit_Controller.java" />
+        <option value="$PROJECT_DIR$/src/LoginMain_Controller.java" />
+        <option value="$PROJECT_DIR$/src/IndexMain_Controller.java" />
       </list>
     </option>
   </component>
@@ -136,7 +184,7 @@
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="227" />
-    <option name="y" value="5" />
+    <option name="y" value="164" />
     <option name="width" value="1400" />
     <option name="height" value="1000" />
   </component>
@@ -160,24 +208,6 @@
               <item name="Sql_Curriculum_Design" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="Sql_Curriculum_Design" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Sql_Curriculum_Design" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="IndexMain" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Sql_Curriculum_Design" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Sql_Curriculum_Design" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="LoginMain" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Sql_Curriculum_Design" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Sql_Curriculum_Design" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="LoginSQLConfig" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -187,7 +217,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1534062810739" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1534081190385" />
     <property name="last_opened_file_path" value="C:/Program Files (x86)/Oracle/JavaFX Scene Builder 2.0/JavaFX Scene Builder 2.0.exe" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
@@ -205,7 +235,20 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="MainPackage.Main" />
+      <module name="Sql_Curriculum_Design" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="MainPackage.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="Sql_Curriculum_Design" />
@@ -213,9 +256,14 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Application.Main (1)" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Main (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -232,12 +280,12 @@
       <workItem from="1533875122467" duration="8991000" />
       <workItem from="1533913573493" duration="135000" />
       <workItem from="1533985193768" duration="721000" />
-      <workItem from="1534056383422" duration="3624000" />
+      <workItem from="1534056383422" duration="14560000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13471000" />
+    <option name="totallyTimeSpent" value="24407000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -252,8 +300,8 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.1778742" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.17462039" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.2494577" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -297,14 +345,6 @@
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/LoginSQLConfig/LoginSQLConfig_Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1045">
-          <caret line="55" column="5" selection-start-line="55" selection-start-column="5" selection-end-line="55" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/IndexMain/HouseTableData.java" />
     <entry file="file://$PROJECT_DIR$/src/LoginMain/LoginMain_GUI.fxml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="57">
@@ -313,10 +353,84 @@
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SQL_Connect.java">
+    <entry file="file://$PROJECT_DIR$/src/HouseNewGUI.fxml">
+      <provider selected="true" editor-type-id="text-editor" />
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/HouseNew_Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="30" column="32" selection-start-line="30" selection-start-column="32" selection-end-line="30" selection-end-column="32" />
+        <state relative-caret-position="38">
+          <caret line="9" column="37" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/IndexNewHouse/IndexNewHouse_GUI.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="7" column="159" selection-start-line="7" selection-start-column="159" selection-end-line="7" selection-end-column="159" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/IndexNewHouse/IndexNewHouse_Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="7" column="26" lean-forward="true" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
+          <folding>
+            <element signature="e#1615#1616#0" expanded="true" />
+            <element signature="e#1660#1661#0" expanded="true" />
+            <element signature="e#1904#1905#0" expanded="true" />
+            <element signature="e#1946#1947#0" expanded="true" />
+            <element signature="e#2016#2017#0" expanded="true" />
+            <element signature="e#2062#2063#0" expanded="true" />
+            <element signature="e#2128#2129#0" expanded="true" />
+            <element signature="e#2180#2181#0" expanded="true" />
+            <element signature="e#3799#3800#0" expanded="true" />
+            <element signature="e#3836#3837#0" expanded="true" />
+            <element signature="e#3873#3874#0" expanded="true" />
+            <element signature="e#3904#3905#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/LoginSQLConfig/LoginSQLConfig_Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="483">
+          <caret line="63" column="24" selection-start-line="63" selection-start-column="24" selection-end-line="63" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/LoginMain/LoginMain_Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="246">
+          <caret line="105" column="59" selection-start-line="105" selection-start-column="59" selection-end-line="105" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/IndexMain/IndexMain_Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="421">
+          <caret line="409" column="24" selection-start-line="409" selection-start-column="24" selection-end-line="409" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/IndexMain/HouseTableData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="18" selection-start-column="18" selection-end-column="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/IndexMain/IndexNewHouse_Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="149" column="62" selection-start-line="149" selection-start-column="62" selection-end-line="149" selection-end-column="62" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -325,16 +439,44 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/IndexMain/IndexMain_GUI.fxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="18" column="54" selection-start-line="18" selection-start-column="54" selection-end-line="18" selection-end-column="54" />
+        <state relative-caret-position="133">
+          <caret line="7" column="1" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
         </state>
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/LoginMain/LoginMain_Controller.java">
+    <entry file="file://$PROJECT_DIR$/src/LoginSQLConfig_Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="627">
-          <caret line="39" column="28" lean-forward="true" selection-start-line="39" selection-start-column="28" selection-end-line="39" selection-end-column="28" />
+        <state>
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SQL_Connect.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/IndexNewHouse_Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="16" column="11" selection-start-line="16" selection-start-column="11" selection-end-line="16" selection-end-column="11" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/HouseTableData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -343,27 +485,43 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/HouseEdit_Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="75" selection-start-line="75" selection-end-line="75" />
+        <state>
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="473">
-          <caret line="33" column="1" lean-forward="true" selection-start-line="33" selection-start-column="1" selection-end-line="33" selection-end-column="1" />
+        <state relative-caret-position="570">
+          <caret line="30" column="31" selection-start-line="30" selection-start-column="31" selection-end-line="30" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1317#1318#0" expanded="true" />
-            <element signature="e#1345#1346#0" expanded="true" />
+            <element signature="e#1339#1340#0" expanded="true" />
+            <element signature="e#1367#1368#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/IndexMain/IndexMain_Controller.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/com/sun/glass/ui/win/WinApplication.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3865">
-          <caret line="350" column="52" lean-forward="true" selection-start-line="350" selection-start-column="52" selection-end-line="350" selection-end-column="52" />
+        <state relative-caret-position="245">
+          <caret line="176" selection-start-line="176" selection-end-line="176" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/LoginMain_Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="245">
+          <caret line="101" column="72" selection-start-line="101" selection-start-column="72" selection-end-line="101" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/IndexMain_Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="484">
+          <caret line="166" column="48" lean-forward="true" selection-start-line="166" selection-start-column="48" selection-end-line="166" selection-end-column="48" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

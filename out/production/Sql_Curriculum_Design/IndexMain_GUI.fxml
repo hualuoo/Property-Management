@@ -16,7 +16,7 @@
             <Separator layoutY="593.0" prefHeight="1.0" prefWidth="1000.0" />
             <ImageView fitHeight="55.0" fitWidth="55.0" layoutX="15.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../image/titlelogo.png" />
+                  <Image url="@image/titlelogo.png" />
                </image>
             </ImageView>
             <Label layoutX="72.0" layoutY="16.0" text="光明小区物业管理系统">
@@ -146,9 +146,9 @@
             <Label layoutX="464.0" layoutY="555.0" text="室" />
             <Label layoutX="538.0" layoutY="555.0" text="姓名：" />
             <TextField fx:id="Search_OName_TextField" layoutX="574.0" layoutY="551.0" prefHeight="23.0" prefWidth="79.0" />
-            <ImageView disable="true" fitHeight="615.0" fitWidth="1000.0" opacity="0.11" pickOnBounds="true" preserveRatio="true">
+            <ImageView disable="true" fitHeight="615.0" fitWidth="1000.0" opacity="0.08" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../image/bg.jpg" />
+                  <Image url="@image/bg.jpg" />
                </image>
             </ImageView>
          </children>
