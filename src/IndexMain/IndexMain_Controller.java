@@ -17,19 +17,19 @@ import java.util.Optional;
 
 public class IndexMain_Controller {
     public TreeItem<String> root;
-    public TreeTableView<String> Bulid_Tree;
-    public TreeTableColumn<String,String> Build_TreeTable;
+    public TreeTableView<String> Bulid_TreeTableView;
+    public TreeTableColumn<String,String> Build_TreeTableColumn;
 
-    public TableView<HouseTableData> House_Table;
-    public TableColumn<HouseTableData,String> Table_HNo;
-    public TableColumn<HouseTableData,String> Table_HBuild;
-    public TableColumn<HouseTableData,String> Table_HPark;
-    public TableColumn<HouseTableData,String> Table_HFloor;
-    public TableColumn<HouseTableData,String> Table_HRoom;
-    public TableColumn<HouseTableData,String> Table_HArea;
-    public TableColumn<HouseTableData,String> Table_HState;
-    public TableColumn<HouseTableData,String> Table_ONo;
-    public TableColumn<HouseTableData,String> Table_OName;
+    public TableView<HouseTableData> House_TableView;
+    public TableColumn<HouseTableData,String> HNo_TableColumn;
+    public TableColumn<HouseTableData,String> HBuild_TableColumn;
+    public TableColumn<HouseTableData,String> HPark_TableColumn;
+    public TableColumn<HouseTableData,String> HFloor_TableColumn;
+    public TableColumn<HouseTableData,String> HRoom_TableColumn;
+    public TableColumn<HouseTableData,String> HArea_TableColumn;
+    public TableColumn<HouseTableData,String> HState_TableColumn;
+    public TableColumn<HouseTableData,String> ONo_TableColumn;
+    public TableColumn<HouseTableData,String> OName_TableColumn;
     ObservableList<HouseTableData> list = FXCollections.observableArrayList();
 
     public Label HNo_Label,HAddress_Label,HArea_Label,HState_Label,HType_Label,HNote_Label;
@@ -41,43 +41,51 @@ public class IndexMain_Controller {
     public TextField Search_OName_TextField,Search_HBuild_TextField,Search_HPark_TextField,Search_HFloor_TextField,Search_HRoom_TextField;
 
     public void initialize() {
+        //初始化
+        //显示操作员用户名
         LoginUser_Label.setText("操作员：" + Main.loginUser);
+        //设置TreeTableView的根TreeItem
         root = new TreeItem<>("光明小区");
         root.setGraphic(new ImageView (new Image(getClass().getResourceAsStream("/image/building.png"))));
         root.setExpanded(true);
-        Build_TreeTable.setCellValueFactory((TreeTableColumn.CellDataFeatures<String, String> p) ->
-                new ReadOnlyStringWrapper(p.getValue().getValue()));                                    //定义列的单元格内容
-        Bulid_Tree.setRoot(root);
+        //定义列的单元格内容
+        Build_TreeTableColumn.setCellValueFactory((TreeTableColumn.CellDataFeatures<String, String> p) ->
+                new ReadOnlyStringWrapper(p.getValue().getValue()));
+        Bulid_TreeTableView.setRoot(root);
 
-        showHouseTreeTable(); //展示TreeTableView
+        //展示TreeTableView
+        showHouseTreeTable();
 
-        Bulid_Tree.getSelectionModel().selectedItemProperty().addListener(
+        //选择行监听
+        Bulid_TreeTableView.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> showHouseTable(newValue.getValue()));
-        House_Table.getSelectionModel().selectedItemProperty().addListener(
+        House_TableView.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> showMoreInfo(newValue));
 
-        Table_HNo.setCellValueFactory(
+        //cellData通过把值传给了tableBiew
+        HNo_TableColumn.setCellValueFactory(
                 cellData -> cellData.getValue().getHNo());
-        Table_HBuild.setCellValueFactory(
+        HBuild_TableColumn.setCellValueFactory(
                 cellData -> cellData.getValue().getHBuild() );
-        Table_HPark.setCellValueFactory(
+        HPark_TableColumn.setCellValueFactory(
                 cellData -> cellData.getValue().getHPark() );
-        Table_HFloor.setCellValueFactory(
+        HFloor_TableColumn.setCellValueFactory(
                 cellData -> cellData.getValue().getHFloor() );
-        Table_HRoom.setCellValueFactory(
+        HRoom_TableColumn.setCellValueFactory(
                 cellData -> cellData.getValue().getHRoom() );
-        Table_HArea.setCellValueFactory(
+        HArea_TableColumn.setCellValueFactory(
                 cellData -> cellData.getValue().getHArea() );
-        Table_HState.setCellValueFactory(
+        HState_TableColumn.setCellValueFactory(
                 cellData -> cellData.getValue().getHState() );
-        Table_ONo.setCellValueFactory(
+        ONo_TableColumn.setCellValueFactory(
                 cellData -> cellData.getValue().getONo() );
-        Table_OName.setCellValueFactory(
+        OName_TableColumn.setCellValueFactory(
                 cellData -> cellData.getValue().getOName() );
 
-        House_Table.setItems(list);
+        House_TableView.setItems(list);
 
         showHouseTable("初始化");
+        //搜索文本栏变动监听
         Search_OName_TextField.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
@@ -206,7 +214,7 @@ public class IndexMain_Controller {
         }
     }
     public void showMoreInfo(HouseTableData houseTableData){
-        int selectedIndex = House_Table.getSelectionModel().getSelectedIndex();
+        int selectedIndex = House_TableView.getSelectionModel().getSelectedIndex();
         if(selectedIndex >= 0 ){
             HNo_Label.setText(houseTableData.getHNo().getValue());
             HAddress_Label.setText("东莞市寮步镇光明小区" + houseTableData.getHBuild().getValue() + houseTableData.getHPark().getValue() + houseTableData.getHFloor().getValue() + houseTableData.getHRoom().getValue());
@@ -272,7 +280,7 @@ public class IndexMain_Controller {
                 Edit_Stage.setResizable(false);
                 HouseEdit_Controller controller = loader.getController();
                 controller.setDialogStage(Edit_Stage);
-                controller.setHouse(House_Table.getSelectionModel().getSelectedItem());
+                controller.setHouse(House_TableView.getSelectionModel().getSelectedItem());
             }
             catch (Exception e) {
                 e.printStackTrace();

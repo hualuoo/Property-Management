@@ -49,22 +49,22 @@
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></ToggleButton>
-            <TreeTableView fx:id="Bulid_Tree" layoutX="95.0" layoutY="76.0" prefHeight="508.0" prefWidth="102.0">
+            <TreeTableView fx:id="Bulid_TreeTableView" layoutX="95.0" layoutY="76.0" prefHeight="508.0" prefWidth="102.0">
               <columns>
-                <TreeTableColumn fx:id="Build_TreeTable" prefWidth="100.0" text="楼宇" />
+                <TreeTableColumn fx:id="Build_TreeTableColumn" prefWidth="100.0" text="楼宇" />
               </columns>
             </TreeTableView>
-            <TableView fx:id="House_Table" layoutX="207.0" layoutY="75.0" prefHeight="455.0" prefWidth="457.0">
+            <TableView fx:id="House_TableView" layoutX="207.0" layoutY="75.0" prefHeight="455.0" prefWidth="457.0">
                <columns>
-                  <TableColumn fx:id="Table_HNo" prefWidth="75.0" text="房屋编号" />
-                  <TableColumn fx:id="Table_HBuild" prefWidth="40.0" text="楼宇" />
-                  <TableColumn fx:id="Table_HPark" prefWidth="40.0" text="单元" />
-                  <TableColumn fx:id="Table_HFloor" prefWidth="40.0" text="楼层" />
-                  <TableColumn fx:id="Table_HRoom" prefWidth="40.0" text="门牌号" />
-                  <TableColumn fx:id="Table_HArea" prefWidth="40.0" text="面积" />
-                  <TableColumn fx:id="Table_HState" prefWidth="60.0" text="当前状态" />
-                  <TableColumn fx:id="Table_ONo" prefWidth="60.0" text="业主编号" />
-                  <TableColumn fx:id="Table_OName" prefWidth="60.0" text="业主姓名" />
+                  <TableColumn fx:id="HNo_TableColumn" prefWidth="75.0" text="房屋编号" />
+                  <TableColumn fx:id="HBuild_TableColumn" prefWidth="40.0" text="楼宇" />
+                  <TableColumn fx:id="HPark_TableColumn" prefWidth="40.0" text="单元" />
+                  <TableColumn fx:id="HFloor_TableColumn" prefWidth="40.0" text="楼层" />
+                  <TableColumn fx:id="HRoom_TableColumn" prefWidth="40.0" text="门牌号" />
+                  <TableColumn fx:id="HArea_TableColumn" prefWidth="40.0" text="面积" />
+                  <TableColumn fx:id="HState_TableColumn" prefWidth="60.0" text="当前状态" />
+                  <TableColumn fx:id="ONo_TableColumn" prefWidth="60.0" text="业主编号" />
+                  <TableColumn fx:id="OName_TableColumn" prefWidth="60.0" text="业主姓名" />
                </columns>
             </TableView>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4f4f4" height="509.0" layoutX="674.0" layoutY="75.0" stroke="BLACK" strokeType="INSIDE" width="317.0" />
@@ -98,7 +98,7 @@
                   <RowConstraints minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
                </rowConstraints>
             </GridPane>
-            <Line endX="215.0" layoutX="774.0" layoutY="301.0" startX="-100.0" />
+            <Line endX="215.0" layoutX="775.0" layoutY="301.0" startX="-100.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4f4f4" height="23.0" layoutX="682.0" layoutY="289.0" stroke="#f2f2f2" strokeType="INSIDE" width="63.0" />
             <Label layoutX="690.0" layoutY="294.0" text="业主信息" />
             <GridPane layoutX="684.0" layoutY="315.0" prefWidth="298.0">
