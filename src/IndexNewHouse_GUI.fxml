@@ -59,7 +59,7 @@
                      <children>
                         <TextField fx:id="HArea_TextField" alignment="CENTER" prefHeight="23.0" prefWidth="48.0" />
                         <Label text="㎡" GridPane.columnIndex="1" />
-                        <Label fx:id="HAreaError_Label" GridPane.columnIndex="2" />
+                        <Label fx:id="HAreaError_Label" textFill="RED" GridPane.columnIndex="2" />
                      </children>
                   </GridPane>
                   <GridPane GridPane.columnIndex="1" GridPane.rowIndex="4">

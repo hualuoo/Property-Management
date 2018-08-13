@@ -246,19 +246,20 @@ public class IndexNewHouse_Controller {
     public void check_HArea(){
         HArea_TextField.textProperty().addListener(new ChangeListener<String>() {
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                //房屋面积文本框文字修改监听，正则判断
-                String regex = "[0-9]*";
+                //房屋面积文本框文字修改监听，正则判断(正实数)
+                String regex = "^[0-9]+(.[0-9]+)?$";
                 if(newValue==null || newValue.length()==0){
                     HAreaError_Label.setText("请输入房屋面积");
-                    HAreaError_Label.setTextFill(Color.web("#ff1a00"));
+                    Confirm_Button.setDisable(true);
                 }
                 else{
-                    if(Pattern.compile(regex).matcher(newValue).matches()==false ){
+                    if(Pattern.compile(regex).matcher(newValue).matches()==false){
                         HAreaError_Label.setText("请输入正确的房屋面积");
-                        HAreaError_Label.setTextFill(Color.web("#ff1a00"));
+                        Confirm_Button.setDisable(true);
                     }
                     else {
                         HAreaError_Label.setText("");
+                        Confirm_Button.setDisable(false);
                     }
                 }
             }
