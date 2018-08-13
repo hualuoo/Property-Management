@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 import java.util.Optional;
 import java.util.regex.Pattern;
 
-public class HouseEdit_Controller {
+public class IndexEditHouse_Controller {
     public Label HNo_Label,Information_Label;
     public TextField HBuild_TextField,HPark_TextField,HFloor_TextField,HRoom_TextField,HArea_TextField,HType_TextField;
     public TextField ONo_TextField,OName_TextField,OTel_TextField,OID_TextField;

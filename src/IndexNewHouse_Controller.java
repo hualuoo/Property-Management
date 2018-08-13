@@ -65,15 +65,15 @@ public class IndexNewHouse_Controller {
         if (newValue.intValue() == 1) {
             //选择第2项"未销售"
             ONo_TextField.setDisable(true);
-            ONo_TextField.setText("");
             OName_TextField.setDisable(true);
-            OName_TextField.setText("");
             OSex_ChoiceBox.setDisable(true);
             OTel_TextField.setDisable(true);
-            OTel_TextField.setText("");
             OID_TextField.setDisable(true);
-            OID_TextField.setText("");
             ONote_TextArea.setDisable(true);
+            ONo_TextField.setText("");
+            OName_TextField.setText("");
+            OTel_TextField.setText("");
+            OID_TextField.setText("");
             ONote_TextArea.setText("");
         } else {
             //选择其他选项
@@ -246,14 +246,15 @@ public class IndexNewHouse_Controller {
     public void check_HArea(){
         HArea_TextField.textProperty().addListener(new ChangeListener<String>() {
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                //文本框文字修改监听 正则判断
+                //房屋面积文本框文字修改监听，正则判断
                 String regex = "[0-9]*";
                 if(newValue==null || newValue.length()==0){
-                    HAreaError_Label.setText("");
+                    HAreaError_Label.setText("请输入房屋面积");
+                    HAreaError_Label.setTextFill(Color.web("#ff1a00"));
                 }
                 else{
-                    if(Pattern.compile(regex).matcher(newValue).matches()==false){
-                        HAreaError_Label.setText("请输入正确的房屋面积！");
+                    if(Pattern.compile(regex).matcher(newValue).matches()==false ){
+                        HAreaError_Label.setText("请输入正确的房屋面积");
                         HAreaError_Label.setTextFill(Color.web("#ff1a00"));
                     }
                     else {
@@ -287,6 +288,7 @@ public class IndexNewHouse_Controller {
         });
     }
     public void create_HNo(){
+        //根据输入的房屋信息生成编号
         HNo_Label.setText(HBuild_TextField.getText() + "#" + HPark_TextField.getText() + "-" + HRoom_TextField.getText());
     }
 }

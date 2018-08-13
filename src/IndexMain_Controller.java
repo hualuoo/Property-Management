@@ -238,7 +238,7 @@ public class IndexMain_Controller {
                 Edit_Stage.setY((Main.height-505)/2);
                 Edit_Stage.show();
                 Edit_Stage.setResizable(false);
-                HouseEdit_Controller controller = loader.getController();
+                IndexEditHouse_Controller controller = loader.getController();
                 controller.setDialogStage(Edit_Stage);
                 controller.setHouse(House_TableView.getSelectionModel().getSelectedItem());
             }
