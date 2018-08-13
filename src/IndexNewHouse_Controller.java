@@ -8,7 +8,7 @@ import java.util.Optional;
 import java.util.regex.Pattern;
 
 public class IndexNewHouse_Controller {
-    public Label HNo_Label,Information_Label;
+    public Label HNo_Label,Information_Label,HAreaError_Label;
     public TextField HBuild_TextField,HPark_TextField,HFloor_TextField,HRoom_TextField,HArea_TextField,HType_TextField;
     public TextField ONo_TextField,OName_TextField,OTel_TextField,OID_TextField;
     public TextArea HNote_TextArea,ONote_TextArea;
@@ -17,15 +17,27 @@ public class IndexNewHouse_Controller {
     public HouseTableData houseTableData;
     private Stage dialogStage;
     public String query,query_Insert,query_Insert2;
+    public void setDialogStage(Stage dialogStage) {
+        //传参Stage
+        this.dialogStage = dialogStage;
+    }
+    public void setHouseTableData(HouseTableData houseTableData){
+        //传参房屋数据
+        this.houseTableData = houseTableData;
+    }
     public void initialize() {
+        //初始化
+        //ChoiceBox加入选择项
         HState_ChoiceBox.setItems(FXCollections.observableArrayList(
                 "已销售", "未销售", "待入住")
         );
         OSex_ChoiceBox.setItems(FXCollections.observableArrayList(
                 "男", "女")
         );
+        //房屋销售情况选择框变更监听
         HState_ChoiceBox.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue)->
-            setTextField(newValue));
+                changeHState_ChoiceBox(newValue));
+        //添加房屋窗口的房屋销售情况选择框默认为"未销售"
         HState_ChoiceBox.setValue("未销售");
 
         check_HBuild();
@@ -48,14 +60,10 @@ public class IndexNewHouse_Controller {
             }
         });
     }
-    public void setDialogStage(Stage dialogStage) {
-        this.dialogStage = dialogStage;
-    }
-    public void setHouseTableData(HouseTableData houseTableData){
-        this.houseTableData = houseTableData;
-    }
-    public void setTextField(Number newValue) {
+    public void changeHState_ChoiceBox(Number newValue) {
+        //房屋销售情况选择框变更
         if (newValue.intValue() == 1) {
+            //选择第2项"未销售"
             ONo_TextField.setDisable(true);
             ONo_TextField.setText("");
             OName_TextField.setDisable(true);
@@ -68,6 +76,7 @@ public class IndexNewHouse_Controller {
             ONote_TextArea.setDisable(true);
             ONote_TextArea.setText("");
         } else {
+            //选择其他选项
             ONo_TextField.setDisable(false);
             OName_TextField.setDisable(false);
             OSex_ChoiceBox.setDisable(false);
@@ -240,15 +249,15 @@ public class IndexNewHouse_Controller {
                 //文本框文字修改监听 正则判断
                 String regex = "[0-9]*";
                 if(newValue==null || newValue.length()==0){
-                    Information_Label.setText("");
+                    HAreaError_Label.setText("");
                 }
                 else{
                     if(Pattern.compile(regex).matcher(newValue).matches()==false){
-                        Information_Label.setText("请输入正确的房屋面积！");
-                        Information_Label.setTextFill(Color.web("#ff1a00"));
+                        HAreaError_Label.setText("请输入正确的房屋面积！");
+                        HAreaError_Label.setTextFill(Color.web("#ff1a00"));
                     }
                     else {
-                        Information_Label.setText("");
+                        HAreaError_Label.setText("");
                     }
                 }
             }

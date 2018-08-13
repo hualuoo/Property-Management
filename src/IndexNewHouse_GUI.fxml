@@ -19,12 +19,6 @@
                   <Label text="房屋户型：" GridPane.rowIndex="4" />
                   <Label text="当前状态：" GridPane.rowIndex="3" />
                   <Label text="房屋面积：" GridPane.rowIndex="2" />
-                  <Label fx:id="Label_HNo" GridPane.columnIndex="1" />
-                  <Label fx:id="Label_HAddress" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Label fx:id="Label_HArea" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Label fx:id="Label_HState" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <Label fx:id="Label_HType" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <Label fx:id="HNo_Label" GridPane.columnIndex="1" />
                   <ChoiceBox fx:id="HState_ChoiceBox" prefHeight="23.0" prefWidth="85.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <GridPane prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                     <columnConstraints>
@@ -56,8 +50,8 @@
                   <GridPane GridPane.columnIndex="1" GridPane.rowIndex="2">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="73.0" minWidth="10.0" prefWidth="51.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="111.0" minWidth="10.0" prefWidth="105.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="111.0" minWidth="10.0" prefWidth="27.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="165.0" minWidth="10.0" prefWidth="160.0" />
                     </columnConstraints>
                     <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -65,6 +59,7 @@
                      <children>
                         <TextField fx:id="HArea_TextField" alignment="CENTER" prefHeight="23.0" prefWidth="48.0" />
                         <Label text="㎡" GridPane.columnIndex="1" />
+                        <Label fx:id="HAreaError_Label" GridPane.columnIndex="2" />
                      </children>
                   </GridPane>
                   <GridPane GridPane.columnIndex="1" GridPane.rowIndex="4">
@@ -82,6 +77,7 @@
                   </GridPane>
                   <Label text="备　　注：" GridPane.rowIndex="5" />
                   <TextArea fx:id="HNote_TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <Label fx:id="HNo_Label" GridPane.columnIndex="1" />
                </children>
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="244.0" minWidth="10.0" prefWidth="65.0" />
