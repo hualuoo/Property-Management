@@ -20,38 +20,30 @@
                   <Label text="当前状态：" GridPane.rowIndex="3" />
                   <Label text="房屋面积：" GridPane.rowIndex="2" />
                   <ChoiceBox fx:id="HState_ChoiceBox" prefHeight="23.0" prefWidth="85.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <GridPane prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <GridPane maxHeight="22.0" minHeight="22.0" prefHeight="22.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP">
                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="104.0" minWidth="10.0" prefWidth="45.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="25.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="84.0" minWidth="5.0" prefWidth="10.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="86.0" minWidth="10.0" prefWidth="20.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="79.0" minWidth="10.0" prefWidth="22.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="79.0" minWidth="1.0" prefWidth="25.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.0" minWidth="10.0" prefWidth="10.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.0" minWidth="10.0" prefWidth="40.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.0" minWidth="10.0" prefWidth="10.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="130.0" minWidth="10.0" prefWidth="124.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="45.0" minWidth="10.0" prefWidth="42.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="84.0" minWidth="5.0" prefWidth="18.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="86.0" minWidth="10.0" prefWidth="29.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="79.0" minWidth="10.0" prefWidth="26.0" />
                     </columnConstraints>
                     <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label text="光明小区" />
+                        <Label text="广东省东莞市光明小区" />
                         <TextField fx:id="HBuild_TextField" alignment="CENTER" GridPane.columnIndex="1" />
                         <Label text="幢" GridPane.columnIndex="2" />
                         <TextField fx:id="HPark_TextField" alignment="CENTER" GridPane.columnIndex="3" />
                         <Label text="单元" GridPane.columnIndex="4" />
-                        <TextField fx:id="HFloor_TextField" alignment="CENTER" GridPane.columnIndex="5" />
-                        <Label text="层" GridPane.columnIndex="6" />
-                        <TextField fx:id="HRoom_TextField" alignment="CENTER" GridPane.columnIndex="7" />
-                        <Label text="室" GridPane.columnIndex="8" />
                      </children>
                   </GridPane>
                   <GridPane GridPane.columnIndex="1" GridPane.rowIndex="2">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="73.0" minWidth="10.0" prefWidth="51.0" />
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="111.0" minWidth="10.0" prefWidth="27.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="165.0" minWidth="10.0" prefWidth="160.0" />
+                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="165.0" minWidth="10.0" prefWidth="160.0" />
                     </columnConstraints>
                     <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -78,6 +70,25 @@
                   <Label text="备　　注：" GridPane.rowIndex="5" />
                   <TextArea fx:id="HNote_TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <Label fx:id="HNo_Label" GridPane.columnIndex="1" />
+                  <GridPane maxHeight="22.0" minHeight="22.0" prefHeight="22.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="75.0" minWidth="10.0" prefWidth="32.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="66.0" minWidth="10.0" prefWidth="21.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="59.0" minWidth="10.0" prefWidth="49.0" />
+                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="63.0" minWidth="10.0" prefWidth="19.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="121.0" minWidth="10.0" prefWidth="115.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="22.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <TextField fx:id="HFloor_TextField" alignment="CENTER" />
+                        <Label text="层" GridPane.columnIndex="1" />
+                        <TextField fx:id="HRoom_TextField" alignment="CENTER" prefHeight="23.0" prefWidth="46.0" GridPane.columnIndex="2" />
+                        <Label text="室" GridPane.columnIndex="3" />
+                        <Label fx:id="HInfoError_Label" textFill="RED" GridPane.columnIndex="4" />
+                     </children>
+                  </GridPane>
                </children>
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="244.0" minWidth="10.0" prefWidth="65.0" />
@@ -85,11 +96,11 @@
                </columnConstraints>
                <rowConstraints>
                   <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
                </rowConstraints>
             </GridPane>
             <Line endX="215.0" layoutX="115.0" layoutY="249.0" startX="-100.0" />

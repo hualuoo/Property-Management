@@ -8,7 +8,7 @@ import java.util.Optional;
 import java.util.regex.Pattern;
 
 public class IndexNewHouse_Controller {
-    public Label HNo_Label,Information_Label,HAreaError_Label;
+    public Label HNo_Label,Information_Label,HAreaError_Label,HInfoError_Label;
     public TextField HBuild_TextField,HPark_TextField,HFloor_TextField,HRoom_TextField,HArea_TextField,HType_TextField;
     public TextField ONo_TextField,OName_TextField,OTel_TextField,OID_TextField;
     public TextArea HNote_TextArea,ONote_TextArea;
@@ -39,15 +39,16 @@ public class IndexNewHouse_Controller {
                 changeHState_ChoiceBox(newValue));
         //添加房屋窗口的房屋销售情况选择框默认为"未销售"
         HState_ChoiceBox.setValue("未销售");
-
+        //初始化禁止使用确认按钮
+        Confirm_Button.setDisable(true);
         check_HBuild();
         check_HPark();
         check_HFloor();
         check_HRoom();
 
         HArea_TextField.focusedProperty().addListener(new ChangeListener<Boolean>() {
-            @Override
             //文本框焦点获取监听
+            @Override
             public void changed(ObservableValue<? extends Boolean> arg0,Boolean arg1, Boolean arg2) {
                 check_HArea();
             }
@@ -153,7 +154,6 @@ public class IndexNewHouse_Controller {
                     HState_ChoiceBox.getSelectionModel().getSelectedItem() + "\',\'" + HType_TextField.getText().trim() + "\',\'" + HNote_TextArea.getText().trim() + "\',\'" + ONo_TextField.getText().trim() + "\');";
             query = query_Insert + " " + query_Insert2;
         }
-        //System.out.print(query);
         SQL_Connect sql_connect = new SQL_Connect();
         sql_connect.sql_Update(query);
     }
@@ -244,24 +244,30 @@ public class IndexNewHouse_Controller {
         });
     }
     public void check_HArea(){
+        //检查房屋面积
+        HAreaError_Label.setText("请输入房屋面积");
+        Confirm_Button.setDisable(true);
         HArea_TextField.textProperty().addListener(new ChangeListener<String>() {
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 //房屋面积文本框文字修改监听，正则判断(正实数)
                 String regex = "^[0-9]+(.[0-9]+)?$";
                 if(newValue==null || newValue.length()==0){
-                    HAreaError_Label.setText("请输入房屋面积");
+                    HAreaError_Label.setText("房屋面积不能为空");
                     Confirm_Button.setDisable(true);
+                    return;
                 }
-                else{
-                    if(Pattern.compile(regex).matcher(newValue).matches()==false){
-                        HAreaError_Label.setText("请输入正确的房屋面积");
-                        Confirm_Button.setDisable(true);
-                    }
-                    else {
-                        HAreaError_Label.setText("");
-                        Confirm_Button.setDisable(false);
-                    }
+                if(Pattern.compile(regex).matcher(newValue).matches()==false){
+                    HAreaError_Label.setText("请输入正确的房屋面积");
+                    Confirm_Button.setDisable(true);
+                    return;
                 }
+                if(Double.parseDouble(newValue)==0){
+                    HAreaError_Label.setText("房屋面积不能等于0");
+                    Confirm_Button.setDisable(true);
+                    return;
+                }
+                HAreaError_Label.setText("");
+                Confirm_Button.setDisable(false);
             }
         });
     }
@@ -291,5 +297,48 @@ public class IndexNewHouse_Controller {
     public void create_HNo(){
         //根据输入的房屋信息生成编号
         HNo_Label.setText(HBuild_TextField.getText() + "#" + HPark_TextField.getText() + "-" + HRoom_TextField.getText());
+    }
+    public void check_TextField(){
+        String regex = "[0-9]*";
+        if(HBuild_TextField.getText() == null || HBuild_TextField.getText().length()==0){
+            HInfoError_Label.setText("房屋楼宇号不能为空");
+            Confirm_Button.setDisable(true);
+            return;
+        }
+        if(Pattern.compile(regex).matcher(HBuild_TextField.getText()).matches()==false){
+            HAreaError_Label.setText("请输入正确的房屋楼宇号");
+            Confirm_Button.setDisable(true);
+            return;
+        }
+        if(HPark_TextField.getText() == null || HPark_TextField.getText().length()==0){
+            HInfoError_Label.setText("房屋单元号不能为空");
+            Confirm_Button.setDisable(true);
+            return;
+        }
+        if(Pattern.compile(regex).matcher(HPark_TextField.getText()).matches()==false){
+            HAreaError_Label.setText("请输入正确的房屋单元号");
+            Confirm_Button.setDisable(true);
+            return;
+        }
+        if(HFloor_TextField.getText() == null || HFloor_TextField.getText().length()==0){
+            HInfoError_Label.setText("房屋楼层号不能为空");
+            Confirm_Button.setDisable(true);
+            return;
+        }
+        if(Pattern.compile(regex).matcher(HFloor_TextField.getText()).matches()==false){
+            HAreaError_Label.setText("请输入正确的房屋楼层号");
+            Confirm_Button.setDisable(true);
+            return;
+        }
+        if(HRoom_TextField.getText() == null || HRoom_TextField.getText().length()==0){
+            HInfoError_Label.setText("房屋号不能为空");
+            Confirm_Button.setDisable(true);
+            return;
+        }
+        if(Pattern.compile(regex).matcher(HRoom_TextField.getText()).matches()==false){
+            HAreaError_Label.setText("请输入正确的房屋号");
+            Confirm_Button.setDisable(true);
+            return;
+        }
     }
 }
