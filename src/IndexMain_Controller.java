@@ -228,7 +228,7 @@ public class IndexMain_Controller {
             try{
                 Stage Edit_Stage;
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(IndexMain_Controller.class.getResource("HouseEditGUI.fxml"));
+                loader.setLocation(IndexMain_Controller.class.getResource("IndexEditHouse_GUI.fxml"));
                 AnchorPane page = (AnchorPane) loader.load();
                 Edit_Stage = new Stage();
                 Edit_Stage.setTitle("小区物业管理系统-修改");

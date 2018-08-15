@@ -24,26 +24,26 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="fxml" value="11" />
-          <entry key="java" value="38" />
+          <entry key="fxml" value="12" />
+          <entry key="java" value="43" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="38" />
-          <entry key="XML" value="11" />
+          <entry key="JAVA" value="43" />
+          <entry key="XML" value="12" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="fxml" value="2" />
-          <entry key="java" value="2808" />
+          <entry key="fxml" value="6" />
+          <entry key="java" value="3189" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="2808" />
-          <entry key="XML" value="2" />
+          <entry key="JAVA" value="3189" />
+          <entry key="XML" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.spring.boot.mvc.usages" />
@@ -56,7 +56,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="437">
+            <state>
               <caret line="30" column="31" selection-start-line="30" selection-start-column="31" selection-end-line="30" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -65,14 +65,63 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/IndexMain_Controller.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1558">
+              <caret line="229" column="53" lean-forward="true" selection-start-line="229" selection-start-column="53" selection-end-line="229" selection-end-column="53" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/IndexNewHouse_Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="57">
-              <caret line="3" column="30" selection-start-line="3" selection-start-column="30" selection-end-line="3" selection-end-column="30" />
+            <state relative-caret-position="369">
+              <caret line="263" column="97" lean-forward="true" selection-start-line="263" selection-start-column="97" selection-end-line="263" selection-end-column="131" />
               <folding>
+                <element signature="imports" expanded="true" />
                 <element signature="e#916#917#0" expanded="true" />
                 <element signature="e#953#954#0" expanded="true" />
+                <element signature="e#14994#14995#0" expanded="true" />
+                <element signature="e#15025#15026#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/IndexEditHouse_Controller.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="369">
+              <caret line="317" column="55" selection-start-line="317" selection-start-column="55" selection-end-line="317" selection-end-column="55" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#9595#9596#0" expanded="true" />
+                <element signature="e#9626#9627#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/IndexEditHouse_Controller2.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="407">
+              <caret line="163" column="59" lean-forward="true" selection-start-line="148" selection-start-column="16" selection-end-line="163" selection-end-column="59" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1675#1676#0" expanded="true" />
+                <element signature="e#1720#1721#0" expanded="true" />
+                <element signature="e#1964#1965#0" expanded="true" />
+                <element signature="e#2006#2007#0" expanded="true" />
+                <element signature="e#2076#2077#0" expanded="true" />
+                <element signature="e#2122#2123#0" expanded="true" />
+                <element signature="e#5619#5620#0" expanded="true" />
+                <element signature="e#5650#5651#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -84,6 +133,7 @@
     <findStrings>
       <find>ResultSet</find>
       <find>list</find>
+      <find>setHouse</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -105,10 +155,11 @@
         <option value="$PROJECT_DIR$/src/HouseTableData.java" />
         <option value="$PROJECT_DIR$/src/HouseEdit_Controller.java" />
         <option value="$PROJECT_DIR$/src/LoginMain_Controller.java" />
-        <option value="$PROJECT_DIR$/src/IndexEditHouse_Controller.java" />
-        <option value="$PROJECT_DIR$/src/IndexEditHouse_GUI.fxml" />
         <option value="$PROJECT_DIR$/src/IndexMain_Controller.java" />
+        <option value="$PROJECT_DIR$/src/IndexEditHouse_GUI.fxml" />
+        <option value="$PROJECT_DIR$/src/IndexEditHouse_Controller2.java" />
         <option value="$PROJECT_DIR$/src/IndexNewHouse_Controller.java" />
+        <option value="$PROJECT_DIR$/src/IndexEditHouse_Controller.java" />
       </list>
     </option>
   </component>
@@ -153,7 +204,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1534327194034" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1534332164854" />
     <property name="last_opened_file_path" value="C:/Program Files (x86)/Oracle/JavaFX Scene Builder 2.0/JavaFX Scene Builder 2.0.exe" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
@@ -217,12 +268,12 @@
       <workItem from="1533913573493" duration="135000" />
       <workItem from="1533985193768" duration="721000" />
       <workItem from="1534056383422" duration="29906000" />
-      <workItem from="1534235731464" duration="13269000" />
+      <workItem from="1534235731464" duration="17056000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="53022000" />
+    <option name="totallyTimeSpent" value="56809000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -301,31 +352,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/HouseEdit_Controller.java" />
-    <entry file="file://$PROJECT_DIR$/src/IndexEditHouse_GUI.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="7" column="150" selection-start-line="7" selection-start-column="150" selection-end-line="7" selection-end-column="150" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/IndexEditHouse_Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="9" column="38" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/IndexMain_Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="27" column="42" lean-forward="true" selection-start-line="27" selection-start-column="42" selection-end-line="27" selection-end-column="42" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/HouseTableData.java">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -356,8 +382,33 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
+        <state>
           <caret line="30" column="31" selection-start-line="30" selection-start-column="31" selection-end-line="30" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/IndexEditHouse_GUI.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" column="33" lean-forward="true" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/javafx/beans/value/ChangeListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="583">
+          <caret line="62" column="9" selection-start-line="62" selection-start-column="9" selection-end-line="62" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/IndexMain_Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1558">
+          <caret line="229" column="53" lean-forward="true" selection-start-line="229" selection-start-column="53" selection-end-line="229" selection-end-column="53" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -366,11 +417,44 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/IndexNewHouse_Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" column="30" selection-start-line="3" selection-start-column="30" selection-end-line="3" selection-end-column="30" />
+        <state relative-caret-position="369">
+          <caret line="263" column="97" lean-forward="true" selection-start-line="263" selection-start-column="97" selection-end-line="263" selection-end-column="131" />
           <folding>
+            <element signature="imports" expanded="true" />
             <element signature="e#916#917#0" expanded="true" />
             <element signature="e#953#954#0" expanded="true" />
+            <element signature="e#14994#14995#0" expanded="true" />
+            <element signature="e#15025#15026#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/IndexEditHouse_Controller2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="407">
+          <caret line="163" column="59" lean-forward="true" selection-start-line="148" selection-start-column="16" selection-end-line="163" selection-end-column="59" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1675#1676#0" expanded="true" />
+            <element signature="e#1720#1721#0" expanded="true" />
+            <element signature="e#1964#1965#0" expanded="true" />
+            <element signature="e#2006#2007#0" expanded="true" />
+            <element signature="e#2076#2077#0" expanded="true" />
+            <element signature="e#2122#2123#0" expanded="true" />
+            <element signature="e#5619#5620#0" expanded="true" />
+            <element signature="e#5650#5651#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/IndexEditHouse_Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="369">
+          <caret line="317" column="55" selection-start-line="317" selection-start-column="55" selection-end-line="317" selection-end-column="55" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#9595#9596#0" expanded="true" />
+            <element signature="e#9626#9627#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -89,17 +89,18 @@ public class IndexNewHouse_Controller {
         //房屋销售情况选择框变更
         if (newValue.intValue() == 1) {
             //选择第2项"未销售"
+            ONo_TextField.setText("");
+            OName_TextField.setText("");
+            OTel_TextField.setText("");
+            OID_TextField.setText("");
+            ONote_TextArea.setText("");
             ONo_TextField.setDisable(true);
             OName_TextField.setDisable(true);
             OSex_ChoiceBox.setDisable(true);
             OTel_TextField.setDisable(true);
             OID_TextField.setDisable(true);
             ONote_TextArea.setDisable(true);
-            ONo_TextField.setText("");
-            OName_TextField.setText("");
-            OTel_TextField.setText("");
-            OID_TextField.setText("");
-            ONote_TextArea.setText("");
+            OIDError_Label.setText("");
         } else {
             //选择其他选项
             ONo_TextField.setDisable(false);
@@ -109,15 +110,6 @@ public class IndexNewHouse_Controller {
             OID_TextField.setDisable(false);
             ONote_TextArea.setDisable(false);
         }
-    }
-
-    public void click_ExitButton(){
-
-        close_Windows();
-    }
-    public void close_Windows(){
-        Stage stage = (Stage)Confirm_Button.getScene().getWindow();
-        stage.close();
     }
 
     public void create_HNo(){
@@ -290,7 +282,7 @@ public class IndexNewHouse_Controller {
         houseTableData.setHRoom(HRoom_TextField.getText() + "室");
         houseTableData.setHArea(HArea_TextField.getText() + "㎡");
         houseTableData.setHState(HState_ChoiceBox.getSelectionModel().getSelectedItem().toString());
-        houseTableData.setHType(HType_TextField.getText());
+        houseTableData.setHType(HType_TextField.getText().trim());
         houseTableData.setHNote(HNote_TextArea.getText());
         houseTableData.setONo("");
         houseTableData.setOName("");
@@ -351,5 +343,12 @@ public class IndexNewHouse_Controller {
         alert2.initOwner(Confirm_Button.getScene().getWindow());
         alert2.showAndWait();
         close_Windows();
+    }
+    public void click_ExitButton(){
+        close_Windows();
+    }
+    public void close_Windows(){
+        Stage stage = (Stage)Confirm_Button.getScene().getWindow();
+        stage.close();
     }
 }
