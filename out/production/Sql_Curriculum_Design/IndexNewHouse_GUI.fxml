@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.control.*?>
@@ -51,7 +52,10 @@
                      <children>
                         <TextField fx:id="HArea_TextField" alignment="CENTER" prefHeight="23.0" prefWidth="48.0" />
                         <Label text="㎡" GridPane.columnIndex="1" />
-                        <Label fx:id="HAreaError_Label" textFill="RED" GridPane.columnIndex="2" />
+                        <Label fx:id="HAreaError_Label" textFill="RED" GridPane.columnIndex="2">
+                           <font>
+                              <Font size="11.0" />
+                           </font></Label>
                      </children>
                   </GridPane>
                   <GridPane GridPane.columnIndex="1" GridPane.rowIndex="4">
@@ -86,7 +90,10 @@
                         <Label text="层" GridPane.columnIndex="1" />
                         <TextField fx:id="HRoom_TextField" alignment="CENTER" prefHeight="23.0" prefWidth="38.0" GridPane.columnIndex="2" />
                         <Label text="室" GridPane.columnIndex="3" />
-                        <Label fx:id="HInfoError_Label" textFill="RED" GridPane.columnIndex="4" />
+                        <Label fx:id="HInfoError_Label" textFill="RED" GridPane.columnIndex="4">
+                           <font>
+                              <Font size="11.0" />
+                           </font></Label>
                      </children>
                   </GridPane>
                </children>
@@ -166,19 +173,23 @@
                   </GridPane>
                   <GridPane GridPane.columnIndex="1" GridPane.rowIndex="4">
                     <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="172.0" minWidth="10.0" prefWidth="172.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="112.0" minWidth="10.0" prefWidth="63.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="172.0" minWidth="10.0" prefWidth="150.0" />
+                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="112.0" minWidth="10.0" prefWidth="85.0" />
                     </columnConstraints>
                     <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <TextField fx:id="OID_TextField" />
+                        <TextField fx:id="OID_TextField" prefHeight="23.0" prefWidth="152.0" />
+                        <Label fx:id="OIDError_Label" textFill="RED" GridPane.columnIndex="1">
+                           <font>
+                              <Font size="11.0" />
+                           </font>
+                        </Label>
                      </children>
                   </GridPane>
                </children>
             </GridPane>
-            <Label fx:id="Information_Label" layoutX="16.0" layoutY="484.0" prefHeight="15.0" prefWidth="194.0" />
             <Button fx:id="Confirm_Button" layoutX="231.0" layoutY="480.0" mnemonicParsing="false" onAction="#button_Confirm_Click" prefHeight="23.0" prefWidth="48.0" text="确定" />
             <Button fx:id="Exit_Button" layoutX="283.0" layoutY="480.0" mnemonicParsing="false" onAction="#exit_Button_Click" prefHeight="23.0" prefWidth="48.0" text="取消" />
          </children>

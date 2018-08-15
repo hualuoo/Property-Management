@@ -1,0 +1,7 @@
+        HArea_TextField.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            //文本框焦点获取监听
+            @Override
+            public void changed(ObservableValue<? extends Boolean> arg0,Boolean arg1, Boolean arg2) {
+                check_HAreaTextField();
+            }
+        });
