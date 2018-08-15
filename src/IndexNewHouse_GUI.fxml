@@ -190,8 +190,8 @@
                   </GridPane>
                </children>
             </GridPane>
-            <Button fx:id="Confirm_Button" layoutX="231.0" layoutY="480.0" mnemonicParsing="false" onAction="#button_Confirm_Click" prefHeight="23.0" prefWidth="48.0" text="确定" />
-            <Button fx:id="Exit_Button" layoutX="283.0" layoutY="480.0" mnemonicParsing="false" onAction="#exit_Button_Click" prefHeight="23.0" prefWidth="48.0" text="取消" />
+            <Button fx:id="Confirm_Button" layoutX="231.0" layoutY="480.0" mnemonicParsing="false" onAction="#click_ConfirmButton" prefHeight="23.0" prefWidth="48.0" text="确定" />
+            <Button fx:id="Exit_Button" layoutX="283.0" layoutY="480.0" mnemonicParsing="false" onAction="#click_ExitButton" prefHeight="23.0" prefWidth="48.0" text="取消" />
          </children>
       </AnchorPane>
    </children>

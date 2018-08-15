@@ -2,7 +2,6 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.scene.control.*;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import java.util.Optional;
 import java.util.regex.Pattern;
@@ -14,6 +13,8 @@ public class IndexNewHouse_Controller {
     public TextArea HNote_TextArea,ONote_TextArea;
     public ChoiceBox HState_ChoiceBox,OSex_ChoiceBox;
     public Button Confirm_Button,Exit_Button;
+    //判断是否通过验证
+    public int check_HBuild,check_HPark,check_HFloor,check_HRoom,check_HArea,check_OID;
     public HouseTableData houseTableData;
     private Stage dialogStage;
     public String query,query_Insert,query_Insert2;
@@ -110,7 +111,8 @@ public class IndexNewHouse_Controller {
         }
     }
 
-    public void exit_Button_Click(){
+    public void click_ExitButton(){
+
         close_Windows();
     }
     public void close_Windows(){
@@ -128,14 +130,17 @@ public class IndexNewHouse_Controller {
         if (HBuild_TextField.getText() == null || HBuild_TextField.getText().length() == 0) {
             HInfoError_Label.setText("房屋楼宇号不能为空");
             Confirm_Button.setDisable(true);
+            check_HBuild = 0;
             return;
         }
         if (Pattern.compile(regex).matcher(HBuild_TextField.getText()).matches() == false) {
             HInfoError_Label.setText("请输入正确的房屋楼宇号");
             Confirm_Button.setDisable(true);
+            check_HBuild = 0;
             return;
         }
         HInfoError_Label.setText("");
+        check_HBuild = 1;
         Confirm_Button.setDisable(false);
     }
     public void check_HParkTextField() {
@@ -143,14 +148,17 @@ public class IndexNewHouse_Controller {
         if (HPark_TextField.getText() == null || HPark_TextField.getText().length() == 0) {
             HInfoError_Label.setText("房屋单元号不能为空");
             Confirm_Button.setDisable(true);
+            check_HPark = 0;
             return;
         }
         if (Pattern.compile(regex).matcher(HPark_TextField.getText()).matches() == false) {
             HInfoError_Label.setText("请输入正确的房屋单元号");
             Confirm_Button.setDisable(true);
+            check_HPark = 0;
             return;
         }
         HInfoError_Label.setText("");
+        check_HPark = 1;
         Confirm_Button.setDisable(false);
     }
     public void check_HFloorTextField() {
@@ -158,14 +166,17 @@ public class IndexNewHouse_Controller {
         if (HFloor_TextField.getText() == null || HFloor_TextField.getText().length() == 0) {
             HInfoError_Label.setText("房屋楼层号不能为空");
             Confirm_Button.setDisable(true);
+            check_HFloor = 0;
             return;
         }
         if (Pattern.compile(regex).matcher(HFloor_TextField.getText()).matches() == false) {
             HInfoError_Label.setText("请输入正确的房屋楼层号");
             Confirm_Button.setDisable(true);
+            check_HFloor = 0;
             return;
         }
         HInfoError_Label.setText("");
+        check_HFloor = 1;
         Confirm_Button.setDisable(false);
     }
     public void check_HRoomTextField() {
@@ -173,14 +184,17 @@ public class IndexNewHouse_Controller {
         if(HRoom_TextField.getText() == null || HRoom_TextField.getText().length()==0){
             HInfoError_Label.setText("房屋号不能为空");
             Confirm_Button.setDisable(true);
+            check_HRoom = 0;
             return;
         }
         if(Pattern.compile(regex).matcher(HRoom_TextField.getText()).matches()==false){
             HInfoError_Label.setText("请输入正确的房屋号");
             Confirm_Button.setDisable(true);
+            check_HRoom = 0;
             return;
         }
         HInfoError_Label.setText("");
+        check_HRoom = 1;
         Confirm_Button.setDisable(false);
     }
     public void check_HAreaTextField(){
@@ -188,19 +202,23 @@ public class IndexNewHouse_Controller {
         if(HArea_TextField.getText() == null || HArea_TextField.getText().length()==0){
             HAreaError_Label.setText("房屋面积不能为空");
             Confirm_Button.setDisable(true);
+            check_HArea = 0;
             return;
         }
         if(Pattern.compile(regex).matcher(HArea_TextField.getText()).matches()==false){
             HAreaError_Label.setText("请输入正确的房屋面积");
             Confirm_Button.setDisable(true);
+            check_HArea = 0;
             return;
         }
         if(Double.parseDouble(HArea_TextField.getText())==0){
             HAreaError_Label.setText("房屋面积不能等于0");
             Confirm_Button.setDisable(true);
+            check_HArea = 0;
             return;
         }
         HAreaError_Label.setText("");
+        check_HArea = 1;
         Confirm_Button.setDisable(false);
     }
     public void check_OIDTextField(){
@@ -209,81 +227,129 @@ public class IndexNewHouse_Controller {
         if(OID_TextField.getText() == null || OID_TextField.getText().length()==0){
             OIDError_Label.setText("不能为空");
             Confirm_Button.setDisable(true);
+            check_OID = 0;
             return;
         }
         if(Pattern.compile(regex).matcher(OID_TextField.getText()).matches()==false){
             OIDError_Label.setText("输入错误");
             Confirm_Button.setDisable(true);
+            check_OID = 0;
             return;
         }
         OIDError_Label.setText("");
+        check_OID = 1;
         Confirm_Button.setDisable(false);
     }
 
-    public void button_Confirm_Click(){
+    public void click_ConfirmButton(){
+        //按下"确认"按钮
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("小区物业管理系统");
         alert.setHeaderText("您确认是否添加该条信息？");
         alert.initOwner(Confirm_Button.getScene().getWindow());
         Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK) {
-            New_HouseData();
-            AddSQLData();
-            Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
-            alert2.setTitle("小区物业管理系统");
-            alert2.setHeaderText("信息添加成功！");
-            alert2.initOwner(Confirm_Button.getScene().getWindow());
-            alert2.showAndWait();
-            close_Windows();
+        if (result.get() != ButtonType.OK) {
+            return;
+        }
+        if(HState_ChoiceBox.getSelectionModel().getSelectedItem().toString().equals("未销售")){
+            //房屋状态"未销售"
+            //检查数据
+            if(check_HBuild == 1 && check_HPark == 1 && check_HFloor == 1 && check_HRoom == 1 && check_HArea == 1){
+                //houseTableData数据修改  "未销售"
+                addHouseTableData_SellNo();
+                //将数据写入数据库  "未销售"
+                addSQL_SellNo();
+                //添加成功信息框
+                succeedAdd();
+            }
+            else {
+                errorAdd();
+            }
+        }
+        else {
+            //房屋状态"已销售""待入住"
+            //检查数据
+            if(check_HBuild == 1 && check_HPark == 1 && check_HFloor == 1 && check_HRoom == 1 && check_HArea == 1 && check_OID == 1){
+                //houseTableData数据修改  "已销售""待入住"
+                addHouseTableData_SellYes();
+                //将数据写入数据库  "已销售""待入住"
+                addSQL_SellYes();
+                //添加成功信息框
+                succeedAdd();
+            }
+            else {
+                errorAdd();
+            }
         }
     }
-    public void New_HouseData(){
-        houseTableData.setHNo(HNo_Label.getText().trim());
-        houseTableData.setHBuild(HBuild_TextField.getText().trim() + "幢");
-        houseTableData.setHPark(HPark_TextField.getText().trim() + "单元");
-        houseTableData.setHFloor(HFloor_TextField.getText().trim() + "层");
-        houseTableData.setHRoom(HRoom_TextField.getText().trim() + "室");
-        houseTableData.setHArea(HArea_TextField.getText().trim() + "㎡");
+    public void addHouseTableData_SellNo(){
+        houseTableData.setHNo(HNo_Label.getText());
+        houseTableData.setHBuild(HBuild_TextField.getText() + "幢");
+        houseTableData.setHPark(HPark_TextField.getText() + "单元");
+        houseTableData.setHFloor(HFloor_TextField.getText() + "层");
+        houseTableData.setHRoom(HRoom_TextField.getText() + "室");
+        houseTableData.setHArea(HArea_TextField.getText() + "㎡");
         houseTableData.setHState(HState_ChoiceBox.getSelectionModel().getSelectedItem().toString());
-        houseTableData.setHType(HType_TextField.getText().trim());
-        houseTableData.setHNote(HNote_TextArea.getText().trim());
-        if(HState_ChoiceBox.getSelectionModel().getSelectedItem().toString().equals("未销售")==true){
-            houseTableData.setONo("");
-            houseTableData.setOName("");
-            houseTableData.setOSex("");
-            houseTableData.setOTel("");
-            houseTableData.setOID("");
-            houseTableData.setONote("");
-        }
-        else {
-            houseTableData.setONo(ONo_TextField.getText().trim());
-            houseTableData.setOName(OName_TextField.getText().trim());
-            houseTableData.setOSex(OSex_ChoiceBox.getSelectionModel().getSelectedItem().toString());
-            houseTableData.setOTel(OTel_TextField.getText().trim());
-            houseTableData.setOID(OID_TextField.getText().trim());
-            houseTableData.setONote(ONote_TextArea.getText().trim());
-        }
+        houseTableData.setHType(HType_TextField.getText());
+        houseTableData.setHNote(HNote_TextArea.getText());
+        houseTableData.setONo("");
+        houseTableData.setOName("");
+        houseTableData.setOSex("");
+        houseTableData.setOTel("");
+        houseTableData.setOID("");
+        houseTableData.setONote("");
     }
-    public void AddSQLData(){
-        if(HState_ChoiceBox.getSelectionModel().getSelectedItem().toString().equals("未销售")==true){
-            query_Insert = "INSERT INTO House_Info VALUES" +
-                    "(\'" + HNo_Label.getText().trim() + "\'," + HBuild_TextField.getText().trim() + "," + HPark_TextField.getText().trim() + "," +
-                    HFloor_TextField.getText().trim() + "," + HRoom_TextField.getText().trim() + "," + HArea_TextField.getText().trim() + ",\'" +
-                    HState_ChoiceBox.getSelectionModel().getSelectedItem() + "\',\'" + HType_TextField.getText().trim() + "\',\'" + HNote_TextArea.getText().trim() + "\',NULL);";
-            query = query_Insert;
-        }
-        else {
-            query_Insert = "INSERT INTO Owner_Info VALUES" +
-                    "(\'" + ONo_TextField.getText().trim() + "\',\'" + OName_TextField.getText().trim() + "\',\'" + OSex_ChoiceBox.getSelectionModel().getSelectedItem() + "\',\'" +
-                    OTel_TextField.getText().trim() + "\',\'" + OID_TextField.getText().trim() + "\',\'" + ONote_TextArea.getText().trim() + "\');";
-            query_Insert2 = "INSERT INTO House_Info VALUES" +
-                    "(\'" + HNo_Label.getText().trim() + "\'," + HBuild_TextField.getText().trim() + "," + HPark_TextField.getText().trim() + "," +
-                    HFloor_TextField.getText().trim() + "," + HRoom_TextField.getText().trim() + "," + HArea_TextField.getText().trim() + ",\'" +
-                    HState_ChoiceBox.getSelectionModel().getSelectedItem() + "\',\'" + HType_TextField.getText().trim() + "\',\'" + HNote_TextArea.getText().trim() + "\',\'" + ONo_TextField.getText().trim() + "\');";
-            query = query_Insert + " " + query_Insert2;
-        }
+    public void addHouseTableData_SellYes(){
+        houseTableData.setHNo(HNo_Label.getText());
+        houseTableData.setHBuild(HBuild_TextField.getText() + "幢");
+        houseTableData.setHPark(HPark_TextField.getText() + "单元");
+        houseTableData.setHFloor(HFloor_TextField.getText() + "层");
+        houseTableData.setHRoom(HRoom_TextField.getText() + "室");
+        houseTableData.setHArea(HArea_TextField.getText() + "㎡");
+        houseTableData.setHState(HState_ChoiceBox.getSelectionModel().getSelectedItem().toString());
+        houseTableData.setHType(HType_TextField.getText());
+        houseTableData.setHNote(HNote_TextArea.getText());
+        houseTableData.setONo(ONo_TextField.getText().trim());
+        houseTableData.setOName(OName_TextField.getText().trim());
+        houseTableData.setOSex(OSex_ChoiceBox.getSelectionModel().getSelectedItem().toString());
+        houseTableData.setOTel(OTel_TextField.getText().trim());
+        houseTableData.setOID(OID_TextField.getText());
+        houseTableData.setONote(ONote_TextArea.getText());
+    }
+    public void addSQL_SellNo(){
+        query_Insert = "INSERT INTO House_Info VALUES" +
+                "(\'" + HNo_Label.getText().trim() + "\'," + HBuild_TextField.getText().trim() + "," + HPark_TextField.getText().trim() + "," +
+                HFloor_TextField.getText().trim() + "," + HRoom_TextField.getText().trim() + "," + HArea_TextField.getText().trim() + ",\'" +
+                HState_ChoiceBox.getSelectionModel().getSelectedItem() + "\',\'" + HType_TextField.getText().trim() + "\',\'" + HNote_TextArea.getText().trim() + "\',NULL);";
+        query = query_Insert;
         SQL_Connect sql_connect = new SQL_Connect();
         sql_connect.sql_Update(query);
     }
-
+    public void addSQL_SellYes(){
+        query_Insert = "INSERT INTO Owner_Info VALUES" +
+                "(\'" + ONo_TextField.getText().trim() + "\',\'" + OName_TextField.getText().trim() + "\',\'" + OSex_ChoiceBox.getSelectionModel().getSelectedItem() + "\',\'" +
+                OTel_TextField.getText().trim() + "\',\'" + OID_TextField.getText().trim() + "\',\'" + ONote_TextArea.getText().trim() + "\');";
+        query_Insert2 = "INSERT INTO House_Info VALUES" +
+                "(\'" + HNo_Label.getText().trim() + "\'," + HBuild_TextField.getText().trim() + "," + HPark_TextField.getText().trim() + "," +
+                HFloor_TextField.getText().trim() + "," + HRoom_TextField.getText().trim() + "," + HArea_TextField.getText().trim() + ",\'" +
+                HState_ChoiceBox.getSelectionModel().getSelectedItem() + "\',\'" + HType_TextField.getText().trim() + "\',\'" + HNote_TextArea.getText().trim() + "\',\'" + ONo_TextField.getText().trim() + "\');";
+        query = query_Insert + " " + query_Insert2;
+        SQL_Connect sql_connect = new SQL_Connect();
+        sql_connect.sql_Update(query);
+    }
+    public void errorAdd(){
+        Alert alert2 = new Alert(Alert.AlertType.ERROR);
+        alert2.setTitle("小区物业管理系统");
+        alert2.setHeaderText("输入数据检测异常，添加数据失败！");
+        alert2.initOwner(Confirm_Button.getScene().getWindow());
+        alert2.showAndWait();
+    }
+    public void succeedAdd(){
+        Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
+        alert2.setTitle("小区物业管理系统");
+        alert2.setHeaderText("信息添加成功！");
+        alert2.initOwner(Confirm_Button.getScene().getWindow());
+        alert2.showAndWait();
+        close_Windows();
+    }
 }
