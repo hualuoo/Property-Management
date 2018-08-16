@@ -370,7 +370,7 @@ public class IndexMain_Controller {
     public void car_ToggleButton_Click(){
         //车辆管理界面切换
         try {
-            Parent Car_Root = FXMLLoader.load(getClass().getResource("CarGUI.fxml"));
+            Parent Car_Root = FXMLLoader.load(getClass().getResource("CarMain_GUI.fxml"));
             Main.Login_Stage.setTitle("小区物业管理系统-车辆管理界面");
             Main.Login_Stage.setScene(new Scene(Car_Root, 1000, 615));
         }
