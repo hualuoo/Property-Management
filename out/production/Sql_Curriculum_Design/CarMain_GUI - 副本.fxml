@@ -7,10 +7,15 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IndexMain_Controller">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CarMain_Controller">
    <children>
       <AnchorPane prefHeight="615.0" prefWidth="1000.0">
          <children>
+            <ImageView disable="true" fitHeight="615.0" fitWidth="1000.0" opacity="0.08" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/bg.jpg" />
+               </image>
+            </ImageView>
             <Separator layoutY="65.0" prefHeight="3.0" prefWidth="1000.0" />
             <Separator layoutX="-181.0" layoutY="327.0" prefHeight="1.0" prefWidth="528.0" rotate="90.0" />
             <Separator layoutY="593.0" prefHeight="1.0" prefWidth="1000.0" />
@@ -25,35 +30,40 @@
                </font>
             </Label>
             <Label fx:id="LoginUser_Label" layoutX="6.0" layoutY="597.0" text="操作员：" />
-            <ToggleButton fx:id="House_ToggleButton" alignment="BOTTOM_CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="75.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="64.0" selected="true" style="-fx-background-image: url('/image/house.png')" text="房屋信息" textFill="RED">
+            <ToggleButton fx:id="House_ToggleButton" alignment="BOTTOM_CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="75.0" mnemonicParsing="false" onAction="#click_IndexToggleButton" prefHeight="64.0" prefWidth="64.0" style="-fx-background-image: url('/image/house.png')" text="房屋信息" textFill="#04430b">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></ToggleButton>
-            <ToggleButton fx:id="Car_ToggleButton" alignment="BOTTOM_CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="149.0" mnemonicParsing="false" onAction="#click_CarToggleButton" prefHeight="64.0" prefWidth="64.0" selected="false" style="-fx-background-image: url('/image/car.png')" text="车位信息" textFill="#04430b">
+            <ToggleButton fx:id="Car_ToggleButton" alignment="BOTTOM_CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="149.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="64.0" selected="true" style="-fx-background-image: url('/image/car.png')" text="车位信息" textFill="RED">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></ToggleButton>
-            <ToggleButton fx:id="Family_ToggleButton" alignment="BOTTOM_CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="223.0" mnemonicParsing="false" onAction="#family_ToggleButton_Click" prefHeight="64.0" prefWidth="64.0" selected="false" style="-fx-background-image: url('/image/family.png')" text="家庭信息" textFill="#04430b">
+            <ToggleButton fx:id="Family_ToggleButton" alignment="BOTTOM_CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="223.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="64.0" selected="false" style="-fx-background-image: url('/image/family.png')" text="家庭信息" textFill="#04430b">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></ToggleButton>
-            <ToggleButton fx:id="Charge_ToggleButton" alignment="BOTTOM_CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="297.0" mnemonicParsing="false" onAction="#charge_ToggleButton_Click" prefHeight="64.0" prefWidth="64.0" selected="false" style="-fx-background-image: url('/image/charge.png')" text="收费信息" textFill="#04430b">
+            <ToggleButton fx:id="Charge_ToggleButton" alignment="BOTTOM_CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="297.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="64.0" selected="false" style="-fx-background-image: url('/image/charge.png')" text="收费信息" textFill="#04430b">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></ToggleButton>
-            <ToggleButton fx:id="Repair_ToggleButton" alignment="BOTTOM_CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="371.0" mnemonicParsing="false" onAction="#repair_ToggleButton_Click" prefHeight="64.0" prefWidth="64.0" selected="false" style="-fx-background-image: url('/image/repair.png')" text="维修信息" textFill="#04430b">
+            <ToggleButton fx:id="Repair_ToggleButton" alignment="BOTTOM_CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="371.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="64.0" selected="false" style="-fx-background-image: url('/image/repair.png')" text="维修信息" textFill="#04430b">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></ToggleButton>
-            <ToggleButton fx:id="Complaint_ToggleButton" alignment="BOTTOM_CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="445.0" mnemonicParsing="false" onAction="#complaint_ToggleButton_Click" prefHeight="64.0" prefWidth="64.0" selected="false" style="-fx-background-image: url('/image/complaint.png')" text="投诉信息" textFill="#04430b">
+            <ToggleButton fx:id="Complaint_ToggleButton" alignment="BOTTOM_CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="445.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="64.0" selected="false" style="-fx-background-image: url('/image/complaint.png')" text="投诉信息" textFill="#04430b">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></ToggleButton>
-            <TreeTableView fx:id="HBulid_TreeTableView" layoutX="95.0" layoutY="76.0" prefHeight="508.0" prefWidth="102.0">
+            <TreeTableView fx:id="Bulid_TreeTableView" layoutX="95.0" layoutY="76.0" prefHeight="508.0" prefWidth="102.0">
               <columns>
-                <TreeTableColumn fx:id="HBuild_TreeTableColumn" prefWidth="100.0" text="楼宇" />
+                <TreeTableColumn fx:id="Build_TreeTableColumn" prefWidth="100.0" text="楼宇" />
               </columns>
             </TreeTableView>
+            <TableView fx:id="PRegion_TableView" layoutX="95.0" layoutY="76.0" prefHeight="508.0" prefWidth="102.0">
+              <columns>
+                <TableColumn prefWidth="100.0" text="车位区域" />
+              </columns>
+            </TableView>
             <TableView fx:id="House_TableView" layoutX="207.0" layoutY="75.0" prefHeight="455.0" prefWidth="457.0">
                <columns>
                   <TableColumn fx:id="HNo_TableColumn" prefWidth="75.0" text="房屋编号" />
@@ -130,9 +140,9 @@
                </children>
             </GridPane>
             <Line endX="215.0" layoutX="775.0" layoutY="525.0" startX="-100.0" />
-            <Button fx:id="New_Button" layoutX="696.0" layoutY="539.0" mnemonicParsing="false" onAction="#click_NewButton" prefHeight="30.0" prefWidth="60.0" text="新增" />
-            <Button fx:id="Del_Button" layoutX="911.0" layoutY="539.0" mnemonicParsing="false" onAction="#click_DelButton" prefHeight="30.0" prefWidth="60.0" text="删除" />
-            <Button fx:id="Edit_Button" layoutX="802.0" layoutY="539.0" mnemonicParsing="false" onAction="#click_EditButton" prefHeight="30.0" prefWidth="60.0" text="修改" />
+            <Button fx:id="New_Button" layoutX="696.0" layoutY="539.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="60.0" text="新增" />
+            <Button fx:id="Del_Button" layoutX="911.0" layoutY="539.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="60.0" text="删除" />
+            <Button fx:id="Edit_Button" layoutX="802.0" layoutY="539.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="60.0" text="修改" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4f4f4" height="44.0" layoutX="207.0" layoutY="540.0" stroke="BLACK" strokeType="INSIDE" width="457.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4f4f4" height="23.0" layoutX="217.0" layoutY="531.0" stroke="#f2f2f2" strokeType="INSIDE" width="63.0" />
             <Label layoutX="224.0" layoutY="533.0" text="查　　询" />
@@ -146,11 +156,6 @@
             <Label layoutX="464.0" layoutY="555.0" text="室" />
             <Label layoutX="538.0" layoutY="555.0" text="姓名：" />
             <TextField fx:id="Search_OName_TextField" layoutX="574.0" layoutY="551.0" prefHeight="23.0" prefWidth="79.0" />
-            <ImageView disable="true" fitHeight="615.0" fitWidth="1000.0" opacity="0.08" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@image/bg.jpg" />
-               </image>
-            </ImageView>
          </children>
       </AnchorPane>
    </children>

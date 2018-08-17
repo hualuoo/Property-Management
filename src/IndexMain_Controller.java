@@ -16,9 +16,11 @@ import java.sql.ResultSet;
 import java.util.Optional;
 
 public class IndexMain_Controller {
-    public TreeItem<String> root;
-    public TreeTableView<String> Bulid_TreeTableView;
-    public TreeTableColumn<String,String> Build_TreeTableColumn;
+    public Label LoginUser_Label;
+
+    public TreeTableView<String> HBulid_TreeTableView;
+    public TreeTableColumn<String,String> HBuild_TreeTableColumn;
+    public TreeItem<String> HBuild_Root;
 
     public TableView<HouseTableData> House_TableView;
     public TableColumn<HouseTableData,String> HNo_TableColumn;
@@ -30,15 +32,14 @@ public class IndexMain_Controller {
     public TableColumn<HouseTableData,String> HState_TableColumn;
     public TableColumn<HouseTableData,String> ONo_TableColumn;
     public TableColumn<HouseTableData,String> OName_TableColumn;
-    ObservableList<HouseTableData> list = FXCollections.observableArrayList();
+    ObservableList<HouseTableData> HouseTableData_List = FXCollections.observableArrayList();
 
-    public Label LoginUser_Label;
     public Label HNo_Label,HAddress_Label,HArea_Label,HState_Label,HType_Label,HNote_Label;
     public Label ONo_Label,OName_Label,OSex_Label,OTel_Label,OID_Label,ONote_Label;
-    public Button New_Button,Edit_Button,Del_Button;
 
-    public String query;
     public TextField Search_OName_TextField,Search_HBuild_TextField,Search_HPark_TextField,Search_HFloor_TextField,Search_HRoom_TextField;
+
+    String query;
     ResultSet result;
 
     public void initialize() {
@@ -46,19 +47,19 @@ public class IndexMain_Controller {
         //显示操作员用户名
         LoginUser_Label.setText("操作员：" + Main.loginUser);
         //设置TreeTableView的根TreeItem
-        root = new TreeItem<>("光明小区");
-        root.setGraphic(new ImageView (new Image(getClass().getResourceAsStream("/image/building.png"))));
-        root.setExpanded(true);
+        HBuild_Root = new TreeItem<>("光明小区");
+        HBuild_Root.setGraphic(new ImageView (new Image(getClass().getResourceAsStream("/image/building.png"))));
+        HBuild_Root.setExpanded(true);
         //定义列的单元格内容
-        Build_TreeTableColumn.setCellValueFactory((TreeTableColumn.CellDataFeatures<String, String> p) ->
+        HBuild_TreeTableColumn.setCellValueFactory((TreeTableColumn.CellDataFeatures<String, String> p) ->
                 new ReadOnlyStringWrapper(p.getValue().getValue()));
-        Bulid_TreeTableView.setRoot(root);
+        HBulid_TreeTableView.setRoot(HBuild_Root);
 
         //初始化TreeTableView
         showHouseTreeTable();
 
         //选择行监听
-        Bulid_TreeTableView.getSelectionModel().selectedItemProperty().addListener(
+        HBulid_TreeTableView.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> showHouseTable(newValue.getValue()));
         House_TableView.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> showMoreInfo(newValue));
@@ -83,7 +84,7 @@ public class IndexMain_Controller {
         OName_TableColumn.setCellValueFactory(
                 cellData -> cellData.getValue().getOName() );
 
-        House_TableView.setItems(list);
+        House_TableView.setItems(HouseTableData_List);
 
         //初始化House_TableView，读取数据库中所有数据
         showHouseTable("初始化");
@@ -127,7 +128,7 @@ public class IndexMain_Controller {
         result = sql_connect.sql_Query(query);
         try{
             while (result.next()) {
-                root.getChildren().add(new TreeItem<>(result.getString("HBuild")+"幢"));
+                HBuild_Root.getChildren().add(new TreeItem<>(result.getString("HBuild")+"幢"));
             }
         }
         catch (Exception e) {
@@ -137,7 +138,7 @@ public class IndexMain_Controller {
     public void showHouseTable(String buildNum){
         //加载TableView数据
         //清空原有数据
-        list.clear();
+        HouseTableData_List.clear();
         if(buildNum.equals("初始化")|| buildNum.equals("光明小区")) {
             //初始化时数据库指令
             query = "SELECT HNo,HBuild,HPark,HFloor,HRoom,HArea,HState,HType,HNote,House_Info.ONo,OName,OSex,OTel,OID,ONote FROM House_Info LEFT JOIN Owner_Info ON House_Info.ONo=Owner_Info.ONo";
@@ -150,8 +151,7 @@ public class IndexMain_Controller {
         result = sql_connect.sql_Query(query);
         try {
             while (result.next()){
-
-                list.add(new HouseTableData(result.getString("HNo"),
+                HouseTableData_List.add(new HouseTableData(result.getString("HNo"),
                         result.getString("HBuild") + "幢",
                         result.getString("HPark") + "单元",
                         result.getString("HFloor") + "层",
@@ -190,7 +190,7 @@ public class IndexMain_Controller {
             ONote_Label.setText(houseTableData.getONote().getValue());
         }
     }
-    public void new_Button_Click() {
+    public void click_NewButton() {
         //单击"新建"按钮
         try{
             Stage New_Stage;
@@ -210,13 +210,13 @@ public class IndexMain_Controller {
             HouseTableData newhouseTableData = new HouseTableData("","","","","","","","","","","","","","","");
             controller.setHouseTableData(newhouseTableData);
             newhouseTableData = controller.getHouseTableData();
-            list.add(newhouseTableData);
+            HouseTableData_List.add(newhouseTableData);
         }
         catch (Exception e) {
             e.printStackTrace();
         }
     }
-    public void edit_Button_Click(){
+    public void click_EditButton(){
         if(HNo_Label.getText().trim().equals("")){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("小区物业管理系统");
@@ -247,7 +247,7 @@ public class IndexMain_Controller {
             }
         }
     }
-    public void del_Button_Click(){
+    public void click_DelButton(){
         //SQL语句
         if(HNo_Label.getText().trim().equals("")){
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -281,7 +281,7 @@ public class IndexMain_Controller {
                 catch (Exception e) {
                     e.printStackTrace();
                 }
-                list.clear();
+                HouseTableData_List.clear();
                 showHouseTable("初始化");
             }
         }
@@ -301,7 +301,7 @@ public class IndexMain_Controller {
         ONote_Label.setText("");
     }
     public void search_OName(String newValue){
-        list.clear();
+        HouseTableData_List.clear();
         if(newValue==null || newValue.length()==0) {
             query = "SELECT HNo,HBuild,HPark,HFloor,HRoom,HArea,HState,HType,HNote,House_Info.ONo,OName,OSex,OTel,OID,ONote FROM House_Info LEFT JOIN Owner_Info ON House_Info.ONo=Owner_Info.ONo";
         }
@@ -312,7 +312,7 @@ public class IndexMain_Controller {
         result = sql_connect.sql_Query(query);
         try {
             while (result.next()){
-                list.add(new HouseTableData(result.getString("HNo").trim(),
+                HouseTableData_List.add(new HouseTableData(result.getString("HNo").trim(),
                         result.getString("HBuild").trim() + "幢",
                         result.getString("HPark").trim() + "单元",
                         result.getString("HFloor").trim() + "层",
@@ -339,14 +339,14 @@ public class IndexMain_Controller {
         search_HPark = Search_HPark_TextField.getText().trim();
         search_HFloor = Search_HFloor_TextField.getText().trim();
         search_HRoom = Search_HRoom_TextField.getText().trim();
-        list.clear();
+        HouseTableData_List.clear();
         query = "SELECT HNo,HBuild,HPark,HFloor,HRoom,HArea,HState,HType,HNote,House_Info.ONo,OName,OSex,OTel,OID,ONote FROM House_Info LEFT JOIN Owner_Info ON House_Info.ONo=Owner_Info.ONo WHERE HBuild LIKE \'" +
                 search_HBuild + "%\' AND HPark LIKE \'" + search_HPark + "%\' AND HFloor LIKE \'" + search_HFloor + "%\' AND HRoom LIKE \'" + search_HRoom + "%\'";
         SQL_Connect sql_connect = new SQL_Connect();
         result = sql_connect.sql_Query(query);
         try {
             while (result.next()){
-                list.add(new HouseTableData(result.getString("HNo").trim(),
+                HouseTableData_List.add(new HouseTableData(result.getString("HNo").trim(),
                         result.getString("HBuild").trim() + "幢",
                         result.getString("HPark").trim() + "单元",
                         result.getString("HFloor").trim() + "层",
@@ -367,7 +367,7 @@ public class IndexMain_Controller {
             e.printStackTrace();
         }
     }
-    public void car_ToggleButton_Click(){
+    public void click_CarToggleButton(){
         //车辆管理界面切换
         try {
             Parent Car_Root = FXMLLoader.load(getClass().getResource("CarMain_GUI.fxml"));

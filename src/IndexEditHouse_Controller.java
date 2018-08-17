@@ -13,11 +13,12 @@ public class IndexEditHouse_Controller {
     public TextArea HNote_TextArea,ONote_TextArea;
     public ChoiceBox HState_ChoiceBox,OSex_ChoiceBox;
     public Button Confirm_Button,Exit_Button;
-    //判断是否通过验证
-    public int check_HArea,check_OID;
+
     public HouseTableData houseTableData;
     private Stage dialogStage;
-    public String query,query_Update,query_Delete,query_Insert,query_Update2;
+
+    String query,query_Update,query_Delete,query_Insert,query_Update2;
+    int check_HArea,check_OID;
 
     public void setDialogStage(Stage dialogStage) {
         //传参Stage

@@ -13,11 +13,12 @@ public class IndexNewHouse_Controller {
     public TextArea HNote_TextArea,ONote_TextArea;
     public ChoiceBox HState_ChoiceBox,OSex_ChoiceBox;
     public Button Confirm_Button,Exit_Button;
-    //判断是否通过验证
-    public int check_HBuild,check_HPark,check_HFloor,check_HRoom,check_HArea,check_OID;
+
     public HouseTableData houseTableData;
     private Stage dialogStage;
-    public String query,query_Insert,query_Insert2;
+
+    String query,query_Insert,query_Insert2;
+    int check_HBuild,check_HPark,check_HFloor,check_HRoom,check_HArea,check_OID;
 
     public HouseTableData getHouseTableData(){
         return houseTableData;

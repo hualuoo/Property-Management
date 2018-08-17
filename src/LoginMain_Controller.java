@@ -17,6 +17,7 @@ public class LoginMain_Controller {
     public int checksql, checkloin;
     public void initialize() {
         //初始化
+        System.out.print(stringToMD5("123456"));
         check_SQL();
         User_TextField.setOnKeyPressed(new EventHandler<javafx.scene.input.KeyEvent>() {
             //用户名输入框的回车键盘监听

@@ -2,8 +2,8 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class HouseTableData {
-    private StringProperty HNo,HBuild,HPark,HFloor,HRoom,HArea,HState,HType,HNote;
-    private StringProperty ONo,OName,OSex,OTel,OID,ONote;
+    private SimpleStringProperty HNo,HBuild,HPark,HFloor,HRoom,HArea,HState,HType,HNote;
+    private SimpleStringProperty ONo,OName,OSex,OTel,OID,ONote;
     public HouseTableData(String HNo,String HBuild,String HPark,String HFloor,String HRoom,String HArea,String HState,String HType,String HNote,String ONo,String OName,String OSex,String OTel,String OID,String ONote){
         this.HNo = new SimpleStringProperty(HNo);
         this.HBuild = new SimpleStringProperty(HBuild);

@@ -29,7 +29,7 @@
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></ToggleButton>
-            <ToggleButton fx:id="Car_ToggleButton" alignment="BOTTOM_CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="149.0" mnemonicParsing="false" onAction="#car_ToggleButton_Click" prefHeight="64.0" prefWidth="64.0" selected="false" style="-fx-background-image: url('/image/car.png')" text="车位信息" textFill="#04430b">
+            <ToggleButton fx:id="Car_ToggleButton" alignment="BOTTOM_CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="149.0" mnemonicParsing="false" onAction="#click_CarToggleButton" prefHeight="64.0" prefWidth="64.0" selected="false" style="-fx-background-image: url('/image/car.png')" text="车位信息" textFill="#04430b">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></ToggleButton>
@@ -49,9 +49,9 @@
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></ToggleButton>
-            <TreeTableView fx:id="Bulid_TreeTableView" layoutX="95.0" layoutY="76.0" prefHeight="508.0" prefWidth="102.0">
+            <TreeTableView fx:id="HBulid_TreeTableView" layoutX="95.0" layoutY="76.0" prefHeight="508.0" prefWidth="102.0">
               <columns>
-                <TreeTableColumn fx:id="Build_TreeTableColumn" prefWidth="100.0" text="楼宇" />
+                <TreeTableColumn fx:id="HBuild_TreeTableColumn" prefWidth="100.0" text="楼宇" />
               </columns>
             </TreeTableView>
             <TableView fx:id="House_TableView" layoutX="207.0" layoutY="75.0" prefHeight="455.0" prefWidth="457.0">
@@ -130,9 +130,9 @@
                </children>
             </GridPane>
             <Line endX="215.0" layoutX="775.0" layoutY="525.0" startX="-100.0" />
-            <Button fx:id="New_Button" layoutX="696.0" layoutY="539.0" mnemonicParsing="false" onAction="#new_Button_Click" prefHeight="30.0" prefWidth="60.0" text="新增" />
-            <Button fx:id="Del_Button" layoutX="911.0" layoutY="539.0" mnemonicParsing="false" onAction="#del_Button_Click" prefHeight="30.0" prefWidth="60.0" text="删除" />
-            <Button fx:id="Edit_Button" layoutX="802.0" layoutY="539.0" mnemonicParsing="false" onAction="#edit_Button_Click" prefHeight="30.0" prefWidth="60.0" text="修改" />
+            <Button fx:id="New_Button" layoutX="696.0" layoutY="539.0" mnemonicParsing="false" onAction="#click_NewButton" prefHeight="30.0" prefWidth="60.0" text="新增" />
+            <Button fx:id="Del_Button" layoutX="911.0" layoutY="539.0" mnemonicParsing="false" onAction="#click_DelButton" prefHeight="30.0" prefWidth="60.0" text="删除" />
+            <Button fx:id="Edit_Button" layoutX="802.0" layoutY="539.0" mnemonicParsing="false" onAction="#click_EditButton" prefHeight="30.0" prefWidth="60.0" text="修改" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4f4f4" height="44.0" layoutX="207.0" layoutY="540.0" stroke="BLACK" strokeType="INSIDE" width="457.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4f4f4" height="23.0" layoutX="217.0" layoutY="531.0" stroke="#f2f2f2" strokeType="INSIDE" width="63.0" />
             <Label layoutX="224.0" layoutY="533.0" text="查　　询" />
