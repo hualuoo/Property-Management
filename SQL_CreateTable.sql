@@ -27,12 +27,12 @@ HType CHAR(8) NOT NULL,
 HNote CHAR(100),
 ONo CHAR(6) CONSTRAINT House_Owner_Fore FOREIGN KEY REFERENCES Owner_Info(ONo))
 
-/*车位信息    PNo车位编号    PRegion车位区域    CarNo车牌号    PState车位状态    ONo业主编号*/
+/*车位信息    PNo车位编号    PRegion车位区域    PState车位状态    CarNo车牌号    ONo业主编号*/
 CREATE TABLE Parking_Info(
 PNo CHAR(6) NOT NULL CONSTRAINT P_Prim PRIMARY KEY,
 PRegion CHAR(1) NOT NULL,
-CarNo CHAR(8),
 PState CHAR(6) NOT NULL,
+CarNo CHAR(8),
 ONo CHAR(6) CONSTRAINT Parking_Owner_Fore FOREIGN KEY REFERENCES Owner_Info(ONo)
 )
 

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="240.0" prefWidth="290.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller_LoginMain">
+   <children>
+      <Label layoutX="52.0" layoutY="40.0" prefHeight="35.0" prefWidth="152.0" text="物业管理系统">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <Separator layoutX="51.0" layoutY="70.0" prefHeight="9.0" prefWidth="122.0" />
+      <Label fx:id="User_Label" layoutX="51.0" layoutY="90.0" text="用户名：" />
+      <Label fx:id="PassWord__Label" layoutX="51.0" layoutY="120.0" text="密　码：" />
+      <TextField fx:id="User_TextField" layoutX="128.0" layoutY="86.0" prefHeight="23.0" prefWidth="112.0" />
+      <PasswordField fx:id="Password_PasswordField" layoutX="128.0" layoutY="116.0" prefHeight="23.0" prefWidth="112.0" />
+      <Button fx:id="Login_Button" layoutX="200.0" layoutY="151.0" mnemonicParsing="false" onAction="#login_ButtonClick" text="登录" />
+      <Label fx:id="login_info" alignment="CENTER" contentDisplay="CENTER" layoutX="89.0" layoutY="185.0" prefHeight="15.0" prefWidth="122.0" />
+      <Separator layoutY="227.0" prefHeight="0.0" prefWidth="300.0" />
+      <Label fx:id="SQL_Info" layoutX="6.0" layoutY="231.0" />
+      <Label layoutX="236.0" layoutY="231.0" text="配置数据库" textFill="BLUE" underline="true" onMouseClicked="#edit_LabelClick" />
+   </children>
+</AnchorPane>

@@ -18,7 +18,7 @@ public class Main extends Application {
     public static String SQLPassword = "Qq111111";
     public static String loginUser;
     public void start(Stage primaryStage) throws Exception{
-        Parent Login_Root = FXMLLoader.load(getClass().getResource("LoginMain_GUI.fxml"));
+        Parent Login_Root = FXMLLoader.load(getClass().getResource("GUI_LoginMain.fxml"));
         Login_Stage = new Stage();
         Login_Stage.setTitle("小区物业管理系统-登录");
         Login_Stage.getIcons().add(new Image("/image/logo.png"));
