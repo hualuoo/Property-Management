@@ -301,13 +301,13 @@ public class Controller_IndexMain {
         OID_Label.setText("");
         ONote_Label.setText("");
     }
-    public void search_OName(String newValue){
+    public void search_OName(String OName){
         HouseTableData_List.clear();
-        if(newValue==null || newValue.length()==0) {
+        if(OName==null || OName.length()==0) {
             query = "SELECT HNo,HBuild,HPark,HFloor,HRoom,HArea,HState,HType,HNote,House_Info.ONo,OName,OSex,OTel,OID,ONote FROM House_Info LEFT JOIN Owner_Info ON House_Info.ONo=Owner_Info.ONo";
         }
         else {
-            query = "SELECT HNo,HBuild,HPark,HFloor,HRoom,HArea,HState,HType,HNote,House_Info.ONo,OName,OSex,OTel,OID,ONote FROM House_Info LEFT JOIN Owner_Info ON House_Info.ONo=Owner_Info.ONo WHERE OName LIKE \'%" + Search_OName_TextField.getText().trim() + "%\'";
+            query = "SELECT HNo,HBuild,HPark,HFloor,HRoom,HArea,HState,HType,HNote,House_Info.ONo,OName,OSex,OTel,OID,ONote FROM House_Info LEFT JOIN Owner_Info ON House_Info.ONo=Owner_Info.ONo WHERE OName LIKE \'%" + OName.trim() + "%\'";
         }
         SQL_Connect sql_connect = new SQL_Connect();
         result = sql_connect.sql_Query(query);

@@ -137,16 +137,12 @@
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4f4f4" height="44.0" layoutX="207.0" layoutY="540.0" stroke="BLACK" strokeType="INSIDE" width="457.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4f4f4" height="23.0" layoutX="217.0" layoutY="531.0" stroke="#f2f2f2" strokeType="INSIDE" width="63.0" />
             <Label layoutX="224.0" layoutY="533.0" text="查　　询" />
-            <TextField fx:id="Search_HBuild_TextField" layoutX="217.0" layoutY="551.0" prefHeight="23.0" prefWidth="45.0" />
-            <Label layoutX="265.0" layoutY="555.0" text="幢" />
-            <TextField fx:id="Search_HPark_TextField" layoutX="280.0" layoutY="551.0" prefHeight="23.0" prefWidth="45.0" />
-            <Label layoutX="328.0" layoutY="555.0" text="单元" />
-            <TextField fx:id="Search_HFloor_TextField" layoutX="355.0" layoutY="551.0" prefHeight="23.0" prefWidth="45.0" />
-            <Label layoutX="403.0" layoutY="555.0" text="层" />
-            <TextField fx:id="Search_HRoom_TextField" layoutX="417.0" layoutY="551.0" prefHeight="23.0" prefWidth="45.0" />
-            <Label layoutX="464.0" layoutY="555.0" text="室" />
-            <Label layoutX="538.0" layoutY="555.0" text="姓名：" />
-            <TextField fx:id="Search_OName_TextField" layoutX="574.0" layoutY="551.0" prefHeight="23.0" prefWidth="79.0" />
+            <Label layoutX="218.0" layoutY="555.0" text="车位编号：" />
+            <TextField fx:id="Search_PNo_TextField" layoutX="276.0" layoutY="551.0" prefHeight="23.0" prefWidth="80.0" />
+            <Label layoutX="386.0" layoutY="555.0" text="车牌号：" />
+            <TextField fx:id="Search_CarNo_TextField" layoutX="432.0" layoutY="551.0" prefHeight="23.0" prefWidth="80.0" />
+            <Label layoutX="540.0" layoutY="555.0" text="姓名：" />
+            <TextField fx:id="Search_OName_TextField" layoutX="574.0" layoutY="551.0" prefHeight="23.0" prefWidth="80.0" />
          </children>
       </AnchorPane>
    </children>

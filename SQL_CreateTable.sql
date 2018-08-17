@@ -4,7 +4,6 @@ Username CHAR(10) NOT NULL,
 Password CHAR(32) NOT NULL,
 )
 
-
 /*业主信息    ONo业主编号    OName业主姓名    OSex业主性别    OTel业主电话    OID业主身份证号码    ONote业主备注*/
 CREATE TABLE Owner_Info(
 ONo CHAR(6) NOT NULL CONSTRAINT O_Prim PRIMARY KEY,
@@ -27,12 +26,13 @@ HType CHAR(8) NOT NULL,
 HNote CHAR(100),
 ONo CHAR(6) CONSTRAINT House_Owner_Fore FOREIGN KEY REFERENCES Owner_Info(ONo))
 
-/*车位信息    PNo车位编号    PRegion车位区域    PState车位状态    CarNo车牌号    ONo业主编号*/
+/*车位信息    PNo车位编号    PRegion车位区域    PState车位状态    CarNo车牌号    PNote车位备注    ONo业主编号*/
 CREATE TABLE Parking_Info(
 PNo CHAR(6) NOT NULL CONSTRAINT P_Prim PRIMARY KEY,
 PRegion CHAR(1) NOT NULL,
 PState CHAR(6) NOT NULL,
 CarNo CHAR(8),
+PNote CHAR(100),
 ONo CHAR(6) CONSTRAINT Parking_Owner_Fore FOREIGN KEY REFERENCES Owner_Info(ONo)
 )
 
