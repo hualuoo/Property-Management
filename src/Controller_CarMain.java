@@ -31,6 +31,8 @@ public class Controller_CarMain {
 
     public TextField Search_PNo_TextField,Search_CarNo_TextField,Search_OName_TextField;
 
+    public Label PRegion_Edit_Label,PNo_Edit_Label,PState_Edit_Label,PNote_Edit_Label,CarNo_Edit_Label,ONo_Edit_Label,OName_Edit_Label,OSex_Edit_Label,OTel_Edit_Label,OID_Edit_Label,ONote_Edit_Label;
+
     String query;
     ResultSet result;
 
@@ -132,7 +134,21 @@ public class Controller_CarMain {
         }
     }
     public void showMoreParkingData(Data_ParkingTable data_parkingTable){
-
+        //在TableView中选择后，右侧显示房屋详细信息
+        //获取选择行，仅当>=0时才进行显示房屋详细信息
+        if(Parking_TableView.getSelectionModel().getSelectedIndex() >= 0 ){
+            PRegion_Edit_Label.setText(data_parkingTable.getPRegion().get());
+            PNo_Edit_Label.setText(data_parkingTable.getPNo().get());
+            PState_Edit_Label.setText(data_parkingTable.getPState().get());
+            PNote_Edit_Label.setText(data_parkingTable.getPNote().get());
+            CarNo_Edit_Label.setText(data_parkingTable.getCarNo().get());
+            ONo_Edit_Label.setText(data_parkingTable.getONo().get());
+            OName_Edit_Label.setText(data_parkingTable.getOName().get());
+            OSex_Edit_Label.setText(data_parkingTable.getOSex().get());
+            OTel_Edit_Label.setText(data_parkingTable.getOTel().get());
+            OID_Edit_Label.setText(data_parkingTable.getOID().get());
+            ONote_Edit_Label.setText(data_parkingTable.getONote().get());
+        }
     }
     public void search_PNo(String PNo){
         ParkingTableView_List.clear();
