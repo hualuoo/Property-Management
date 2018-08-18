@@ -16,5 +16,5 @@ VALUES
 INSERT INTO Parking_Info
 VALUES
 ('A-1','A','已出租','粤S00001',NULL,'O00001'),
-('B-13','B','未出售',NULL,NULL,NULL),
-('C-2','C','已出租','粤S00002',NULL,'O00002');
+('B-13','B','未销售',NULL,NULL,NULL),
+('C-2','C','已销售','粤S00002',NULL,'O00002');

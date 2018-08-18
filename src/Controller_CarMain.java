@@ -6,10 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.sql.ResultSet;
 
@@ -31,7 +28,11 @@ public class Controller_CarMain {
 
     public TextField Search_PNo_TextField,Search_CarNo_TextField,Search_OName_TextField;
 
-    public Label PRegion_Edit_Label,PNo_Edit_Label,PState_Edit_Label,PNote_Edit_Label,CarNo_Edit_Label,ONo_Edit_Label,OName_Edit_Label,OSex_Edit_Label,OTel_Edit_Label,OID_Edit_Label,ONote_Edit_Label;
+    public Label PRegion_Edit_Label,PNo_Edit_Label;
+    public ChoiceBox PState_Edit_ChoiceBox,OSex_Edit_ChoiceBox;
+    public TextArea PNote_Edit_TextArea,ONote_Edit_TextArea;
+    public TextField CarNo_Edit_TextField,ONo_Edit_TextField,OName_Edit_TextField,OTel_Edit_TextField,OID_Edit_TextField;
+    public Button SearchOwner_Edit_Button;
 
     String query;
     ResultSet result;
@@ -40,6 +41,19 @@ public class Controller_CarMain {
         //初始化
         //显示操作员用户名
         LoginUser_Label.setText("操作员：" + Main.loginUser);
+        //ChoiceBox加入选择项
+        PState_Edit_ChoiceBox.setItems(FXCollections.observableArrayList(
+                "已销售", "未销售", "已出租")
+        );
+        OSex_Edit_ChoiceBox.setItems(FXCollections.observableArrayList(
+                "男", "女")
+        );
+
+        OName_Edit_TextField.setDisable(true);
+        OSex_Edit_ChoiceBox.setDisable(true);
+        OTel_Edit_TextField.setDisable(true);
+        OID_Edit_TextField.setDisable(true);
+        ONote_Edit_TextArea.setDisable(true);
 
         PRegion_TableView.setItems(PRegion_List);
         PRegion_TableColumn.setCellValueFactory(
@@ -66,6 +80,10 @@ public class Controller_CarMain {
         //选择行监听
         Parking_TableView.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> showMoreParkingData(newValue));
+
+        //修改框的车位销售情况选择框变更监听
+        PState_Edit_ChoiceBox.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue)->
+                changePState_Edit_ChoiceBox(newValue));
 
         //搜索文本栏变动监听
         Search_PNo_TextField.textProperty().addListener(new ChangeListener<String>() {
@@ -136,18 +154,33 @@ public class Controller_CarMain {
     public void showMoreParkingData(Data_ParkingTable data_parkingTable){
         //在TableView中选择后，右侧显示房屋详细信息
         //获取选择行，仅当>=0时才进行显示房屋详细信息
-        if(Parking_TableView.getSelectionModel().getSelectedIndex() >= 0 ){
+        if(Parking_TableView.getSelectionModel().getSelectedIndex() >= 0 && data_parkingTable.getPState().get().equals("未销售")){
             PRegion_Edit_Label.setText(data_parkingTable.getPRegion().get());
             PNo_Edit_Label.setText(data_parkingTable.getPNo().get());
-            PState_Edit_Label.setText(data_parkingTable.getPState().get());
-            PNote_Edit_Label.setText(data_parkingTable.getPNote().get());
-            CarNo_Edit_Label.setText(data_parkingTable.getCarNo().get());
-            ONo_Edit_Label.setText(data_parkingTable.getONo().get());
-            OName_Edit_Label.setText(data_parkingTable.getOName().get());
-            OSex_Edit_Label.setText(data_parkingTable.getOSex().get());
-            OTel_Edit_Label.setText(data_parkingTable.getOTel().get());
-            OID_Edit_Label.setText(data_parkingTable.getOID().get());
-            ONote_Edit_Label.setText(data_parkingTable.getONote().get());
+            PState_Edit_ChoiceBox.setValue(data_parkingTable.getPState().getValue().trim());
+            PNote_Edit_TextArea.setText(data_parkingTable.getPNote().get());
+            CarNo_Edit_TextField.setText("");
+            ONo_Edit_TextField.setText("");
+            OName_Edit_TextField.setText("");
+            OSex_Edit_ChoiceBox.setValue("男");
+            OTel_Edit_TextField.setText("");
+            OID_Edit_TextField.setText("");
+            ONote_Edit_TextArea.setText("");
+            return;
+        }
+        if(Parking_TableView.getSelectionModel().getSelectedIndex() >= 0 && data_parkingTable.getPState().get().equals("未销售")==false){
+            PRegion_Edit_Label.setText(data_parkingTable.getPRegion().get());
+            PNo_Edit_Label.setText(data_parkingTable.getPNo().get());
+            PState_Edit_ChoiceBox.setValue(data_parkingTable.getPState().getValue().trim());
+            PNote_Edit_TextArea.setText(data_parkingTable.getPNote().get());
+            CarNo_Edit_TextField.setText(data_parkingTable.getCarNo().get().trim());
+            ONo_Edit_TextField.setText(data_parkingTable.getONo().get().trim());
+            OName_Edit_TextField.setText(data_parkingTable.getOName().get().trim());
+            OSex_Edit_ChoiceBox.setValue(data_parkingTable.getOSex().getValue().trim());
+            OTel_Edit_TextField.setText(data_parkingTable.getOTel().get().trim());
+            OID_Edit_TextField.setText(data_parkingTable.getOID().get().trim());
+            ONote_Edit_TextArea.setText(data_parkingTable.getONote().get());
+            return;
         }
     }
     public void search_PNo(String PNo){
@@ -231,6 +264,58 @@ public class Controller_CarMain {
                         result.getString("OTel"),
                         result.getString("OID"),
                         result.getString("ONote")));
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void changePState_Edit_ChoiceBox(Number newValue) {
+        //修改框的车位销售情况选择框变更监听
+        if (newValue.intValue() == 1) {
+            //选择第2项"未销售"
+            CarNo_Edit_TextField.setText("");
+            ONo_Edit_TextField.setText("");
+            OName_Edit_TextField.setText("");
+            OSex_Edit_ChoiceBox.setValue("男");
+            OTel_Edit_TextField.setText("");
+            OID_Edit_TextField.setText("");
+            ONote_Edit_TextArea.setText("");
+            CarNo_Edit_TextField.setDisable(true);
+            ONo_Edit_TextField.setDisable(true);
+            SearchOwner_Edit_Button.setDisable(true);
+        }
+        else {
+            //选择其他选项
+            CarNo_Edit_TextField.setDisable(false);
+            ONo_Edit_TextField.setDisable(false);
+            SearchOwner_Edit_Button.setDisable(false);
+        }
+    }
+    public void click_SearchOwnerEditButton(){
+        if(ONo_Edit_TextField.getText() == null || ONo_Edit_TextField.getText().length()==0){
+            Alert alert1 = new Alert(Alert.AlertType.ERROR);
+            alert1.setTitle("小区物业管理系统");
+            alert1.setHeaderText("请输入需要搜索的业主编号再进行搜索！");
+            alert1.initOwner(ONote_Edit_TextArea.getScene().getWindow());
+            alert1.showAndWait();
+            return;
+        }
+        query = "SELECT ONo,OName,OSex,OTel,OID,ONote FROM Owner_Info WHERE ONo=\'" + ONo_Edit_TextField.getText().trim() + "\'";
+        SQL_Connect sql_connect = new SQL_Connect();
+        result = sql_connect.sql_Query(query);
+        try {
+            while (result.next()){
+                OName_Edit_TextField.setText(result.getString("OName").trim());
+                OSex_Edit_ChoiceBox.setValue(result.getString("OSex").trim());
+                OTel_Edit_TextField.setText(result.getString("OTel").trim());
+                OID_Edit_TextField.setText(result.getString("OID").trim());
+                ONote_Edit_TextArea.setText(result.getString("ONote"));
+                OName_Edit_TextField.setDisable(true);
+                OSex_Edit_ChoiceBox.setDisable(true);
+                OTel_Edit_TextField.setDisable(true);
+                OID_Edit_TextField.setDisable(true);
+                ONote_Edit_TextArea.setDisable(true);
             }
         }
         catch (Exception e) {
