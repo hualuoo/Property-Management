@@ -214,7 +214,7 @@
                                  </children>
                               </GridPane>
                               <Line endX="215.0" layoutX="101.0" layoutY="432.0" startX="-100.0" />
-                              <Button fx:id="New_Button" layoutX="248.0" layoutY="440.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="60.0" text="修改" />
+                              <Button fx:id="Edit_Button" layoutX="248.0" layoutY="440.0" mnemonicParsing="false" onAction="#click_EditButton" prefHeight="30.0" prefWidth="60.0" text="修改" />
                            </children>
                         </AnchorPane>
                   </content>

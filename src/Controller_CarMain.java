@@ -32,10 +32,12 @@ public class Controller_CarMain {
     public ChoiceBox PState_Edit_ChoiceBox,OSex_Edit_ChoiceBox;
     public TextArea PNote_Edit_TextArea,ONote_Edit_TextArea;
     public TextField CarNo_Edit_TextField,ONo_Edit_TextField,OName_Edit_TextField,OTel_Edit_TextField,OID_Edit_TextField;
-    public Button SearchOwner_Edit_Button;
+    public Button SearchOwner_Edit_Button,Edit_Button;
 
-    String query;
+    String query,query_Update;
     ResultSet result;
+    public Data_ParkingTable data_parkingTable;
+    int check_Edit_CarNo,check_Edit_Search;
 
     public void initialize() {
         //初始化
@@ -152,8 +154,8 @@ public class Controller_CarMain {
         }
     }
     public void showMoreParkingData(Data_ParkingTable data_parkingTable){
-        //在TableView中选择后，右侧显示房屋详细信息
-        //获取选择行，仅当>=0时才进行显示房屋详细信息
+        //在TableView中选择后，右侧显示车位详细信息
+        //获取选择行，仅当>=0时才进行显示车位详细信息
         if(Parking_TableView.getSelectionModel().getSelectedIndex() >= 0 && data_parkingTable.getPState().get().equals("未销售")){
             PRegion_Edit_Label.setText(data_parkingTable.getPRegion().get());
             PNo_Edit_Label.setText(data_parkingTable.getPNo().get());
@@ -166,6 +168,7 @@ public class Controller_CarMain {
             OTel_Edit_TextField.setText("");
             OID_Edit_TextField.setText("");
             ONote_Edit_TextArea.setText("");
+            this.data_parkingTable = data_parkingTable;
             return;
         }
         if(Parking_TableView.getSelectionModel().getSelectedIndex() >= 0 && data_parkingTable.getPState().get().equals("未销售")==false){
@@ -180,6 +183,7 @@ public class Controller_CarMain {
             OTel_Edit_TextField.setText(data_parkingTable.getOTel().get().trim());
             OID_Edit_TextField.setText(data_parkingTable.getOID().get().trim());
             ONote_Edit_TextArea.setText(data_parkingTable.getONote().get());
+            this.data_parkingTable = data_parkingTable;
             return;
         }
     }
@@ -305,22 +309,82 @@ public class Controller_CarMain {
         SQL_Connect sql_connect = new SQL_Connect();
         result = sql_connect.sql_Query(query);
         try {
-            while (result.next()){
+            if(result.next() == false){
+                OName_Edit_TextField.setText("");
+                OSex_Edit_ChoiceBox.setValue("男");
+                OTel_Edit_TextField.setText("");
+                OID_Edit_TextField.setText("");
+                ONote_Edit_TextArea.setText("");
+                Alert alert1 = new Alert(Alert.AlertType.ERROR);
+                alert1.setTitle("小区物业管理系统");
+                alert1.setHeaderText("搜索不到编号为" + ONo_Edit_TextField.getText().trim() + "的业主信息！");
+                alert1.initOwner(ONote_Edit_TextArea.getScene().getWindow());
+                alert1.showAndWait();
+                return;
+            }
+            else {
+                check_Edit_Search = 1;
                 OName_Edit_TextField.setText(result.getString("OName").trim());
                 OSex_Edit_ChoiceBox.setValue(result.getString("OSex").trim());
                 OTel_Edit_TextField.setText(result.getString("OTel").trim());
                 OID_Edit_TextField.setText(result.getString("OID").trim());
                 ONote_Edit_TextArea.setText(result.getString("ONote"));
-                OName_Edit_TextField.setDisable(true);
-                OSex_Edit_ChoiceBox.setDisable(true);
-                OTel_Edit_TextField.setDisable(true);
-                OID_Edit_TextField.setDisable(true);
-                ONote_Edit_TextArea.setDisable(true);
             }
         }
         catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    public void click_EditButton(){
+        if(PState_Edit_ChoiceBox.getSelectionModel().getSelectedItem().equals("未销售")){
+            query_Update = "UPDATE Parking_Info SET " +
+                    "PState=\'未销售\'," +
+                    "PNote=\'" + PNote_Edit_TextArea.getText().trim() + "\'," +
+                    "CarNo=NULL," +
+                    "ONo=NULL " +
+                    "WHERE PNo=\'" + PNo_Edit_Label.getText().trim() + "\'";
+            query = query_Update;
+            SQL_Connect sql_connect = new SQL_Connect();
+            sql_connect.sql_Update(query);
+            data_parkingTable.setPState("未销售");
+            data_parkingTable.setPNote(PNote_Edit_TextArea.getText().trim());
+            data_parkingTable.setCarNo("");
+            data_parkingTable.setONo("");
+            data_parkingTable.setOName("");
+            data_parkingTable.setOSex("");
+            data_parkingTable.setOTel("");
+            data_parkingTable.setOID("");
+            data_parkingTable.setONote("");
+            succeedEdit();
+        }
+        else{
+            query_Update = "UPDATE Parking_Info SET " +
+                    "PState=\'" + PState_Edit_ChoiceBox.getSelectionModel().getSelectedItem() + "\'," +
+                    "PNote=\'" + PNote_Edit_TextArea.getText().trim() + "\'," +
+                    "CarNo=\'" + CarNo_Edit_TextField.getText().trim() + "\'," +
+                    "ONo=\'" + ONo_Edit_TextField.getText().trim() + "\' " +
+                    "WHERE PNo=\'" + PNo_Edit_Label.getText().trim() + "\'";
+            query = query_Update;
+            SQL_Connect sql_connect = new SQL_Connect();
+            sql_connect.sql_Update(query);
+            data_parkingTable.setPState(PState_Edit_ChoiceBox.getSelectionModel().getSelectedItem().toString());
+            data_parkingTable.setPNote(PNote_Edit_TextArea.getText().trim());
+            data_parkingTable.setCarNo(CarNo_Edit_TextField.getText().trim());
+            data_parkingTable.setONo(ONo_Edit_TextField.getText().trim());
+            data_parkingTable.setOName(OName_Edit_TextField.getText().trim());
+            data_parkingTable.setOSex(OSex_Edit_ChoiceBox.getSelectionModel().getSelectedItem().toString());
+            data_parkingTable.setOTel(ONo_Edit_TextField.getText().trim());
+            data_parkingTable.setOID(OID_Edit_TextField.getText().trim());
+            data_parkingTable.setONote(ONote_Edit_TextArea.getText().trim());
+            succeedEdit();
+        }
+    }
+    public void succeedEdit(){
+        Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
+        alert2.setTitle("小区物业管理系统");
+        alert2.setHeaderText("信息修改成功！");
+        alert2.initOwner(Edit_Button.getScene().getWindow());
+        alert2.showAndWait();
     }
     public void click_IndexToggleButton(){
         //主界面-房屋管理界面切换
