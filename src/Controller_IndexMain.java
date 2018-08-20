@@ -3,13 +3,16 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.sql.ResultSet;
@@ -64,6 +67,15 @@ public class Controller_IndexMain {
                 (observable, oldValue, newValue) -> showHouseTable(newValue.getValue()));
         House_TableView.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> showMoreInfo(newValue));
+
+        House_TableView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if (event.getClickCount() > 1) {
+                    click_EditButton();
+                }
+            }
+        });
 
         //House_TableView各列从HouseTableData取值
         HNo_TableColumn.setCellValueFactory(
@@ -204,6 +216,7 @@ public class Controller_IndexMain {
             New_Stage.getIcons().add(new Image("/image/logo.png"));
             New_Stage.setX((Main.width-333)/2);
             New_Stage.setY((Main.height-505)/2);
+            New_Stage.initModality(Modality.APPLICATION_MODAL);
             New_Stage.show();
             New_Stage.setResizable(false);
             Controller_IndexNewHouse controller = loader.getController();
@@ -218,7 +231,7 @@ public class Controller_IndexMain {
         }
     }
     public void click_EditButton(){
-        if(HNo_Label.getText().trim().equals("")){
+        if(House_TableView.getSelectionModel().getSelectedIndex() < 0){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("小区物业管理系统");
             alert.setHeaderText("您未选择需要编辑的信息，无法编辑");
@@ -237,6 +250,7 @@ public class Controller_IndexMain {
                 Edit_Stage.getIcons().add(new Image("/image/logo.png"));
                 Edit_Stage.setX((Main.width-333)/2);
                 Edit_Stage.setY((Main.height-505)/2);
+                Edit_Stage.initModality(Modality.APPLICATION_MODAL);
                 Edit_Stage.show();
                 Edit_Stage.setResizable(false);
                 Controller_IndexEditHouse controller = loader.getController();
@@ -250,7 +264,7 @@ public class Controller_IndexMain {
     }
     public void click_DelButton(){
         //SQL语句
-        if(HNo_Label.getText().trim().equals("")){
+        if(House_TableView.getSelectionModel().getSelectedIndex() < 0){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("小区物业管理系统");
             alert.setHeaderText("您未选择需要删除的信息，无法删除");
@@ -267,6 +281,7 @@ public class Controller_IndexMain {
                 //确认删除
                 //已写触发器
                 query = "ALTER TABLE Owner_Info NOCHECK CONSTRAINT ALL DELETE House_Info WHERE HNo=\'" + HNo_Label.getText().trim() + "\'" + "ALTER TABLE Owner_Info CHECK CONSTRAINT ALL";
+                System.out.print(query);
                 try{
                     SQL_Connect sql_connect = new SQL_Connect();
                     int sqlresult = sql_connect.sql_Update(query);
