@@ -7,10 +7,15 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="css/CSS_CarMain.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller_CarMain">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="css/CSS_CarMain.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller_RepairMain">
    <children>
       <AnchorPane prefHeight="615.0" prefWidth="1000.0">
          <children>
+            <ImageView disable="true" fitHeight="615.0" fitWidth="1000.0" opacity="0.08" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/bg.jpg" />
+               </image>
+            </ImageView>
             <Separator layoutY="65.0" prefHeight="3.0" prefWidth="1000.0" />
             <Separator layoutX="-181.0" layoutY="327.0" prefHeight="1.0" prefWidth="528.0" rotate="90.0" />
             <Separator layoutY="593.0" prefHeight="1.0" prefWidth="1000.0" />
@@ -29,7 +34,7 @@
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></ToggleButton>
-            <ToggleButton fx:id="Car_ToggleButton" alignment="BOTTOM_CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="149.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="64.0" selected="true" style="-fx-background-image: url('/image/car.png')" text="车位信息" textFill="RED">
+            <ToggleButton fx:id="Car_ToggleButton" alignment="BOTTOM_CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="149.0" mnemonicParsing="false" onAction="#click_CarToggleButton" prefHeight="64.0" prefWidth="64.0" style="-fx-background-image: url('/image/car.png')" text="车位信息" textFill="#04430b">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></ToggleButton>
@@ -41,7 +46,7 @@
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></ToggleButton>
-            <ToggleButton fx:id="Repair_ToggleButton" alignment="BOTTOM_CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="371.0" mnemonicParsing="false" onAction="#click_RepairToggleButton" prefHeight="64.0" prefWidth="64.0" selected="false" style="-fx-background-image: url('/image/repair.png')" text="维修信息" textFill="#04430b">
+            <ToggleButton fx:id="Repair_ToggleButton" alignment="BOTTOM_CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="371.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="64.0" selected="true" style="-fx-background-image: url('/image/repair.png')" text="维修信息" textFill="RED">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></ToggleButton>
@@ -170,7 +175,7 @@
                                       </rowConstraints>
                                        <children>
                                           <TextField fx:id="ONo_Edit_TextField" />
-                                          <Button fx:id="SearchOwner_Edit_Button" mnemonicParsing="false" onAction="#click_SearchOwnerEditButton" prefWidth="50.0" text="搜索" GridPane.columnIndex="2" />
+                                          <Button fx:id="SearchOwner_Edit_Button" mnemonicParsing="false" prefWidth="50.0" text="搜索" GridPane.columnIndex="2" />
                                        </children>
                                     </GridPane>
                                     <GridPane GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -214,8 +219,8 @@
                                  </children>
                               </GridPane>
                               <Line endX="215.0" layoutX="101.0" layoutY="432.0" startX="-100.0" />
-                              <Button fx:id="Edit_Button" layoutX="248.0" layoutY="440.0" mnemonicParsing="false" onAction="#click_EditButton" prefHeight="30.0" prefWidth="60.0" text="修改" />
-                              <Button fx:id="Del_Button" layoutX="9.0" layoutY="440.0" mnemonicParsing="false" onAction="#click_DelButton" prefHeight="30.0" prefWidth="60.0" text="删除" />
+                              <Button fx:id="Edit_Button" layoutX="248.0" layoutY="440.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="60.0" text="修改" />
+                              <Button fx:id="Del_Button" layoutX="9.0" layoutY="440.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="60.0" text="删除" />
                            </children>
                         </AnchorPane>
                   </content>
@@ -324,7 +329,7 @@
                                     <GridPane GridPane.columnIndex="1">
                                        <children>
                                           <TextField fx:id="ONo_New_TextField" />
-                                          <Button fx:id="SearchOwner_New_Button" mnemonicParsing="false" onAction="#click_SearchOwnerNewButton" prefWidth="50.0" text="搜索" GridPane.columnIndex="2" />
+                                          <Button fx:id="SearchOwner_New_Button" mnemonicParsing="false" prefWidth="50.0" text="搜索" GridPane.columnIndex="2" />
                                        </children>
                                        <columnConstraints>
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="115.0" minWidth="10.0" prefWidth="82.0" />
@@ -388,18 +393,13 @@
                                  </rowConstraints>
                               </GridPane>
                               <Line endX="215.0" layoutX="101.0" layoutY="432.0" startX="-100.0" />
-                              <Button fx:id="New_Button" layoutX="248.0" layoutY="440.0" mnemonicParsing="false" onAction="#click_NewButton" prefHeight="30.0" prefWidth="60.0" text="确认" />
+                              <Button fx:id="New_Button" layoutX="248.0" layoutY="440.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="60.0" text="确认" />
                            </children>
                         </AnchorPane>
                   </content>
                 </Tab>
               </tabs>
             </TabPane>
-            <ImageView disable="true" fitHeight="615.0" fitWidth="1000.0" opacity="0.08" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@image/bg.jpg" />
-               </image>
-            </ImageView>
          </children>
       </AnchorPane>
    </children>

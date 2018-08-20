@@ -58,7 +58,7 @@ public class Controller_CarMain {
         PState_New_ChoiceBox.setItems(FXCollections.observableArrayList(
                 "已销售", "未销售", "已出租")
         );
-        PState_New_ChoiceBox.setValue("未销售");
+        PState_New_ChoiceBox.setValue("已销售");
         OSex_Edit_ChoiceBox.setItems(FXCollections.observableArrayList(
                 "男", "女")
         );
@@ -336,8 +336,8 @@ public class Controller_CarMain {
             CarNo_Edit_TextField.setDisable(false);
             ONo_Edit_TextField.setDisable(false);
             SearchOwner_Edit_Button.setDisable(false);
-            check_New_CarNo = 0;
-            check_New_Search = 0;
+            check_Edit_CarNo = 0;
+            check_Edit_Search = 0;
         }
     }
     public void changePState_New_ChoiceBox(Number newValue){
@@ -619,7 +619,6 @@ public class Controller_CarMain {
                     OID_New_TextField.getText(),
                     ONote_New_TextArea.getText()));
             succeedEdit();
-            showPRegionTableView();
         }
     }
     public void errorEdit_CarNo(){
@@ -670,6 +669,17 @@ public class Controller_CarMain {
             Parent Index_Root = FXMLLoader.load(getClass().getResource("GUI_IndexMain.fxml"));
             Main.Login_Stage.setTitle("小区物业管理系统-主界面");
             Main.Login_Stage.setScene(new Scene(Index_Root, 1000, 615));
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void click_RepairToggleButton(){
+        //维修信息界面切换
+        try {
+            Parent Repair_Root = FXMLLoader.load(getClass().getResource("GUI_RepairMain.fxml"));
+            Main.Login_Stage.setTitle("小区物业管理系统-维修信息界面");
+            Main.Login_Stage.setScene(new Scene(Repair_Root, 1000, 615));
         }
         catch (Exception e) {
             e.printStackTrace();

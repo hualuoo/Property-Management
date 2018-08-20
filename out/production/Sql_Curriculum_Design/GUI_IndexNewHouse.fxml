@@ -68,7 +68,6 @@
                     </rowConstraints>
                      <children>
                         <TextField fx:id="HType_TextField" prefHeight="23.0" prefWidth="83.0" />
-                        <TextField fx:id="HType_TextField" prefHeight="23.0" prefWidth="83.0" />
                      </children>
                   </GridPane>
                   <Label text="备　　注：" GridPane.rowIndex="5" />

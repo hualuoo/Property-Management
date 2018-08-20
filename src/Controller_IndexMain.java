@@ -401,10 +401,10 @@ public class Controller_IndexMain {
             e.printStackTrace();
         }
     }
-    public void repair_ToggleButton_Click(){
+    public void click_RepairToggleButton(){
         //维修信息界面切换
         try {
-            Parent Repair_Root = FXMLLoader.load(getClass().getResource("RepairGUI.fxml"));
+            Parent Repair_Root = FXMLLoader.load(getClass().getResource("GUI_RepairMain.fxml"));
             Main.Login_Stage.setTitle("小区物业管理系统-维修信息界面");
             Main.Login_Stage.setScene(new Scene(Repair_Root, 1000, 615));
         }

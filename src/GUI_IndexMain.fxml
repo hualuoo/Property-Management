@@ -41,7 +41,7 @@
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></ToggleButton>
-            <ToggleButton fx:id="Repair_ToggleButton" alignment="BOTTOM_CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="371.0" mnemonicParsing="false" onAction="#repair_ToggleButton_Click" prefHeight="64.0" prefWidth="64.0" selected="false" style="-fx-background-image: url('/image/repair.png')" text="维修信息" textFill="#04430b">
+            <ToggleButton fx:id="Repair_ToggleButton" alignment="BOTTOM_CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="371.0" mnemonicParsing="false" onAction="#click_RepairToggleButton" prefHeight="64.0" prefWidth="64.0" selected="false" style="-fx-background-image: url('/image/repair.png')" text="维修信息" textFill="#04430b">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></ToggleButton>
