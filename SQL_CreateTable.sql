@@ -36,6 +36,18 @@ PNote CHAR(100),
 ONo CHAR(6) CONSTRAINT Parking_Owner_Fore FOREIGN KEY REFERENCES Owner_Info(ONo)
 )
 
+/*维修信息    RNo编号    RSubDate提交日期    RTitle标题    RText正文    RState状态    RReply回复    RSolveDate解决日期    ONo业主编号*/
+CREATE TABLE Repair_Info(
+RNo INT IDENTITY(1,1), NOT NULL CONSTRAINT R_Prim PRIMARY KEY,
+RSubDate DATE NOT NULL,
+RTitle CHAR(20) NOT NULL,
+RText CHAR(200),
+RState CHAR(6),
+RReply CHAR(200),
+RSolveDate DATE,
+ONo CHAR(6) CONSTRAINT Repair_Owner_Fore FOREIGN KEY REFERENCES Owner_Info(ONo)
+)
+
 /*删除房屋的同时删除业主信息*/
 USE Sql_Curriculum_Design
 GO

@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="css/CSS_CarMain.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller_RepairMain">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="css/CSS_RepairMain.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller_RepairMain">
    <children>
       <AnchorPane prefHeight="615.0" prefWidth="1000.0">
          <children>
@@ -57,13 +57,15 @@
             <TableView fx:id="Repair_TableView" layoutX="94.0" layoutY="75.0" prefHeight="481.0" prefWidth="897.0">
               <columns>
                 <TableColumn fx:id="RNo_TableColumn" prefWidth="75.0" text="维修单编号" />
-                <TableColumn fx:id="RSubDate_TableColumn" prefWidth="100.0" text="维修单提交日期" />
-                  <TableColumn fx:id="RTitle_TableColumn" prefWidth="472.0" text="维修单标题" />
+                <TableColumn fx:id="RSubDate_TableColumn" prefWidth="125.0" text="维修单提交日期" />
+                  <TableColumn fx:id="RTitle_TableColumn" prefWidth="445.0" text="维修单标题" />
                   <TableColumn fx:id="RState_TableColumn" minWidth="0.0" prefWidth="75.0" text="维修单状态" />
                   <TableColumn fx:id="ONo_TableColumn" prefWidth="75.0" text="业主编号" />
                   <TableColumn fx:id="OName_TableColumn" prefWidth="100.0" text="业主姓名" />
               </columns>
             </TableView>
+            <TextField fx:id="Search_RNo_TextField" alignment="CENTER" layoutX="94.0" layoutY="556.0" prefWidth="75.0" />
+            <DatePicker fx:id="Search_RSubDate_DatePicker" layoutX="169.0" layoutY="556.0" prefWidth="125.0" />
          </children>
       </AnchorPane>
    </children>
