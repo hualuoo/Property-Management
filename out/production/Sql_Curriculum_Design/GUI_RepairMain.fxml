@@ -11,11 +11,6 @@
    <children>
       <AnchorPane prefHeight="615.0" prefWidth="1000.0">
          <children>
-            <ImageView disable="true" fitHeight="615.0" fitWidth="1000.0" opacity="0.08" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@image/bg.jpg" />
-               </image>
-            </ImageView>
             <Separator layoutY="65.0" prefHeight="3.0" prefWidth="1000.0" />
             <Separator layoutX="-181.0" layoutY="327.0" prefHeight="1.0" prefWidth="528.0" rotate="90.0" />
             <Separator layoutY="593.0" prefHeight="1.0" prefWidth="1000.0" />
@@ -67,17 +62,22 @@
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4f4f4" height="44.0" layoutX="94.0" layoutY="539.0" stroke="BLACK" strokeType="INSIDE" width="754.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4f4f4" height="23.0" layoutX="104.0" layoutY="530.0" stroke="#f2f2f2" strokeType="INSIDE" width="63.0" />
             <Label layoutX="111.0" layoutY="532.0" text="查　　询" />
-            <DatePicker fx:id="Search_RSubDate_DatePicker" layoutX="353.0" layoutY="551.0" prefWidth="110.0" />
             <Label layoutX="104.0" layoutY="554.0" text="维修单编号：" />
             <TextField fx:id="Search_RNo_TextField" alignment="CENTER" layoutX="176.0" layoutY="550.0" prefWidth="60.0" />
             <Label layoutX="257.0" layoutY="555.0" text="维修单提交日期：" />
+            <DatePicker fx:id="Search_RSubDate_DatePicker" layoutX="353.0" layoutY="551.0" prefWidth="110.0" />
             <CheckBox fx:id="Search_NoRepair_CheckBox" layoutX="486.0" layoutY="555.0" mnemonicParsing="false" selected="true" text="未维修" />
             <CheckBox fx:id="Search_YesRepair_CheckBox" layoutX="554.0" layoutY="555.0" mnemonicParsing="false" selected="true" text="已维修" />
             <Label layoutX="630.0" layoutY="556.0" text="业主姓名：" />
             <TextField fx:id="Search_OName_TextField" layoutX="690.0" layoutY="551.0" prefWidth="90.0" />
             <Button fx:id="Search_Clean_Button" layoutX="793.0" layoutY="550.0" mnemonicParsing="false" onAction="#click_SearchCleanButton" text="清空" />
-            <Button fx:id="New_Button" layoutX="865.0" layoutY="546.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0" text="新增" />
-            <Button fx:id="Edit_Button" layoutX="930.0" layoutY="546.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0" text="修改" />
+            <Button fx:id="New_Button" layoutX="865.0" layoutY="546.0" mnemonicParsing="false" onAction="#click_NewButton" prefHeight="30.0" prefWidth="50.0" text="新增" />
+            <Button fx:id="Edit_Button" layoutX="930.0" layoutY="546.0" mnemonicParsing="false" onAction="#click_EditButton" prefHeight="30.0" prefWidth="50.0" text="修改" />
+            <ImageView disable="true" fitHeight="615.0" fitWidth="1000.0" opacity="0.08" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/bg.jpg" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </children>

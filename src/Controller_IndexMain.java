@@ -422,6 +422,10 @@ public class Controller_IndexMain {
             Parent Repair_Root = FXMLLoader.load(getClass().getResource("GUI_RepairMain.fxml"));
             Main.Login_Stage.setTitle("小区物业管理系统-维修信息界面");
             Main.Login_Stage.setScene(new Scene(Repair_Root, 1000, 615));
+            //将第二个窗口保存到map中
+            StageManager.STAGE.put("Login_Stage", Main.Login_Stage);
+            //将本窗口保存到map中
+            StageManager.CONTROLLER.put("Controller_IndexMain", this);
         }
         catch (Exception e) {
             e.printStackTrace();

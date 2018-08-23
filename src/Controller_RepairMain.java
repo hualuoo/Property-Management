@@ -2,10 +2,16 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.util.StringConverter;
 
 import java.sql.ResultSet;
@@ -32,6 +38,7 @@ public class Controller_RepairMain {
 
     String query;
     ResultSet result;
+    int count;
 
     public void initialize() {
         //初始化
@@ -118,6 +125,7 @@ public class Controller_RepairMain {
         datepicker.setConverter(converter);
     }
     public void showRepairTableView(){
+        count = 0;
         query = "SELECT RNo,RSubDate,RTitle,RText,RState,RReply,RSolveDate,Repair_Info.ONo,OName,OSex,OTel,OID,ONote FROM Repair_Info LEFT JOIN Owner_Info ON Repair_Info.ONo=Owner_Info.ONo";
         SQL_Connect sql_connect = new SQL_Connect();
         result = sql_connect.sql_Query(query);
@@ -136,6 +144,7 @@ public class Controller_RepairMain {
                         result.getString("OTel"),
                         result.getString("OID"),
                         result.getString("ONote")));
+                count++;
             }
         }
         catch (Exception e) {
@@ -213,6 +222,79 @@ public class Controller_RepairMain {
         Search_NoRepair_CheckBox.setSelected(true);
         Search_YesRepair_CheckBox.setSelected(true);
         Search_OName_TextField.setText("");
+    }
+    public void click_NewButton(){
+        try{
+            Stage New_Stage;
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Controller_IndexMain.class.getResource("GUI_RepairNewRecord.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+            New_Stage = new Stage();
+            New_Stage.setTitle("小区物业管理系统-维修单-新增");
+            New_Stage.setScene(new Scene(page, 333, 505));
+
+            //将"维修单管理-新增"窗口保存到map中
+            StageManager.STAGE.put("New_Stage", New_Stage);
+            //将"维修单管理-主界面"控制器保存到map中
+            StageManager.CONTROLLER.put("Controller_RepairMain", this);
+
+            New_Stage.getIcons().add(new Image("/image/logo.png"));
+            New_Stage.setX((Main.width-333)/2);
+            New_Stage.setY((Main.height-505)/2);
+            New_Stage.initModality(Modality.APPLICATION_MODAL);
+            New_Stage.show();
+            New_Stage.setResizable(false);
+            Controller_RepairNewRecord controller = loader.getController();
+            controller.setDialogStage(New_Stage);
+            controller.setCount(count);
+            Data_RepairTable newdata_RepairTable = new Data_RepairTable("","","","","","","","","","","","","");
+            controller.setdata_RepairTable(newdata_RepairTable);
+            newdata_RepairTable = controller.getdata_RepairTable();
+            RepairTableView_List.add(newdata_RepairTable);
+            count++;
+
+            New_Stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                @Override
+                public void handle(WindowEvent event) {
+                    RepairTableView_List.clear();
+                    showRepairTableView();
+                }
+            });
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void click_EditButton(){
+        if(Repair_TableView.getSelectionModel().getSelectedIndex() < 0){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("小区物业管理系统");
+            alert.setHeaderText("您未选择需要编辑的信息，无法编辑");
+            alert.initOwner(Main.Login_Stage);
+            alert.showAndWait();
+            return;
+        }
+        try{
+            Stage Edit_Stage;
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Controller_IndexMain.class.getResource("GUI_RepairEditRecord.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+            Edit_Stage = new Stage();
+            Edit_Stage.setTitle("小区物业管理系统-维修单-修改");
+            Edit_Stage.setScene(new Scene(page, 333, 505));
+            Edit_Stage.getIcons().add(new Image("/image/logo.png"));
+            Edit_Stage.setX((Main.width-333)/2);
+            Edit_Stage.setY((Main.height-505)/2);
+            Edit_Stage.initModality(Modality.APPLICATION_MODAL);
+            Edit_Stage.show();
+            Edit_Stage.setResizable(false);
+            Controller_RepairEditRecord controller = loader.getController();
+            controller.setDialogStage(Edit_Stage);
+            controller.setdata_RepairTable(Repair_TableView.getSelectionModel().getSelectedItem());
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     public void click_IndexToggleButton(){
         //主界面-房屋管理界面切换

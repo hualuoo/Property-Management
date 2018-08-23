@@ -20,6 +20,7 @@ public class Controller_IndexNewHouse {
     String query,query_Insert,query_Insert2;
     int check_HBuild,check_HPark,check_HFloor,check_HRoom,check_HArea,check_OID;
 
+
     public Data_HouseTable getHouseTableData(){
         return houseTableData;
     }
