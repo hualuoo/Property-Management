@@ -142,7 +142,7 @@ public class Controller_ComplaintMain {
         //单号计数置0
         count = 0;
         //数据库指令
-        query = "SELECT CNo,CSubDate,CTitle,CText,CState,CReply,CSolveDate,Complaint_Info.ONo,OName,OSex,OTel,OID,ONote FROM Complaint_Info LEFT JOIN Owner_Info ON Complaint_Info.ONo=Owner_Info.ONo";
+        query = "SELECT CNo,CSubDate,CTitle,CText,CState,CReply,CSolveDate,Complaint_Info.ONo,OName,OTel FROM Complaint_Info LEFT JOIN Owner_Info ON Complaint_Info.ONo=Owner_Info.ONo";
         //调用SQL方法类获取ResultSet结果
         SQL_Connect sql_connect = new SQL_Connect();
         result = sql_connect.sql_Query(query);
@@ -159,10 +159,7 @@ public class Controller_ComplaintMain {
                         result.getString("CSolveDate"),
                         result.getString("ONo"),
                         result.getString("OName"),
-                        result.getString("OSex"),
-                        result.getString("OTel"),
-                        result.getString("OID"),
-                        result.getString("ONote")));
+                        result.getString("OTel")));
                 count++;
             }
         }
@@ -176,27 +173,27 @@ public class Controller_ComplaintMain {
         ComplaintTableView_List.clear();
         if(Search_CSubDate_DatePicker.getValue()==null && Search_NoComplaint_CheckBox.isSelected() && Search_YesComplaint_CheckBox.isSelected()){
             //当搜索栏-提交日志-时间选择器为空 搜索栏-未处理-复选框勾选 搜索栏-已处理-复选框勾选
-            query = "SELECT CNo,CSubDate,CTitle,CText,CState,CReply,CSolveDate,Complaint_Info.ONo,OName,OSex,OTel,OID,ONote FROM Complaint_Info LEFT JOIN Owner_Info ON Complaint_Info.ONo=Owner_Info.ONo WHERE " +
+            query = "SELECT CNo,CSubDate,CTitle,CText,CState,CReply,CSolveDate,Complaint_Info.ONo,OName,OTel FROM Complaint_Info LEFT JOIN Owner_Info ON Complaint_Info.ONo=Owner_Info.ONo WHERE " +
                     "CNo LIKE \'%" + Search_CNo_TextField.getText() + "%\' AND " +
                     "OName LIKE \'%" + Search_OName_TextField.getText() + "%\'";
         }
         if(Search_CSubDate_DatePicker.getValue()!=null && Search_NoComplaint_CheckBox.isSelected() && Search_YesComplaint_CheckBox.isSelected()){
             //当搜索栏-提交日志-时间选择器不为空 搜索栏-未处理-复选框勾选 搜索栏-已处理-复选框勾选
-            query = "SELECT CNo,CSubDate,CTitle,CText,CState,CReply,CSolveDate,Complaint_Info.ONo,OName,OSex,OTel,OID,ONote FROM Complaint_Info LEFT JOIN Owner_Info ON Complaint_Info.ONo=Owner_Info.ONo WHERE " +
+            query = "SELECT CNo,CSubDate,CTitle,CText,CState,CReply,CSolveDate,Complaint_Info.ONo,OName,OTel FROM Complaint_Info LEFT JOIN Owner_Info ON Complaint_Info.ONo=Owner_Info.ONo WHERE " +
                     "CNo LIKE \'%" + Search_CNo_TextField.getText() + "%\' AND " +
                     "CSubDate=\'" + Search_CSubDate_DatePicker.getValue() + "\' AND " +
                     "OName LIKE \'%" + Search_OName_TextField.getText() + "%\'";
         }
         if(Search_CSubDate_DatePicker.getValue()==null && Search_NoComplaint_CheckBox.isSelected()==false && Search_YesComplaint_CheckBox.isSelected()){
             //当搜索栏-提交日志-时间选择器为空 搜索栏-未处理-复选框未勾选 搜索栏-已处理-复选框勾选
-            query = "SELECT CNo,CSubDate,CTitle,CText,CState,CReply,CSolveDate,Complaint_Info.ONo,OName,OSex,OTel,OID,ONote FROM Complaint_Info LEFT JOIN Owner_Info ON Complaint_Info.ONo=Owner_Info.ONo WHERE " +
+            query = "SELECT CNo,CSubDate,CTitle,CText,CState,CReply,CSolveDate,Complaint_Info.ONo,OName,OTel FROM Complaint_Info LEFT JOIN Owner_Info ON Complaint_Info.ONo=Owner_Info.ONo WHERE " +
                     "CNo LIKE \'%" + Search_CNo_TextField.getText() + "%\' AND " +
                     "CState =\'已处理\' AND " +
                     "OName LIKE \'%" + Search_OName_TextField.getText() + "%\'";
         }
         if(Search_CSubDate_DatePicker.getValue()!=null && Search_NoComplaint_CheckBox.isSelected()==false && Search_YesComplaint_CheckBox.isSelected()){
             //当搜索栏-提交日志-时间选择器不为空 搜索栏-未处理-复选框未勾选 搜索栏-已处理-复选框勾选
-            query = "SELECT CNo,CSubDate,CTitle,CText,CState,CReply,CSolveDate,Complaint_Info.ONo,OName,OSex,OTel,OID,ONote FROM Complaint_Info LEFT JOIN Owner_Info ON Complaint_Info.ONo=Owner_Info.ONo WHERE " +
+            query = "SELECT CNo,CSubDate,CTitle,CText,CState,CReply,CSolveDate,Complaint_Info.ONo,OName,OTel FROM Complaint_Info LEFT JOIN Owner_Info ON Complaint_Info.ONo=Owner_Info.ONo WHERE " +
                     "CNo LIKE \'%" + Search_CNo_TextField.getText() + "%\' AND " +
                     "CSubDate=\'" + Search_CSubDate_DatePicker.getValue() + "\' AND " +
                     "CState =\'已处理\' AND " +
@@ -204,14 +201,14 @@ public class Controller_ComplaintMain {
         }
         if(Search_CSubDate_DatePicker.getValue()==null && Search_NoComplaint_CheckBox.isSelected() && Search_YesComplaint_CheckBox.isSelected()==false){
             //当搜索栏-提交日志-时间选择器为空 搜索栏-未处理-复选框勾选 搜索栏-已处理-复选框未勾选
-            query = "SELECT CNo,CSubDate,CTitle,CText,CState,CReply,CSolveDate,Complaint_Info.ONo,OName,OSex,OTel,OID,ONote FROM Complaint_Info LEFT JOIN Owner_Info ON Complaint_Info.ONo=Owner_Info.ONo WHERE " +
+            query = "SELECT CNo,CSubDate,CTitle,CText,CState,CReply,CSolveDate,Complaint_Info.ONo,OName,OTel FROM Complaint_Info LEFT JOIN Owner_Info ON Complaint_Info.ONo=Owner_Info.ONo WHERE " +
                     "CNo LIKE \'%" + Search_CNo_TextField.getText() + "%\' AND " +
                     "CState =\'未处理\' AND " +
                     "OName LIKE \'%" + Search_OName_TextField.getText() + "%\'";
         }
         if(Search_CSubDate_DatePicker.getValue()!=null && Search_NoComplaint_CheckBox.isSelected() && Search_YesComplaint_CheckBox.isSelected()==false){
             //当搜索栏-提交日志-时间选择器不为空 搜索栏-未处理-复选框勾选 搜索栏-已处理-复选框未勾选
-            query = "SELECT CNo,CSubDate,CTitle,CText,CState,CReply,CSolveDate,Complaint_Info.ONo,OName,OSex,OTel,OID,ONote FROM Complaint_Info LEFT JOIN Owner_Info ON Complaint_Info.ONo=Owner_Info.ONo WHERE " +
+            query = "SELECT CNo,CSubDate,CTitle,CText,CState,CReply,CSolveDate,Complaint_Info.ONo,OName,OTel FROM Complaint_Info LEFT JOIN Owner_Info ON Complaint_Info.ONo=Owner_Info.ONo WHERE " +
                     "CNo LIKE \'%" + Search_CNo_TextField.getText() + "%\' AND " +
                     "CSubDate=\'" + Search_CSubDate_DatePicker.getValue() + "\' AND " +
                     "CState =\'未处理\' AND " +
@@ -227,6 +224,7 @@ public class Controller_ComplaintMain {
         //ResultSet的next方法需要try-catch输出报错
         try {
             while (result.next()){
+                //while循环分别获取数据直到ResultSet的结尾，并new一个使用Data方法赋值的data变量
                 ComplaintTableView_List.add(new Data_ComplaintTable(result.getString("CNo"),
                         result.getString("CSubDate"),
                         result.getString("CTitle"),
@@ -236,10 +234,7 @@ public class Controller_ComplaintMain {
                         result.getString("CSolveDate"),
                         result.getString("ONo"),
                         result.getString("OName"),
-                        result.getString("OSex"),
-                        result.getString("OTel"),
-                        result.getString("OID"),
-                        result.getString("ONote")));
+                        result.getString("OTel")));
             }
         }
         catch (Exception e) {
@@ -355,6 +350,18 @@ public class Controller_ComplaintMain {
             Parent Car_Root = FXMLLoader.load(getClass().getResource("GUI_CarMain.fxml"));
             Main.Login_Stage.setTitle("小区物业管理系统-车辆管理界面");
             Main.Login_Stage.setScene(new Scene(Car_Root, 1000, 615));
+            StageManager.CONTROLLER.remove("Controller_ComplaintMain");
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void click_RepairToggleButton(){
+        //维修信息界面切换
+        try {
+            Parent Repair_Root = FXMLLoader.load(getClass().getResource("GUI_RepairMain.fxml"));
+            Main.Login_Stage.setTitle("小区物业管理系统-维修信息界面");
+            Main.Login_Stage.setScene(new Scene(Repair_Root, 1000, 615));
             StageManager.CONTROLLER.remove("Controller_ComplaintMain");
         }
         catch (Exception e) {

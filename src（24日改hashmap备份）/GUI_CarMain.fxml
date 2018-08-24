@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="css/CSS_CarMain.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller_CarMain">
+   <children>
+      <AnchorPane prefHeight="615.0" prefWidth="1000.0">
+         <children>
+            <Separator layoutY="65.0" prefHeight="3.0" prefWidth="1000.0" />
+            <Separator layoutX="-181.0" layoutY="327.0" prefHeight="1.0" prefWidth="528.0" rotate="90.0" />
+            <Separator layoutY="593.0" prefHeight="1.0" prefWidth="1000.0" />
+            <ImageView fitHeight="55.0" fitWidth="55.0" layoutX="15.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/titlelogo.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="72.0" layoutY="16.0" text="光明小区物业管理系统">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <Label fx:id="LoginUser_Label" layoutX="6.0" layoutY="597.0" text="操作员：" />
+            <ToggleButton fx:id="House_ToggleButton" alignment="BOTTOM_CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="75.0" mnemonicParsing="false" onAction="#click_IndexToggleButton" prefHeight="64.0" prefWidth="64.0" style="-fx-background-image: url('/image/house.png')" text="房屋信息" textFill="#04430b">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></ToggleButton>
+            <ToggleButton fx:id="Car_ToggleButton" alignment="BOTTOM_CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="149.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="64.0" selected="true" style="-fx-background-image: url('/image/car.png')" text="车位信息" textFill="RED">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></ToggleButton>
+            <ToggleButton fx:id="Family_ToggleButton" alignment="BOTTOM_CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="223.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="64.0" selected="false" style="-fx-background-image: url('/image/family.png')" text="家庭信息" textFill="#04430b">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></ToggleButton>
+            <ToggleButton fx:id="Charge_ToggleButton" alignment="BOTTOM_CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="297.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="64.0" selected="false" style="-fx-background-image: url('/image/charge.png')" text="收费信息" textFill="#04430b">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></ToggleButton>
+            <ToggleButton fx:id="Repair_ToggleButton" alignment="BOTTOM_CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="371.0" mnemonicParsing="false" onAction="#click_RepairToggleButton" prefHeight="64.0" prefWidth="64.0" selected="false" style="-fx-background-image: url('/image/repair.png')" text="维修信息" textFill="#04430b">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></ToggleButton>
+            <ToggleButton fx:id="Complaint_ToggleButton" alignment="BOTTOM_CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="445.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="64.0" selected="false" style="-fx-background-image: url('/image/complaint.png')" text="投诉信息" textFill="#04430b">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></ToggleButton>
+            <TableView fx:id="PRegion_TableView" layoutX="95.0" layoutY="76.0" prefHeight="508.0" prefWidth="102.0">
+              <columns>
+                <TableColumn fx:id="PRegion_TableColumn" prefWidth="100.0" text="车位区域" />
+              </columns>
+            </TableView>
+            <TableView fx:id="Parking_TableView" layoutX="207.0" layoutY="75.0" prefHeight="455.0" prefWidth="457.0">
+               <columns>
+                  <TableColumn fx:id="PNo_TableColumn" prefWidth="90.0" text="车位编号" />
+                  <TableColumn fx:id="PState_TableColumn" prefWidth="90.0" text="车位状态" />
+                  <TableColumn fx:id="CarNo_TableColumn" prefWidth="95.0" text="车牌号" />
+                  <TableColumn fx:id="ONo_TableColumn" prefWidth="90.0" text="业主编号" />
+                  <TableColumn fx:id="OName_TableColumn" prefWidth="90.0" text="业主姓名" />
+               </columns>
+            </TableView>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4f4f4" height="44.0" layoutX="207.0" layoutY="540.0" stroke="BLACK" strokeType="INSIDE" width="457.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4f4f4" height="23.0" layoutX="217.0" layoutY="531.0" stroke="#f2f2f2" strokeType="INSIDE" width="63.0" />
+            <Label layoutX="224.0" layoutY="533.0" text="查　　询" />
+            <Label layoutX="218.0" layoutY="555.0" text="车位编号：" />
+            <TextField fx:id="Search_PNo_TextField" layoutX="276.0" layoutY="551.0" prefHeight="23.0" prefWidth="80.0" />
+            <Label layoutX="386.0" layoutY="555.0" text="车牌号：" />
+            <TextField fx:id="Search_CarNo_TextField" layoutX="432.0" layoutY="551.0" prefHeight="23.0" prefWidth="80.0" />
+            <Label layoutX="540.0" layoutY="555.0" text="姓名：" />
+            <TextField fx:id="Search_OName_TextField" layoutX="574.0" layoutY="551.0" prefHeight="23.0" prefWidth="80.0" />
+            <TabPane layoutX="674.0" layoutY="75.0" prefHeight="508.0" prefWidth="317.0" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab text="修改车位信息">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4f4f4" height="482.0" stroke="#f4f4f4" strokeType="INSIDE" width="317.0" />
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4f4f4" height="470.0" layoutY="9.0" stroke="BLACK" strokeType="INSIDE" width="317.0" />
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4f4f4" height="23.0" layoutX="9.0" stroke="#f2f2f2" strokeType="INSIDE" width="63.0" />
+                              <Label layoutX="16.0" layoutY="3.0" text="车位信息" />
+                              <GridPane layoutX="11.0" layoutY="18.0" prefHeight="150.0" prefWidth="295.0">
+                                 <children>
+                                    <Label text="车位区域：" GridPane.valignment="CENTER" />
+                                    <Label text="车位编号：" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                    <Label text="车位状态：" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                                    <Label fx:id="PRegion_Edit_Label" GridPane.columnIndex="1" GridPane.valignment="CENTER" />
+                                    <Label fx:id="PNo_Edit_Label" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                    <Label text="备　　注：" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                                    <ChoiceBox fx:id="PState_Edit_ChoiceBox" prefHeight="23.0" prefWidth="77.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <TextArea fx:id="PNote_Edit_TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                 </children>
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="65.0" minWidth="10.0" prefWidth="65.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="317.0" minWidth="10.0" prefWidth="237.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                              </GridPane>
+                              <Line endX="215.0" layoutX="101.0" layoutY="180.0" startX="-100.0" />
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4f4f4" height="23.0" layoutX="8.0" layoutY="168.0" stroke="#f2f2f2" strokeType="INSIDE" width="63.0" />
+                              <Label layoutX="16.0" layoutY="173.0" text="车辆信息" />
+                              <GridPane layoutX="11.0" layoutY="191.0" prefHeight="25.0" prefWidth="295.0">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="65.0" minWidth="10.0" prefWidth="61.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="236.0" minWidth="10.0" prefWidth="234.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Label text="车牌号码：" />
+                                    <GridPane GridPane.columnIndex="1">
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="117.0" minWidth="10.0" prefWidth="99.0" />
+                                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="173.0" minWidth="10.0" prefWidth="135.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                       <children>
+                                          <TextField fx:id="CarNo_Edit_TextField" />
+                                          <Label fx:id="CarNoError_Edit_Label" textFill="RED" GridPane.columnIndex="1">
+                                             <font>
+                                                <Font size="11.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </GridPane>
+                                 </children>
+                              </GridPane>
+                              <Line endX="215.0" layoutX="101.0" layoutY="228.0" startX="-100.0" />
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4f4f4" height="23.0" layoutX="8.0" layoutY="216.0" stroke="#f2f2f2" strokeType="INSIDE" width="63.0" />
+                              <Label layoutX="16.0" layoutY="221.0" text="业主信息" />
+                              <GridPane layoutX="11.0" layoutY="244.0" prefWidth="295.0">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="298.0" minWidth="10.0" prefWidth="65.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="277.0" minWidth="0.0" prefWidth="236.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <Label text="业主编号：" />
+                                    <Label text="业主姓名：" GridPane.rowIndex="1" />
+                                    <Label text="业主性别：" GridPane.rowIndex="2" />
+                                    <Label text="联系电话：" GridPane.rowIndex="3" />
+                                    <Label text="身份证号：" GridPane.rowIndex="4" />
+                                    <Label text="备　　注：" GridPane.rowIndex="5" />
+                                    <GridPane GridPane.columnIndex="1">
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="115.0" minWidth="10.0" prefWidth="82.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="164.0" minWidth="3.0" prefWidth="5.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="164.0" minWidth="10.0" prefWidth="149.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                       <children>
+                                          <TextField fx:id="ONo_Edit_TextField" />
+                                          <Button fx:id="SearchOwner_Edit_Button" mnemonicParsing="false" onAction="#click_SearchOwnerEditButton" prefWidth="50.0" text="搜索" GridPane.columnIndex="2" />
+                                       </children>
+                                    </GridPane>
+                                    <GridPane GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                       <children>
+                                          <TextField fx:id="OName_Edit_TextField" />
+                                       </children>
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="112.0" minWidth="10.0" prefWidth="68.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="168.0" minWidth="10.0" prefWidth="165.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                    </GridPane>
+                                    <ChoiceBox fx:id="OSex_Edit_ChoiceBox" prefHeight="23.0" prefWidth="58.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <GridPane GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                       <children>
+                                          <TextField fx:id="OTel_Edit_TextField" />
+                                       </children>
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="134.0" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="168.0" minWidth="10.0" prefWidth="133.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                    </GridPane>
+                                    <GridPane GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                       <children>
+                                          <TextField fx:id="OID_Edit_TextField" />
+                                       </children>
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="177.0" minWidth="10.0" prefWidth="150.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="168.0" minWidth="10.0" prefWidth="83.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                    </GridPane>
+                                    <TextArea fx:id="ONote_Edit_TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                 </children>
+                              </GridPane>
+                              <Line endX="215.0" layoutX="101.0" layoutY="432.0" startX="-100.0" />
+                              <Button fx:id="Edit_Button" layoutX="248.0" layoutY="440.0" mnemonicParsing="false" onAction="#click_EditButton" prefHeight="30.0" prefWidth="60.0" text="修改" />
+                              <Button fx:id="Del_Button" layoutX="9.0" layoutY="440.0" mnemonicParsing="false" onAction="#click_DelButton" prefHeight="30.0" prefWidth="60.0" text="删除" />
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+                <Tab text="增加车位信息">
+                  <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4f4f4" height="482.0" stroke="#f4f4f4" strokeType="INSIDE" width="317.0" />
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4f4f4" height="470.0" layoutY="9.0" stroke="BLACK" strokeType="INSIDE" width="317.0" />
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4f4f4" height="23.0" layoutX="9.0" stroke="#f2f2f2" strokeType="INSIDE" width="63.0" />
+                              <Label layoutX="16.0" layoutY="3.0" text="车位信息" />
+                              <GridPane layoutX="11.0" layoutY="18.0" prefHeight="150.0" prefWidth="295.0">
+                                 <children>
+                                    <Label text="车位区域：" GridPane.valignment="CENTER" />
+                                    <Label text="车位编号：" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                    <Label text="车位状态：" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                                    <Label text="备　　注：" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                                    <ChoiceBox fx:id="PState_New_ChoiceBox" prefHeight="23.0" prefWidth="77.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <TextArea fx:id="PNote_New_TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <GridPane GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                      <columnConstraints>
+                                          <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="53.0" minWidth="10.0" prefWidth="19.0" />
+                                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="86.0" minWidth="3.0" prefWidth="11.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="114.0" minWidth="10.0" prefWidth="46.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="172.0" minWidth="10.0" prefWidth="159.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                       <children>
+                                          <Label text="-" GridPane.columnIndex="1" />
+                                          <TextField fx:id="PNo_New_TextField" prefHeight="23.0" prefWidth="42.0" GridPane.columnIndex="2" />
+                                          <Label fx:id="PRegion_New_Label" />
+                                       </children>
+                                    </GridPane>
+                                    <GridPane GridPane.columnIndex="1">
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="73.0" minWidth="10.0" prefWidth="47.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="112.0" minWidth="10.0" prefWidth="25.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="170.0" minWidth="10.0" prefWidth="170.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                       <children>
+                                          <TextField fx:id="PRegion_New_TextField" />
+                                          <Label text="区" GridPane.columnIndex="1" />
+                                       </children>
+                                    </GridPane>
+                                 </children>
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="65.0" minWidth="10.0" prefWidth="65.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="317.0" minWidth="10.0" prefWidth="237.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                              </GridPane>
+                              <Line endX="215.0" layoutX="101.0" layoutY="180.0" startX="-100.0" />
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4f4f4" height="23.0" layoutX="8.0" layoutY="168.0" stroke="#f2f2f2" strokeType="INSIDE" width="63.0" />
+                              <Label layoutX="16.0" layoutY="173.0" text="车辆信息" />
+                              <GridPane layoutX="11.0" layoutY="191.0" prefHeight="25.0" prefWidth="295.0">
+                                 <children>
+                                    <Label text="车牌号码：" />
+                                    <GridPane GridPane.columnIndex="1">
+                                       <children>
+                                          <TextField fx:id="CarNo_New_TextField" />
+                                          <Label fx:id="CarNoError_New_Label" textFill="RED" GridPane.columnIndex="1">
+                                             <font>
+                                                <Font size="11.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="117.0" minWidth="10.0" prefWidth="99.0" />
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="173.0" minWidth="10.0" prefWidth="135.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                    </GridPane>
+                                 </children>
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="65.0" minWidth="10.0" prefWidth="61.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="236.0" minWidth="10.0" prefWidth="234.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                              </GridPane>
+                              <Line endX="215.0" layoutX="101.0" layoutY="228.0" startX="-100.0" />
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4f4f4" height="23.0" layoutX="8.0" layoutY="216.0" stroke="#f2f2f2" strokeType="INSIDE" width="63.0" />
+                              <Label layoutX="16.0" layoutY="221.0" text="业主信息" />
+                              <GridPane layoutX="11.0" layoutY="244.0" prefWidth="295.0">
+                                 <children>
+                                    <Label text="业主编号：" />
+                                    <Label text="业主姓名：" GridPane.rowIndex="1" />
+                                    <Label text="业主性别：" GridPane.rowIndex="2" />
+                                    <Label text="联系电话：" GridPane.rowIndex="3" />
+                                    <Label text="身份证号：" GridPane.rowIndex="4" />
+                                    <Label text="备　　注：" GridPane.rowIndex="5" />
+                                    <GridPane GridPane.columnIndex="1">
+                                       <children>
+                                          <TextField fx:id="ONo_New_TextField" />
+                                          <Button fx:id="SearchOwner_New_Button" mnemonicParsing="false" onAction="#click_SearchOwnerNewButton" prefWidth="50.0" text="搜索" GridPane.columnIndex="2" />
+                                       </children>
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="115.0" minWidth="10.0" prefWidth="82.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="164.0" minWidth="3.0" prefWidth="5.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="164.0" minWidth="10.0" prefWidth="149.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                    </GridPane>
+                                    <GridPane GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                       <children>
+                                          <TextField fx:id="OName_New_TextField" />
+                                       </children>
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="112.0" minWidth="10.0" prefWidth="68.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="168.0" minWidth="10.0" prefWidth="165.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                    </GridPane>
+                                    <ChoiceBox fx:id="OSex_New_ChoiceBox" prefHeight="23.0" prefWidth="58.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <GridPane GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                       <children>
+                                          <TextField fx:id="OTel_New_TextField" />
+                                       </children>
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="134.0" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="168.0" minWidth="10.0" prefWidth="133.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                    </GridPane>
+                                    <GridPane GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                       <children>
+                                          <TextField fx:id="OID_New_TextField" />
+                                       </children>
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="177.0" minWidth="10.0" prefWidth="150.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="168.0" minWidth="10.0" prefWidth="83.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                    </GridPane>
+                                    <TextArea fx:id="ONote_New_TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                 </children>
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="298.0" minWidth="10.0" prefWidth="65.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="277.0" minWidth="0.0" prefWidth="236.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                              </GridPane>
+                              <Line endX="215.0" layoutX="101.0" layoutY="432.0" startX="-100.0" />
+                              <Button fx:id="New_Button" layoutX="248.0" layoutY="440.0" mnemonicParsing="false" onAction="#click_NewButton" prefHeight="30.0" prefWidth="60.0" text="确认" />
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+              </tabs>
+            </TabPane>
+            <ImageView disable="true" fitHeight="615.0" fitWidth="1000.0" opacity="0.08" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/bg.jpg" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

@@ -154,7 +154,7 @@ public class Controller_ComplaintNewRecord{
     }
     public void click_ConfirmButton() {
         //按下"确认"按钮
-        //确认是否添加该保修单
+        //确认是否添加该投诉单
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("小区物业管理系统");
         alert.setHeaderText("您确认是否添加该条投诉单？");
@@ -186,7 +186,7 @@ public class Controller_ComplaintNewRecord{
         }
         if (NoComplaint_RadioButton.selectedProperty().getValue()==true){
             //如果勾选了"未处理"
-            //添加投诉单数据到数据库("未处理")
+            //添加"已处理"投诉单数据到数据库
             addDataToSQL_NoComplaint();
             //成功添加弹窗
             succeed_Add();
@@ -229,7 +229,7 @@ public class Controller_ComplaintNewRecord{
         controller_complaintMain.showComplaintTableView();
     }
     void addDataToSQL_NoComplaint(){
-        //添加投诉单数据到数据库("未处理")
+        //添加"未处理"投诉单数据到数据库
         query = "INSERT INTO Complaint_Info VALUES" +
                 "(\'" + CSubDate_DatePicker.getEditor().getText() + "\',\'" + CTitle_TextField.getText() + "\',\'" +
                 CText_TextArea.getText() + "\',\'" + "未处理" + "\',NULL,NULL,\'" + ONo_TextField.getText() + "\');";
@@ -237,7 +237,7 @@ public class Controller_ComplaintNewRecord{
         sql_connect.sql_Update(query);
     }
     void addDataToSQL_YesComplaint(){
-        //添加投诉单数据到数据库("已处理")
+        //添加"已处理"投诉单数据到数据库
         query = "INSERT INTO Complaint_Info VALUES" +
                 "(\'" + CSubDate_DatePicker.getEditor().getText() + "\',\'" + CTitle_TextField.getText() + "\',\'" +
                 CText_TextArea.getText() + "\',\'" + "已处理" + "\',\'" + CReply_TextArea.getText() + "\',\'" + CSolveDate_DatePicker.getEditor().getText() + "\',\'" + ONo_TextField.getText() + "\');";

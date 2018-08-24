@@ -685,4 +685,15 @@ public class Controller_CarMain {
             e.printStackTrace();
         }
     }
+    public void click_ComplaintToggleButton(){
+        //投诉信息界面切换
+        try {
+            Parent Complaint_Root = FXMLLoader.load(getClass().getResource("GUI_ComplaintMain.fxml"));
+            Main.Login_Stage.setTitle("小区物业管理系统-投诉信息界面");
+            Main.Login_Stage.setScene(new Scene(Complaint_Root, 1000, 615));
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

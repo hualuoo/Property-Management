@@ -4,8 +4,8 @@ import javafx.beans.property.StringProperty;
 public class Data_ComplaintTable {
     /*维修信息    RNo编号    RSubDate提交日期    RTitle标题    RText正文    RState状态    RReply回复    RSolveDate处理日期    ONo业主编号*/
     private SimpleStringProperty CNo,CSubDate,CTitle,CText,CState,CReply,CSolveDate;
-    private SimpleStringProperty ONo,OName,OSex,OTel,OID,ONote;
-    public Data_ComplaintTable(String CNo,String CSubDate,String CTitle,String CText,String CState,String CReply,String CSolveDate,String ONo,String OName,String OSex,String OTel,String OID,String ONote){
+    private SimpleStringProperty ONo,OName,OTel;
+    public Data_ComplaintTable(String CNo,String CSubDate,String CTitle,String CText,String CState,String CReply,String CSolveDate,String ONo,String OName,String OTel){
         this.CNo = new SimpleStringProperty(CNo);
         this.CSubDate = new SimpleStringProperty(CSubDate);
         this.CTitle = new SimpleStringProperty(CTitle);
@@ -15,10 +15,7 @@ public class Data_ComplaintTable {
         this.CSolveDate = new SimpleStringProperty(CSolveDate);
         this.ONo = new SimpleStringProperty(ONo);
         this.OName = new SimpleStringProperty(OName);
-        this.OSex = new SimpleStringProperty(OSex);
         this.OTel = new SimpleStringProperty(OTel);
-        this.OID = new SimpleStringProperty(OID);
-        this.ONote = new SimpleStringProperty(ONote);
     }
     public StringProperty getCNo(){
         return CNo;
@@ -47,17 +44,8 @@ public class Data_ComplaintTable {
     public StringProperty getOName(){
         return OName;
     }
-    public StringProperty getOSex(){
-        return OSex;
-    }
     public StringProperty getOTel(){
         return OTel;
-    }
-    public StringProperty getOID(){
-        return OID;
-    }
-    public StringProperty getONote(){
-        return ONote;
     }
     public void setCNo(String CNo){
         this.CNo.set(CNo);
@@ -86,16 +74,7 @@ public class Data_ComplaintTable {
     public void setOName(String OName){
         this.OName.set(OName);
     }
-    public void setOSex(String OSex){
-        this.OSex.set(OSex);
-    }
     public void setOTel(String OTel){
         this.OTel.set(OTel);
-    }
-    public void setOID(String OID){
-        this.OID.set(OID);
-    }
-    public void setONote(String ONote){
-        this.ONote.set(ONote);
     }
 }

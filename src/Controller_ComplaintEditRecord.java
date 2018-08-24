@@ -39,7 +39,7 @@ public class Controller_ComplaintEditRecord{
         }
     }
     public void initialize() {
-        //将"投诉单管理-新增"控制器保存到map中
+        //将"投诉单管理-编辑"控制器保存到map中
         StageManager.CONTROLLER.put("Controller_ComplaintEditRecord", this);
         //默认已获取业主信息
         check_Search = 1;
@@ -226,6 +226,7 @@ public class Controller_ComplaintEditRecord{
             return;
         }
         if (YesComplaint_RadioButton.selectedProperty().getValue()==true){
+            //如果勾选了"已维修"
             if (CReply_TextArea.getText() == null || CReply_TextArea.getText().length()==0){
                 //如果回复为空报错
                 error_NullRReply();
@@ -249,7 +250,7 @@ public class Controller_ComplaintEditRecord{
     }
     public void flush_TableView(){
         //刷新"投诉单管理-主界面"窗口的TableView
-        Controller_ComplaintMain controller_complaintMain=(Controller_ComplaintMain) StageManager.CONTROLLER.get("Controller_ComplaintMain");
+        Controller_ComplaintMain controller_complaintMain = (Controller_ComplaintMain) StageManager.CONTROLLER.get("Controller_ComplaintMain");
         controller_complaintMain.ComplaintTableView_List.clear();
         controller_complaintMain.showComplaintTableView();
     }

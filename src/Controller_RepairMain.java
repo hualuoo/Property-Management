@@ -42,9 +42,10 @@ public class Controller_RepairMain {
     ResultSet result;
     //计数有多少条维修单
     int count;
-
     public void initialize() {
         //初始化
+        //将"报修单管理-主界面"控制器保存到map中
+        StageManager.CONTROLLER.put("Controller_RepairMain", this);
         //显示操作员用户名
         LoginUser_Label.setText("操作员：" + Main.loginUser);
         //自定义日期选择器DatePicker格式为"yyyy-MM-dd"
@@ -158,10 +159,7 @@ public class Controller_RepairMain {
                         result.getString("RSolveDate"),
                         result.getString("ONo"),
                         result.getString("OName"),
-                        result.getString("OSex"),
-                        result.getString("OTel"),
-                        result.getString("OID"),
-                        result.getString("ONote")));
+                        result.getString("OTel")));
                 count++;
             }
         }
@@ -236,10 +234,7 @@ public class Controller_RepairMain {
                         result.getString("RSolveDate"),
                         result.getString("ONo"),
                         result.getString("OName"),
-                        result.getString("OSex"),
-                        result.getString("OTel"),
-                        result.getString("OID"),
-                        result.getString("ONote")));
+                        result.getString("OTel")));
             }
         }
         catch (Exception e) {
@@ -256,40 +251,34 @@ public class Controller_RepairMain {
     }
     public void click_NewButton(){
         //单击"新建"按钮
+        //FXMLLoader的load方法需要try-catch输出报错
         try{
-            Stage New_Stage;
+            //创建"维修单管理-新增"窗口
+            Stage Stage_RepairNewRecord;
+            //加载FXML窗口
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Controller_IndexMain.class.getResource("GUI_RepairNewRecord.fxml"));
             AnchorPane page = (AnchorPane) loader.load();
-            New_Stage = new Stage();
-            New_Stage.setTitle("小区物业管理系统-维修单-新增");
-            New_Stage.setScene(new Scene(page, 333, 505));
-
+            Stage_RepairNewRecord = new Stage();
+            Stage_RepairNewRecord.setTitle("小区物业管理系统-维修单-新增");
+            Stage_RepairNewRecord.setScene(new Scene(page, 333, 505));
+            Stage_RepairNewRecord.getIcons().add(new Image("/image/logo.png"));
+            Stage_RepairNewRecord.setX((Main.width-333)/2);
+            Stage_RepairNewRecord.setY((Main.height-505)/2);
+            Stage_RepairNewRecord.initModality(Modality.APPLICATION_MODAL);
+            Stage_RepairNewRecord.setResizable(false);
+            Stage_RepairNewRecord.show();
             //将"维修单管理-新增"窗口保存到map中
-            StageManager.STAGE.put("New_Stage", New_Stage);
-            //将"维修单管理-主界面"控制器保存到map中
-            StageManager.CONTROLLER.put("Controller_RepairMain", this);
-
-            New_Stage.getIcons().add(new Image("/image/logo.png"));
-            New_Stage.setX((Main.width-333)/2);
-            New_Stage.setY((Main.height-505)/2);
-            New_Stage.initModality(Modality.APPLICATION_MODAL);
-            New_Stage.show();
-            New_Stage.setResizable(false);
-            Controller_RepairNewRecord controller = loader.getController();
-            controller.setDialogStage(New_Stage);
-            controller.setCount(count);
-            Data_RepairTable newdata_RepairTable = new Data_RepairTable("","","","","","","","","","","","","");
-            controller.setdata_RepairTable(newdata_RepairTable);
-            newdata_RepairTable = controller.getdata_RepairTable();
-            RepairTableView_List.add(newdata_RepairTable);
-            count++;
-
-            New_Stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            StageManager.STAGE.put("Stage_RepairNewRecord", Stage_RepairNewRecord);
+            //从map调取"维修单管理-新增"控制器并调用setCount方法传单号
+            Controller_RepairNewRecord controller_repairNewRecord = (Controller_RepairNewRecord) StageManager.CONTROLLER.get("Controller_RepairNewRecord");
+            controller_repairNewRecord.setCount(count);
+            //监听"维修单管理-新增"窗口如果按窗口右上角X退出，remove"维修单管理-新增"窗口和其控制器
+            Stage_RepairNewRecord.setOnCloseRequest(new EventHandler<WindowEvent>() {
                 @Override
                 public void handle(WindowEvent event) {
-                    RepairTableView_List.clear();
-                    showRepairTableView();
+                    StageManager.STAGE.remove("Stage_RepairNewRecord");
+                    StageManager.CONTROLLER.remove("Controller_RepairNewRecord");
                 }
             });
         }
@@ -298,6 +287,8 @@ public class Controller_RepairMain {
         }
     }
     public void click_EditButton(){
+        //单击"编辑"按钮
+        //未选择需要编辑的信息的报错
         if(Repair_TableView.getSelectionModel().getSelectedIndex() < 0){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("小区物业管理系统");
@@ -306,23 +297,36 @@ public class Controller_RepairMain {
             alert.showAndWait();
             return;
         }
+        //FXMLLoader的load方法需要try-catch输出报错
         try{
-            Stage Edit_Stage;
+            //创建"维修单管理-编辑"窗口
+            Stage Stage_RepairEditRecord;
+            //加载FXML窗口
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Controller_IndexMain.class.getResource("GUI_RepairEditRecord.fxml"));
             AnchorPane page = (AnchorPane) loader.load();
-            Edit_Stage = new Stage();
-            Edit_Stage.setTitle("小区物业管理系统-维修单-修改");
-            Edit_Stage.setScene(new Scene(page, 333, 505));
-            Edit_Stage.getIcons().add(new Image("/image/logo.png"));
-            Edit_Stage.setX((Main.width-333)/2);
-            Edit_Stage.setY((Main.height-505)/2);
-            Edit_Stage.initModality(Modality.APPLICATION_MODAL);
-            Edit_Stage.show();
-            Edit_Stage.setResizable(false);
-            Controller_RepairEditRecord controller = loader.getController();
-            controller.setDialogStage(Edit_Stage);
-            controller.setdata_RepairTable(Repair_TableView.getSelectionModel().getSelectedItem());
+            Stage_RepairEditRecord = new Stage();
+            Stage_RepairEditRecord.setTitle("小区物业管理系统-维修单-修改");
+            Stage_RepairEditRecord.setScene(new Scene(page, 333, 505));
+            Stage_RepairEditRecord.getIcons().add(new Image("/image/logo.png"));
+            Stage_RepairEditRecord.setX((Main.width-333)/2);
+            Stage_RepairEditRecord.setY((Main.height-505)/2);
+            Stage_RepairEditRecord.initModality(Modality.APPLICATION_MODAL);
+            Stage_RepairEditRecord.setResizable(false);
+            Stage_RepairEditRecord.show();
+            //将"投诉单管理-修改"窗口保存到map中
+            StageManager.STAGE.put("Stage_RepairEditRecord", Stage_RepairEditRecord);
+            //从map调取"投诉单管理-修改"控制器并调用setdata_ComplaintTable方法传投诉单数据
+            Controller_RepairEditRecord controller_repairEditRecord=(Controller_RepairEditRecord) StageManager.CONTROLLER.get("Controller_RepairEditRecord");
+            controller_repairEditRecord.setdata_RepairTable(Repair_TableView.getSelectionModel().getSelectedItem());
+            //监听"投诉单管理-修改"窗口如果按窗口右上角X退出，remove"投诉单管理-修改"窗口和其控制器
+            Stage_RepairEditRecord.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                @Override
+                public void handle(WindowEvent event) {
+                    StageManager.STAGE.remove("Stage_RepairEditRecord");
+                    StageManager.CONTROLLER.remove("Controller_RepairEditRecord");
+                }
+            });
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -334,6 +338,7 @@ public class Controller_RepairMain {
             Parent Index_Root = FXMLLoader.load(getClass().getResource("GUI_IndexMain.fxml"));
             Main.Login_Stage.setTitle("小区物业管理系统-主界面");
             Main.Login_Stage.setScene(new Scene(Index_Root, 1000, 615));
+            StageManager.CONTROLLER.remove("Controller_RepairMain");
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -345,6 +350,19 @@ public class Controller_RepairMain {
             Parent Car_Root = FXMLLoader.load(getClass().getResource("GUI_CarMain.fxml"));
             Main.Login_Stage.setTitle("小区物业管理系统-车辆管理界面");
             Main.Login_Stage.setScene(new Scene(Car_Root, 1000, 615));
+            StageManager.CONTROLLER.remove("Controller_RepairMain");
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void click_ComplaintToggleButton(){
+        //投诉信息界面切换
+        try {
+            Parent Complaint_Root = FXMLLoader.load(getClass().getResource("GUI_ComplaintMain.fxml"));
+            Main.Login_Stage.setTitle("小区物业管理系统-投诉信息界面");
+            Main.Login_Stage.setScene(new Scene(Complaint_Root, 1000, 615));
+            StageManager.CONTROLLER.remove("Controller_RepairMain");
         }
         catch (Exception e) {
             e.printStackTrace();

@@ -11,26 +11,19 @@ import java.util.Optional;
 
 public class Controller_RepairEditRecord{
     public Data_RepairTable data_repairTable;
-    private Stage dialogStage;
-    private int count;
-
+    //输入框组件
     public Label RNo_Label;
     public TextField RTitle_TextField,ONo_TextField,OName_TextField,OTel_TextField;
     public DatePicker RSubDate_DatePicker,RSolveDate_DatePicker;
     public TextArea RText_TextArea,RReply_TextArea;
     public RadioButton NoRepair_RadioButton,YesRepair_RadioButton;
     public Button Search_Button,Confirm_Button,Back_Button;
-
+    //数据库代码以及返回结果
     String query;
     ResultSet result;
+    //检查是否已搜索业主信息
     int check_Search;
-
-    public void setDialogStage(Stage dialogStage) {
-        //传参Stage
-        this.dialogStage = dialogStage;
-    }
     public void setdata_RepairTable(Data_RepairTable data_repairTable){
-
         //传参房屋数据
         this.data_repairTable = data_repairTable;
         //维修情况获取
@@ -45,10 +38,9 @@ public class Controller_RepairEditRecord{
             setDefaultData_YesRepair();
         }
     }
-    public void setCount(int count){
-        this.count = count;
-    }
     public void initialize() {
+        //将"维修单管理-编辑"控制器保存到map中
+        StageManager.CONTROLLER.put("Controller_RepairEditRecord", this);
         //默认已获取业主信息
         check_Search = 1;
         //维修情况单选框监听
@@ -66,7 +58,7 @@ public class Controller_RepairEditRecord{
                 select_YesRepair(newValue);
             }
         });
-        //自定义日期选择器DatePicker
+        //自定义日期选择器DatePicker格式为"yyyy-MM-dd"
         setDataStyle(RSubDate_DatePicker);
         setDataStyle(RSolveDate_DatePicker);
         //文本栏变动监听
@@ -108,7 +100,7 @@ public class Controller_RepairEditRecord{
         RSolveDate_DatePicker.setValue(RSolveDate);
     }
     public void setDataStyle(DatePicker datepicker){
-        //自定义日期选择器
+        //自定义日期选择器DatePicker格式为"yyyy-MM-dd"
         String pattern = "yyyy-MM-dd";
         StringConverter converter = new StringConverter<LocalDate>() {
             DateTimeFormatter dateFormatter =
@@ -157,16 +149,21 @@ public class Controller_RepairEditRecord{
         }
     }
     public void click_SearchButton(){
-        //按下"搜索"按钮
+        //单击"搜索"按钮
+        //如果 业主编号-文本栏 为空，弹出未输入业主编号时的错误弹窗
         if(ONo_TextField.getText() == null || ONo_TextField.getText().length()==0){
             error_NullONo();
             return;
         }
+        //数据库指令
         query = "SELECT ONo,OName,OSex,OTel,OID,ONote FROM Owner_Info WHERE ONo=\'" + ONo_TextField.getText().trim() + "\'";
+        //调用SQL方法类获取ResultSet结果
         SQL_Connect sql_connect = new SQL_Connect();
         result = sql_connect.sql_Query(query);
+        //ResultSet的next方法需要try-catch输出报错
         try {
             if(result.next() == false){
+                //如果数据库查不到业主信息
                 check_Search = 0;
                 OName_TextField.setText("");
                 OTel_TextField.setText("");
@@ -174,6 +171,7 @@ public class Controller_RepairEditRecord{
                 return;
             }
             else {
+                //如果数据库查到业主信息
                 check_Search = 1;
                 OName_TextField.setText(result.getString("OName").trim());
                 OTel_TextField.setText(result.getString("OTel").trim());
@@ -184,86 +182,81 @@ public class Controller_RepairEditRecord{
         }
     }
     public void click_ConfirmButton() {
-        System.out.print(check_Search);
         //按下"确认"按钮
+        //确认是否修改该保修单
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("小区物业管理系统");
         alert.setHeaderText("您确认是否修改该条保修单？");
         alert.initOwner(Confirm_Button.getScene().getWindow());
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() != ButtonType.OK) {
+            //如果选择了"否"
             return;
         }
         if (RTitle_TextField.getText() == null || RTitle_TextField.getText().length()==0){
+            //如果标题为空报错
             error_NullRTitle();
             return;
         }
         if (RSubDate_DatePicker.getEditor().getText() == null || RSubDate_DatePicker.getEditor().getText().length()==0){
+            //如果提交日期为空报错
             error_NullRSubDate();
             return;
         }
         if (check_Search !=1){
+            //如果未单击"搜索"按钮报错
             error_NullSearch();
             return;
         }
         if (RText_TextArea.getText() == null || RText_TextArea.getText().length()==0){
+            //如果内容为空报错
             error_NullRText();
             return;
         }
         if (NoRepair_RadioButton.selectedProperty().getValue()==true){
-            editDataToList_NoRepair();
+            //如果勾选了"未维修"
+            //修改数据库中的数据("未维修")
             editDataToSQL_NoRepair();
-            SQL_Connect sql_connect = new SQL_Connect();
-            sql_connect.sql_Update(query);
-            succeed_Add();
+            //成功修改弹窗
+            succeed_Edit();
+            //刷新"维修单管理-主界面"窗口的TableView
+            flush_TableView();
+            //关闭"维修单管理-新增"窗口
             close_Windows();
             return;
         }
         if (YesRepair_RadioButton.selectedProperty().getValue()==true){
+            //如果勾选了"已维修"
             if (RReply_TextArea.getText() == null || RReply_TextArea.getText().length()==0){
+                //如果回复为空报错
                 error_NullRReply();
                 return;
             }
             if (RSolveDate_DatePicker.getEditor().getText() == null || RSolveDate_DatePicker.getEditor().getText().length()==0){
+                //如果解决日期为空报错
                 error_NullRSolveDate();
                 return;
             }
-            editDataToList_YesRepair();
+            //修改数据库中的数据("已维修")
             editDataToSQL_YesRepair();
-            SQL_Connect sql_connect = new SQL_Connect();
-            sql_connect.sql_Update(query);
-            succeed_Add();
+            //刷新"维修单管理-主界面"窗口的TableView
+            flush_TableView();
+            //成功修改弹窗
+            succeed_Edit();
+            //关闭"维修单管理-新增"窗口
             close_Windows();
             return;
         }
     }
+    public void flush_TableView(){
+        //刷新"维修单管理-主界面"窗口的TableView
+        Controller_RepairMain controller_repairMain = (Controller_RepairMain) StageManager.CONTROLLER.get("Controller_RepairMain");
+        controller_repairMain.RepairTableView_List.clear();
+        controller_repairMain.showRepairTableView();
+    }
     public void click_BackButton(){
         //按下返回按钮
         close_Windows();
-    }
-    void editDataToList_NoRepair(){
-        //修改tableview中的数据("未维修")
-        data_repairTable.setRTitle(RTitle_TextField.getText());
-        data_repairTable.setRSubDate(RSubDate_DatePicker.getEditor().getText());
-        data_repairTable.setONo(ONo_TextField.getText());
-        data_repairTable.setOName(OName_TextField.getText());
-        data_repairTable.setOTel(OTel_TextField.getText());
-        data_repairTable.setRText(RText_TextArea.getText());
-        data_repairTable.setRState("未维修");
-        data_repairTable.setRReply("");
-        data_repairTable.setRSolveDate("");
-    }
-    void editDataToList_YesRepair(){
-        //修改tableview中的数据("已维修")
-        data_repairTable.setRTitle(RTitle_TextField.getText());
-        data_repairTable.setRSubDate(RSubDate_DatePicker.getEditor().getText());
-        data_repairTable.setONo(ONo_TextField.getText());
-        data_repairTable.setOName(OName_TextField.getText());
-        data_repairTable.setOTel(OTel_TextField.getText());
-        data_repairTable.setRText(RText_TextArea.getText());
-        data_repairTable.setRState("已维修");
-        data_repairTable.setRReply(RReply_TextArea.getText());
-        data_repairTable.setRSolveDate(RSolveDate_DatePicker.getEditor().getText());
     }
     void editDataToSQL_NoRepair(){
         //修改数据库中的数据("未维修")
@@ -275,6 +268,8 @@ public class Controller_RepairEditRecord{
                 "RReply=NULL," +
                 "RSolveDate=NULL " +
                 "WHERE RNo=\'" + data_repairTable.getRNo().get() + "\'";
+        SQL_Connect sql_connect = new SQL_Connect();
+        sql_connect.sql_Update(query);
     }
     void editDataToSQL_YesRepair(){
         //修改数据库中的数据("已维修")
@@ -286,6 +281,8 @@ public class Controller_RepairEditRecord{
                 "RReply=\'" + RReply_TextArea.getText() + "\'," +
                 "RSolveDate=\'" + RSolveDate_DatePicker.getEditor().getText() + "\' " +
                 "WHERE RNo=\'" + data_repairTable.getRNo().get() + "\'";
+        SQL_Connect sql_connect = new SQL_Connect();
+        sql_connect.sql_Update(query);
     }
     void error_NullONo(){
         //未输入业主编号时的错误弹窗
@@ -351,7 +348,8 @@ public class Controller_RepairEditRecord{
         alert.initOwner(Confirm_Button.getScene().getWindow());
         alert.showAndWait();
     }
-    void succeed_Add(){
+    void succeed_Edit(){
+        //成功修改弹窗
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("小区物业管理系统");
         alert.setHeaderText("维修单修改成功");
@@ -359,7 +357,12 @@ public class Controller_RepairEditRecord{
         alert.showAndWait();
     }
     public void close_Windows(){
-        Stage stage = (Stage)Confirm_Button.getScene().getWindow();
+        //关闭"维修单管理-新增"窗口
+        //remove"维修单管理-新增"窗口和其控制器
+        StageManager.STAGE.remove("Stage_RepairNewRecord");
+        StageManager.CONTROLLER.remove("Controller_RepairNewRecord");
+        //关闭窗口
+        Stage stage = (Stage)Back_Button.getScene().getWindow();
         stage.close();
     }
 }

@@ -48,6 +48,8 @@ public class Controller_IndexMain {
 
     public void initialize() {
         //初始化
+        //将"报修单管理-主界面"控制器保存到map中
+        StageManager.CONTROLLER.put("Controller_IndexMain", this);
         //显示操作员用户名
         LoginUser_Label.setText("操作员：" + Main.loginUser);
         //设置TreeTableView的根TreeItem
@@ -389,6 +391,7 @@ public class Controller_IndexMain {
             Parent Car_Root = FXMLLoader.load(getClass().getResource("GUI_CarMain.fxml"));
             Main.Login_Stage.setTitle("小区物业管理系统-车辆管理界面");
             Main.Login_Stage.setScene(new Scene(Car_Root, 1000, 615));
+            StageManager.CONTROLLER.remove("Controller_IndexMain");
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -400,6 +403,7 @@ public class Controller_IndexMain {
             Parent Family_Root = FXMLLoader.load(getClass().getResource("FamilyGUI.fxml"));
             Main.Login_Stage.setTitle("小区物业管理系统-家庭信息界面");
             Main.Login_Stage.setScene(new Scene(Family_Root, 1000, 615));
+            StageManager.CONTROLLER.remove("Controller_IndexMain");
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -411,6 +415,7 @@ public class Controller_IndexMain {
             Parent Charge_Root = FXMLLoader.load(getClass().getResource("ChargeGUI.fxml"));
             Main.Login_Stage.setTitle("小区物业管理系统-收费信息界面");
             Main.Login_Stage.setScene(new Scene(Charge_Root, 1000, 615));
+            StageManager.CONTROLLER.remove("Controller_IndexMain");
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -422,10 +427,7 @@ public class Controller_IndexMain {
             Parent Repair_Root = FXMLLoader.load(getClass().getResource("GUI_RepairMain.fxml"));
             Main.Login_Stage.setTitle("小区物业管理系统-维修信息界面");
             Main.Login_Stage.setScene(new Scene(Repair_Root, 1000, 615));
-            //将第二个窗口保存到map中
-            StageManager.STAGE.put("Login_Stage", Main.Login_Stage);
-            //将本窗口保存到map中
-            StageManager.CONTROLLER.put("Controller_IndexMain", this);
+            StageManager.CONTROLLER.remove("Controller_IndexMain");
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -437,6 +439,7 @@ public class Controller_IndexMain {
             Parent Complaint_Root = FXMLLoader.load(getClass().getResource("GUI_ComplaintMain.fxml"));
             Main.Login_Stage.setTitle("小区物业管理系统-投诉信息界面");
             Main.Login_Stage.setScene(new Scene(Complaint_Root, 1000, 615));
+            StageManager.CONTROLLER.remove("Controller_IndexMain");
         }
         catch (Exception e) {
             e.printStackTrace();

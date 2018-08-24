@@ -28,26 +28,26 @@
           <entry key="PNG" value="1" />
           <entry key="class" value="1" />
           <entry key="fxml" value="55" />
-          <entry key="java" value="140" />
+          <entry key="java" value="160" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CLASS" value="1" />
           <entry key="Image" value="1" />
-          <entry key="JAVA" value="140" />
+          <entry key="JAVA" value="160" />
           <entry key="XML" value="55" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="fxml" value="82" />
-          <entry key="java" value="11861" />
+          <entry key="java" value="12246" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="11861" />
+          <entry key="JAVA" value="12246" />
           <entry key="XML" value="82" />
         </counts>
       </usages-collector>
@@ -59,19 +59,34 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Controller_ComplaintMain.java">
+        <entry file="file://$PROJECT_DIR$/src/Controller_IndexMain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
-              <caret line="223" column="31" lean-forward="true" selection-start-line="223" selection-start-column="8" selection-end-line="223" selection-end-column="31" />
+            <state relative-caret-position="118">
+              <caret line="423" selection-start-line="423" selection-end-line="434" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Controller_ComplaintNewRecord.java">
+        <entry file="file://$PROJECT_DIR$/src/Controller_CarMain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="363">
-              <caret line="318" selection-start-line="318" selection-end-line="326" selection-end-column="5" />
+            <state relative-caret-position="346">
+              <caret line="687" selection-start-line="687" selection-end-line="697" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Controller_RepairMain.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="403">
+              <caret line="358" column="43" selection-start-line="358" selection-start-column="16" selection-end-line="358" selection-end-column="43" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -80,10 +95,13 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Controller_ComplaintEditRecord.java">
+        <entry file="file://$PROJECT_DIR$/src/Controller_ComplaintMain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="456">
-              <caret line="45" column="32" lean-forward="true" selection-start-line="45" selection-start-column="32" selection-end-line="45" selection-end-column="32" />
+            <state relative-caret-position="441">
+              <caret line="358" column="40" selection-start-line="358" selection-start-column="16" selection-end-line="358" selection-end-column="40" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -139,10 +157,8 @@
         <option value="$PROJECT_DIR$/src/Data_ParkingTable.java" />
         <option value="$PROJECT_DIR$/src/Controller_CarMain.kt" />
         <option value="$PROJECT_DIR$/src/GUI_IndexMain.fxml" />
-        <option value="$PROJECT_DIR$/src/Controller_CarMain.java" />
         <option value="$PROJECT_DIR$/src/GUI_CarMain.fxml" />
         <option value="$PROJECT_DIR$/src/GUI_IndexNewHouse.fxml" />
-        <option value="$PROJECT_DIR$/src/Data_RepairTable.java" />
         <option value="$PROJECT_DIR$/src/GUI_RepairMain.fxml" />
         <option value="$PROJECT_DIR$/src/GUI_RepairNewRecord.fxml" />
         <option value="$PROJECT_DIR$/src/Controller_RepairNewRecord.kt" />
@@ -152,15 +168,17 @@
         <option value="$PROJECT_DIR$/src/Controller_LoginMain.java" />
         <option value="$PROJECT_DIR$/src/Main.java" />
         <option value="$PROJECT_DIR$/src/Controller_IndexEditHouse.java" />
-        <option value="$PROJECT_DIR$/src/Controller_RepairNewRecord.java" />
-        <option value="$PROJECT_DIR$/src/Controller_RepairEditRecord.java" />
-        <option value="$PROJECT_DIR$/src/Data_ComplaintTable.java" />
         <option value="$PROJECT_DIR$/src/GUI_ComplaintMain.fxml" />
-        <option value="$PROJECT_DIR$/src/Controller_RepairMain.java" />
-        <option value="$PROJECT_DIR$/src/Controller_IndexMain.java" />
-        <option value="$PROJECT_DIR$/src/Controller_ComplaintMain.java" />
+        <option value="$PROJECT_DIR$/src/Data_ComplaintTable.java" />
+        <option value="$PROJECT_DIR$/src/Data_RepairTable.java" />
         <option value="$PROJECT_DIR$/src/Controller_ComplaintNewRecord.java" />
+        <option value="$PROJECT_DIR$/src/Controller_RepairNewRecord.java" />
         <option value="$PROJECT_DIR$/src/Controller_ComplaintEditRecord.java" />
+        <option value="$PROJECT_DIR$/src/Controller_RepairEditRecord.java" />
+        <option value="$PROJECT_DIR$/src/Controller_IndexMain.java" />
+        <option value="$PROJECT_DIR$/src/Controller_CarMain.java" />
+        <option value="$PROJECT_DIR$/src/Controller_RepairMain.java" />
+        <option value="$PROJECT_DIR$/src/Controller_ComplaintMain.java" />
       </list>
     </option>
   </component>
@@ -170,10 +188,11 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="-11" />
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
     <option name="width" value="1932" />
-    <option name="height" value="1047" />
+    <option name="height" value="1045" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -204,7 +223,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1535108495900" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1535120833298" />
     <property name="last_opened_file_path" value="C:/Program Files (x86)/Oracle/JavaFX Scene Builder 2.0/JavaFX Scene Builder 2.0.exe" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
@@ -272,18 +291,18 @@
       <workItem from="1534400981402" duration="22457000" />
       <workItem from="1534565603040" duration="69181000" />
       <workItem from="1535000629008" duration="22261000" />
-      <workItem from="1535086870888" duration="16121000" />
+      <workItem from="1535086870888" duration="21070000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="190442000" />
+    <option name="totallyTimeSpent" value="195391000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-11" y="0" width="1932" height="1047" extended-state="0" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19391026" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19349681" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -292,7 +311,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49946696" visible="true" weight="0.2015334" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49946696" visible="true" weight="0.19956616" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.24863088" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -416,13 +435,6 @@
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Data_RepairTable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="7" column="85" lean-forward="true" selection-start-line="7" selection-start-column="85" selection-end-line="7" selection-end-column="85" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI_RepairMain.fxml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="475">
@@ -509,27 +521,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller_RepairNewRecord.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="23" column="17" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="17" />
-          <folding>
-            <element signature="e#917#918#0" expanded="true" />
-            <element signature="e#956#957#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller_RepairEditRecord.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="823">
-          <caret line="121" column="17" selection-start-line="121" selection-start-column="17" selection-end-line="121" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/sqljdbc/sqljdbc42.jar!/com/microsoft/sqlserver/jdbc/TDSCommand.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="546">
@@ -551,13 +542,6 @@
     </entry>
     <entry file="file://$USER_HOME$/Downloads/JAVAFX/JAVAFX/src/control/IndexControl.java">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Data_ComplaintTable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="430">
-          <caret line="80" column="38" selection-start-line="80" selection-start-column="38" selection-end-line="80" selection-end-column="38" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/SQL_Connect.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -584,47 +568,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller_CarMain.java">
+    <entry file="file://$PROJECT_DIR$/src/Data_ComplaintTable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="633" column="46" selection-start-line="633" selection-start-column="29" selection-end-line="633" selection-end-column="46" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="4">
+          <caret line="9" column="59" lean-forward="true" selection-start-line="9" selection-start-column="59" selection-end-line="9" selection-end-column="59" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller_IndexMain.java">
+    <entry file="file://$PROJECT_DIR$/src/Data_RepairTable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="77" column="11" selection-start-line="77" selection-start-column="11" selection-end-line="77" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller_RepairMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="68" column="8" selection-start-line="68" selection-start-column="8" selection-end-line="76" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller_ComplaintMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="223" column="31" lean-forward="true" selection-start-line="223" selection-start-column="8" selection-end-line="223" selection-end-column="31" />
+        <state relative-caret-position="95">
+          <caret line="6" column="47" selection-start-line="6" selection-start-column="47" selection-end-line="6" selection-end-column="47" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller_ComplaintNewRecord.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="363">
-          <caret line="318" selection-start-line="318" selection-end-line="326" selection-end-column="5" />
+        <state relative-caret-position="498">
+          <caret line="323" column="14" lean-forward="true" selection-start-line="319" selection-start-column="8" selection-end-line="323" selection-end-column="14" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller_RepairEditRecord.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="498">
+          <caret line="363" column="14" lean-forward="true" selection-start-line="363" selection-start-column="14" selection-end-line="363" selection-end-column="14" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller_RepairNewRecord.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="12" selection-start-line="12" selection-end-line="12" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -633,8 +614,51 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller_ComplaintEditRecord.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="45" column="32" lean-forward="true" selection-start-line="45" selection-start-column="32" selection-end-line="45" selection-end-column="32" />
+        <state relative-caret-position="422">
+          <caret line="359" selection-start-line="359" selection-end-line="365" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller_RepairMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="403">
+          <caret line="358" column="43" selection-start-line="358" selection-start-column="16" selection-end-line="358" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller_CarMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="346">
+          <caret line="687" selection-start-line="687" selection-end-line="697" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller_IndexMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="118">
+          <caret line="423" selection-start-line="423" selection-end-line="434" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller_ComplaintMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="358" column="40" selection-start-line="358" selection-start-column="16" selection-end-line="358" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

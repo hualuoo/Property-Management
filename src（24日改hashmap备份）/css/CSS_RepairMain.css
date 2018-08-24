@@ -1,0 +1,4 @@
+/*设置每一列内容居中*/
+#Repair_TableView .table-column{
+  -fx-alignment: center;
+}
