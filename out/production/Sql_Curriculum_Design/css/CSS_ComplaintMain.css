@@ -1,0 +1,4 @@
+/*设置每一列内容居中*/
+#Complaint_TableView .table-column{
+  -fx-alignment: center;
+}

@@ -61,6 +61,16 @@ public class Controller_RepairNewRecord{
         setDataStyle(RSolveDate_DatePicker);
         //默认选择未维修
         NoRepair_RadioButton.setSelected(true);
+        //文本栏变动监听
+        ONo_TextField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            //只要业主编号文字变动即需要重新点击"搜索"按钮
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                check_Search = 0;
+                OName_TextField.setText("");
+                OTel_TextField.setText("");
+            }
+        });
     }
     public void setDataStyle(DatePicker datepicker){
         //自定义日期选择器
@@ -173,6 +183,14 @@ public class Controller_RepairNewRecord{
             return;
         }
         if (YesRepair_RadioButton.selectedProperty().getValue()==true){
+            if (RReply_TextArea.getText() == null || RReply_TextArea.getText().length()==0){
+                error_NullRReply();
+                return;
+            }
+            if (RSolveDate_DatePicker.getEditor().getText() == null || RSolveDate_DatePicker.getEditor().getText().length()==0){
+                error_NullRSolveDate();
+                return;
+            }
             addDataToList_YesRepair();
             addDataToSQL_YesRepair();
             SQL_Connect sql_connect = new SQL_Connect();
@@ -221,6 +239,7 @@ public class Controller_RepairNewRecord{
                 RText_TextArea.getText() + "\',\'" + "已维修" + "\',\'" + RReply_TextArea.getText() + "\',\'" + RSolveDate_DatePicker.getEditor().getText() + "\',\'" + ONo_TextField.getText() + "\');";
     }
     void error_NullONo(){
+        //未输入业主编号时的错误弹窗
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("小区物业管理系统");
         alert.setHeaderText("请输入需要搜索的业主编号再进行搜索！");
@@ -228,6 +247,7 @@ public class Controller_RepairNewRecord{
         alert.showAndWait();
     }
     void error_NullOwener(){
+        //未查到业主编号时的错误弹窗
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("小区物业管理系统");
         alert.setHeaderText("搜索不到编号为" + ONo_TextField.getText().trim() + "的业主信息！");
@@ -235,6 +255,7 @@ public class Controller_RepairNewRecord{
         alert.showAndWait();
     }
     void error_NullRTitle(){
+        //未输入维修单编号时的错误弹窗
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("小区物业管理系统");
         alert.setHeaderText("请输入维修单标题！");
@@ -242,6 +263,7 @@ public class Controller_RepairNewRecord{
         alert.showAndWait();
     }
     void error_NullRSubDate(){
+        //未选择维修单提交日期的错误弹窗
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("小区物业管理系统");
         alert.setHeaderText("请选择维修单提交日期！");
@@ -249,6 +271,7 @@ public class Controller_RepairNewRecord{
         alert.showAndWait();
     }
     void error_NullSearch(){
+        //未先获取业主数据时的错误弹窗
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("小区物业管理系统");
         alert.setHeaderText("请先单击搜索按钮获取业主信息！");
@@ -256,9 +279,26 @@ public class Controller_RepairNewRecord{
         alert.showAndWait();
     }
     void error_NullRText(){
+        //未输入维修单内容时的错误弹窗
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("小区物业管理系统");
         alert.setHeaderText("请输入维修单内容！");
+        alert.initOwner(Confirm_Button.getScene().getWindow());
+        alert.showAndWait();
+    }
+    void error_NullRReply(){
+        //未输入维修单回复时的错误弹窗
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("小区物业管理系统");
+        alert.setHeaderText("请输入维修单回复！");
+        alert.initOwner(Confirm_Button.getScene().getWindow());
+        alert.showAndWait();
+    }
+    void error_NullRSolveDate(){
+        //未选择维修单解决回复时的错误弹窗
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("小区物业管理系统");
+        alert.setHeaderText("请选择维修单解决日期！");
         alert.initOwner(Confirm_Button.getScene().getWindow());
         alert.showAndWait();
     }

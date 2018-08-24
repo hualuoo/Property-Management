@@ -434,7 +434,7 @@ public class Controller_IndexMain {
     public void complaint_ToggleButton_Click(){
         //投诉信息界面切换
         try {
-            Parent Complaint_Root = FXMLLoader.load(getClass().getResource("ComplaintGUI.fxml"));
+            Parent Complaint_Root = FXMLLoader.load(getClass().getResource("GUI_ComplaintMain.fxml"));
             Main.Login_Stage.setTitle("小区物业管理系统-投诉信息界面");
             Main.Login_Stage.setScene(new Scene(Complaint_Root, 1000, 615));
         }
