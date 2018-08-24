@@ -5,3 +5,5 @@
 ![image](https://github.com/hualuoo/Property-Management/raw/master/screenshots/2.jpg)
 ![image](https://github.com/hualuoo/Property-Management/raw/master/screenshots/3.jpg)
 ![image](https://github.com/hualuoo/Property-Management/raw/master/screenshots/4.jpg)
+![image](https://github.com/hualuoo/Property-Management/raw/master/screenshots/5.jpg)
+![image](https://github.com/hualuoo/Property-Management/raw/master/screenshots/6.jpg)
