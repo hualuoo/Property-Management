@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="505.0" prefWidth="333.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller_ComplaintNewRecord">
+   <children>
+      <AnchorPane prefHeight="505.0" prefWidth="333.0">
+         <children>
+            <Label layoutX="131.0" layoutY="10.0" text="投诉单">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="CNo_Label" layoutX="202.0" layoutY="26.0" />
+            <Label layoutX="16.0" layoutY="52.0" text="标　　题：" />
+            <TextField fx:id="CTitle_TextField" layoutX="76.0" layoutY="48.0" prefHeight="23.0" prefWidth="252.0" />
+            <Label layoutX="16.0" layoutY="77.0" text="提交时间：" />
+            <DatePicker fx:id="CSubDate_DatePicker" layoutX="76.0" layoutY="73.0" prefWidth="110.0" />
+            <Label layoutX="16.0" layoutY="102.0" text="业主编号：" />
+            <TextField fx:id="ONo_TextField" layoutX="76.0" layoutY="98.0" prefHeight="23.0" prefWidth="60.0" />
+            <Label layoutX="16.0" layoutY="127.0" text="业主姓名：" />
+            <TextField fx:id="OName_TextField" disable="true" layoutX="76.0" layoutY="123.0" prefHeight="23.0" prefWidth="91.0" />
+            <Label layoutX="16.0" layoutY="152.0" text="联系电话：" />
+            <TextField fx:id="OTel_TextField" disable="true" layoutX="76.0" layoutY="148.0" prefHeight="23.0" prefWidth="110.0" />
+            <Label layoutX="16.0" layoutY="176.0" text="内　　容：" />
+            <TextArea fx:id="CText_TextArea" layoutX="76.0" layoutY="173.0" prefHeight="125.0" prefWidth="252.0" wrapText="true" />
+            <Label layoutX="16.0" layoutY="303.0" text="处理情况：" />
+            <RadioButton fx:id="NoComplaint_RadioButton" layoutX="76.0" layoutY="303.0" mnemonicParsing="false" text="未处理" />
+            <RadioButton fx:id="YesComplaint_RadioButton" layoutX="205.0" layoutY="303.0" mnemonicParsing="false" text="已处理" />
+            <Label layoutX="16.0" layoutY="328.0" text="回　　复：" />
+            <TextArea fx:id="CReply_TextArea" layoutX="76.0" layoutY="324.0" prefHeight="125.0" prefWidth="252.0" wrapText="true" />
+            <Label layoutX="16.0" layoutY="455.0" text="解决时间：" />
+            <DatePicker fx:id="CSolveDate_DatePicker" layoutX="76.0" layoutY="451.0" prefWidth="110.0" />
+            <Button fx:id="Confirm_Button" layoutX="234.0" layoutY="476.0" mnemonicParsing="false" onAction="#click_ConfirmButton" text="确认" />
+            <Button fx:id="Back_Button" layoutX="287.0" layoutY="476.0" mnemonicParsing="false" onAction="#click_BackButton" text="返回" />
+            <Button fx:id="Search_Button" layoutX="140.0" layoutY="98.0" mnemonicParsing="false" onAction="#click_SearchButton" text="查询" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
