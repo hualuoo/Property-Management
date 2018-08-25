@@ -1,11 +1,14 @@
 package controller;
 
+import data.Data_HouseTable;
 import data.Data_RepairTable;
-import javafx.collections.ObservableList;
 import util.SQL_Connect;
 import util.StageManager;
 import application.Main;
 
+import javafx.collections.ObservableList;
+import javafx.scene.paint.Color;
+import javafx.util.Callback;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -74,6 +77,28 @@ public class Controller_RepairMain {
                 cellData -> cellData.getValue().getOName());
         //从数据库读取数据并显示在TableView中
         showRepairTableView();
+        //RState_TableColumn列符合条件的文字颜色改变
+        RState_TableColumn.setCellFactory(new Callback<TableColumn<Data_RepairTable, String>, TableCell<Data_RepairTable, String>>() {
+            public TableCell call(TableColumn param) {
+                return new TableCell<Data_HouseTable, String>() {
+                    ObservableValue observableValue;
+                    @Override
+                    public void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (!isEmpty()) {
+                            observableValue = getTableColumn().getCellObservableValue(getIndex());
+                            if (item.contains("已")) {
+                                this.setTextFill(Color.GREEN);
+                            }
+                            else {
+                                this.setTextFill(Color.RED);
+                            }
+                            setText(item);
+                        }
+                    }
+                };
+            }
+        });
         //TableView的双击监听
         Repair_TableView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override

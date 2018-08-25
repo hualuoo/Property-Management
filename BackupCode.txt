@@ -5,3 +5,32 @@
                 check_HAreaTextField();
             }
         });
+
+                           
+        RState_TableColumn.setCellFactory(new Callback<TableColumn<Data_RepairTable, String>, TableCell<Data_RepairTable, String>>() {
+            //RState_TableColumn所在列文字颜色改变
+            public TableCell call(TableColumn param) {
+                return new TableCell<Data_HouseTable, String>() {
+                    ObservableValue observableValue;
+                    @Override
+                    public void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (!isEmpty()) {
+                            observableValue = getTableColumn().getCellObservableValue(getIndex());
+                            //符合条件的行的背景颜色设置
+                            //if(getTableRow() != null && item.contains("已")){
+                            //    this.getTableRow().setStyle("-fx-background-color: #81ea8b");
+                            //}
+                            //选择列符合条件的文字颜色设置
+                            if (item.contains("已")) {
+                                this.setTextFill(Color.GREEN);
+                            }
+                            else {
+                                this.setTextFill(Color.RED);
+                            }
+                            setText(item);
+                        }
+                    }
+                };
+            }
+        });

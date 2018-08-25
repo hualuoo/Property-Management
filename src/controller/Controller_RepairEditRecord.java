@@ -4,6 +4,7 @@ import data.Data_RepairTable;
 import util.SQL_Connect;
 import util.StageManager;
 
+import javafx.util.Callback;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.*;
@@ -67,6 +68,9 @@ public class Controller_RepairEditRecord{
         //自定义日期选择器DatePicker格式为"yyyy-MM-dd"
         setDataStyle(RSubDate_DatePicker);
         setDataStyle(RSolveDate_DatePicker);
+        //设置 开始时间选择器 只能选择 结束时间选择器 之前的日期
+        //设置 结束时间选择器 只能选择 开始时间选择器 之后的日期
+        setDateEndAfterBegin(RSubDate_DatePicker,RSolveDate_DatePicker);
         //文本栏变动监听
         ONo_TextField.textProperty().addListener(new ChangeListener<String>() {
             @Override
@@ -129,6 +133,48 @@ public class Controller_RepairEditRecord{
             }
         };
         datepicker.setConverter(converter);
+    }
+    public void setDateEndAfterBegin (DatePicker BeginDate,DatePicker EndDate){
+        //设置 开始时间选择器 只能选择 结束时间选择器 之前的日期
+        //设置 结束时间选择器 只能选择 开始时间选择器 之后的日期
+        final Callback<DatePicker, DateCell> Before_EndDate =
+                new Callback<DatePicker, DateCell>() {
+                    @Override
+                    public DateCell call(final DatePicker datePicker) {
+                        return new DateCell() {
+                            @Override
+                            public void updateItem(LocalDate item, boolean empty) {
+                                super.updateItem(item, empty);
+                                if (EndDate.getEditor().getText() != null && EndDate.getEditor().getText().length()!=0){
+                                    if (item.isAfter(EndDate.getValue().plusDays(0))) {
+                                        setDisable(true);
+                                        setStyle("-fx-background-color: #ffc0cb;");
+                                    }
+                                }
+                            }
+                        };
+                    }
+                };
+        final Callback<DatePicker, DateCell> After_BeginDate =
+                new Callback<DatePicker, DateCell>() {
+                    @Override
+                    public DateCell call(final DatePicker datePicker) {
+                        return new DateCell() {
+                            @Override
+                            public void updateItem(LocalDate item, boolean empty) {
+                                super.updateItem(item, empty);
+                                if (BeginDate.getEditor().getText() != null && BeginDate.getEditor().getText().length()!=0){
+                                    if (item.isBefore(BeginDate.getValue().plusDays(0))) {
+                                        setDisable(true);
+                                        setStyle("-fx-background-color: #ffc0cb;");
+                                    }
+                                }
+                            }
+                        };
+                    }
+                };
+        BeginDate.setDayCellFactory(Before_EndDate);
+        EndDate.setDayCellFactory(After_BeginDate);
     }
     public void select_NoRepair(Boolean newValue){
         //维修情况(未选择)单选框监听

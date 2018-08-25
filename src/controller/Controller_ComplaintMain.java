@@ -1,11 +1,14 @@
 package controller;
 
 import data.Data_ComplaintTable;
-import javafx.collections.ObservableList;
+import data.Data_HouseTable;
 import util.SQL_Connect;
 import util.StageManager;
 import application.Main;
 
+import javafx.collections.ObservableList;
+import javafx.scene.paint.Color;
+import javafx.util.Callback;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -74,6 +77,27 @@ public class Controller_ComplaintMain {
                 cellData -> cellData.getValue().getOName());
         //从数据库读取数据并显示在TableView中
         showComplaintTableView();
+        CState_TableColumn.setCellFactory(new Callback<TableColumn<Data_ComplaintTable, String>, TableCell<Data_ComplaintTable, String>>() {
+            public TableCell call(TableColumn param) {
+                return new TableCell<Data_HouseTable, String>() {
+                    ObservableValue observableValue;
+                    @Override
+                    public void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (!isEmpty()) {
+                            observableValue = getTableColumn().getCellObservableValue(getIndex());
+                            if (item.contains("已")) {
+                                this.setTextFill(Color.GREEN);
+                            }
+                            else {
+                                this.setTextFill(Color.RED);
+                            }
+                            setText(item);
+                        }
+                    }
+                };
+            }
+        });
         //TableView的双击监听
         Complaint_TableView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
