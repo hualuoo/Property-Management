@@ -178,7 +178,7 @@ public class Controller_RepairNewRecord{
             return;
         }
         //数据库指令
-        query = "SELECT ONo,OName,OSex,OTel,OID,ONote FROM Owner_Info WHERE ONo=\'" + ONo_TextField.getText().trim() + "\'";
+        query = "SELECT ONo,OName,OSex,OTel,OID,ONote FROM Owner_Info WHERE ONo=" + ONo_TextField.getText().trim();
         //调用SQL方法类获取ResultSet结果
         SQL_Connect sql_connect = new SQL_Connect();
         result = sql_connect.sql_Query(query);
@@ -283,7 +283,7 @@ public class Controller_RepairNewRecord{
         //添加"未维修"投诉单数据到数据库
         query = "INSERT INTO Repair_Info VALUES" +
                 "(\'" + RSubDate_DatePicker.getEditor().getText() + "\',\'" + RTitle_TextField.getText() + "\',\'" +
-                RText_TextArea.getText() + "\',\'" + "未维修" + "\',NULL,NULL,\'" + ONo_TextField.getText() + "\');";
+                RText_TextArea.getText() + "\',\'" + "未维修" + "\',NULL,NULL," + ONo_TextField.getText() + ");";
         SQL_Connect sql_connect = new SQL_Connect();
         sql_connect.sql_Update(query);
     }
@@ -291,7 +291,7 @@ public class Controller_RepairNewRecord{
         //添加"已维修"投诉单数据到数据库
         query = "INSERT INTO Repair_Info VALUES" +
                 "(\'" + RSubDate_DatePicker.getEditor().getText() + "\',\'" + RTitle_TextField.getText() + "\',\'" +
-                RText_TextArea.getText() + "\',\'" + "已维修" + "\',\'" + RReply_TextArea.getText() + "\',\'" + RSolveDate_DatePicker.getEditor().getText() + "\',\'" + ONo_TextField.getText() + "\');";
+                RText_TextArea.getText() + "\',\'" + "已维修" + "\',\'" + RReply_TextArea.getText() + "\',\'" + RSolveDate_DatePicker.getEditor().getText() + "\'," + ONo_TextField.getText() + ");";
         SQL_Connect sql_connect = new SQL_Connect();
         sql_connect.sql_Update(query);
     }

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller_ChargeMain">
+   <children>
+      <AnchorPane prefHeight="615.0" prefWidth="1000.0">
+         <children>
+            <ImageView disable="true" fitHeight="615.0" fitWidth="1000.0" opacity="0.11" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/bg.jpg" />
+               </image>
+            </ImageView>
+            <Separator layoutY="65.0" prefHeight="3.0" prefWidth="1000.0" />
+            <Separator layoutX="-181.0" layoutY="327.0" prefHeight="1.0" prefWidth="528.0" rotate="90.0" />
+            <Separator layoutY="593.0" prefHeight="1.0" prefWidth="1000.0" />
+            <ImageView fitHeight="55.0" fitWidth="55.0" layoutX="15.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/titlelogo.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="72.0" layoutY="16.0" text="光明小区物业管理系统">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <Label fx:id="LoginUser_Label" layoutX="6.0" layoutY="597.0" text="操作员：" />
+            <ToggleButton fx:id="Index_ToggleButton" alignment="BOTTOM_CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="75.0" mnemonicParsing="false" onAction="#click_IndexToggleButton" prefHeight="64.0" prefWidth="64.0" selected="false" style="-fx-background-image: url('/image/house.png')" text="房屋管理" textFill="#04430b">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></ToggleButton>
+            <ToggleButton fx:id="Owner_ToggleButton" alignment="BOTTOM_CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="149.0" mnemonicParsing="false" onAction="#click_OwnerToggleButton" prefHeight="64.0" prefWidth="64.0" style="-fx-background-image: url('/image/family.png')" text="业主管理" textFill="#04430b">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></ToggleButton>
+            <ToggleButton fx:id="Car_ToggleButton" alignment="BOTTOM_CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="223.0" mnemonicParsing="false" onAction="#click_CarToggleButton" prefHeight="64.0" prefWidth="64.0" selected="false" style="-fx-background-image: url('/image/car.png')" text="车位管理" textFill="#04430b">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></ToggleButton>
+            <ToggleButton fx:id="Charge_ToggleButton" alignment="BOTTOM_CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="297.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="64.0" selected="true" style="-fx-background-image: url('/image/charge.png')" text="收费管理" textFill="RED">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></ToggleButton>
+            <ToggleButton fx:id="Repair_ToggleButton" alignment="BOTTOM_CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="371.0" mnemonicParsing="false" onAction="#click_RepairToggleButton" prefHeight="64.0" prefWidth="64.0" selected="false" style="-fx-background-image: url('/image/repair.png')" text="报修管理" textFill="#04430b">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></ToggleButton>
+            <ToggleButton fx:id="Complaint_ToggleButton" alignment="BOTTOM_CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="445.0" mnemonicParsing="false" onAction="#click_ComplaintToggleButton" prefHeight="64.0" prefWidth="64.0" selected="false" style="-fx-background-image: url('/image/complaint.png')" text="投诉管理" textFill="#04430b">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></ToggleButton>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

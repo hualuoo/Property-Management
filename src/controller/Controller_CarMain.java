@@ -418,7 +418,7 @@ public class Controller_CarMain {
             alert1.showAndWait();
             return;
         }
-        query = "SELECT ONo,OName,OSex,OTel,OID,ONote FROM Owner_Info WHERE ONo=\'" + ONo_Edit_TextField.getText().trim() + "\'";
+        query = "SELECT ONo,OName,OSex,OTel,OID,ONote FROM Owner_Info WHERE ONo=" + ONo_Edit_TextField.getText().trim();
         SQL_Connect sql_connect = new SQL_Connect();
         result = sql_connect.sql_Query(query);
         try {
@@ -457,7 +457,7 @@ public class Controller_CarMain {
             alert1.showAndWait();
             return;
         }
-        query = "SELECT ONo,OName,OSex,OTel,OID,ONote FROM Owner_Info WHERE ONo=\'" + ONo_New_TextField.getText().trim() + "\'";
+        query = "SELECT ONo,OName,OSex,OTel,OID,ONote FROM Owner_Info WHERE ONo=" + ONo_New_TextField.getText().trim();
         SQL_Connect sql_connect = new SQL_Connect();
         result = sql_connect.sql_Query(query);
         try {
@@ -509,15 +509,8 @@ public class Controller_CarMain {
             query = query_Update;
             SQL_Connect sql_connect = new SQL_Connect();
             sql_connect.sql_Update(query);
-            data_parkingTable.setPState("未销售");
-            data_parkingTable.setPNote(PNote_Edit_TextArea.getText().trim());
-            data_parkingTable.setCarNo("");
-            data_parkingTable.setONo("");
-            data_parkingTable.setOName("");
-            data_parkingTable.setOSex("");
-            data_parkingTable.setOTel("");
-            data_parkingTable.setOID("");
-            data_parkingTable.setONote("");
+            ParkingTableView_List.clear();
+            showParkingTableView("初始化");
             succeedEdit();
         }
         else{
@@ -533,20 +526,13 @@ public class Controller_CarMain {
                     "PState=\'" + PState_Edit_ChoiceBox.getSelectionModel().getSelectedItem() + "\'," +
                     "PNote=\'" + PNote_Edit_TextArea.getText() + "\'," +
                     "CarNo=\'" + CarNo_Edit_TextField.getText().trim() + "\'," +
-                    "ONo=\'" + ONo_Edit_TextField.getText().trim() + "\' " +
+                    "ONo=" + ONo_Edit_TextField.getText().trim() + " " +
                     "WHERE PNo=\'" + PNo_Edit_Label.getText().trim() + "\'";
             query = query_Update;
             SQL_Connect sql_connect = new SQL_Connect();
             sql_connect.sql_Update(query);
-            data_parkingTable.setPState(PState_Edit_ChoiceBox.getSelectionModel().getSelectedItem().toString());
-            data_parkingTable.setPNote(PNote_Edit_TextArea.getText());
-            data_parkingTable.setCarNo(CarNo_Edit_TextField.getText().trim());
-            data_parkingTable.setONo(ONo_Edit_TextField.getText().trim());
-            data_parkingTable.setOName(OName_Edit_TextField.getText().trim());
-            data_parkingTable.setOSex(OSex_Edit_ChoiceBox.getSelectionModel().getSelectedItem().toString());
-            data_parkingTable.setOTel(ONo_Edit_TextField.getText().trim());
-            data_parkingTable.setOID(OID_Edit_TextField.getText().trim());
-            data_parkingTable.setONote(ONote_Edit_TextArea.getText());
+            ParkingTableView_List.clear();
+            showParkingTableView("初始化");
             succeedEdit();
         }
     }
@@ -593,9 +579,8 @@ public class Controller_CarMain {
             query = query_Insert;
             SQL_Connect sql_connect = new SQL_Connect();
             sql_connect.sql_Update(query);
-            ParkingTableView_List.add(new Data_ParkingTable(PRegion_New_TextField.getText().trim() + "-" + PNo_New_TextField.getText().trim(),
-                    PRegion_New_TextField.getText().trim() + "区",
-                    "未销售","",PNote_New_TextArea.getText(),"","","","","",""));
+            ParkingTableView_List.clear();
+            showParkingTableView("初始化");
             succeedEdit();
         }
         else{
@@ -609,21 +594,12 @@ public class Controller_CarMain {
             }
             query_Insert = "INSERT INTO Parking_Info VALUES" +
                     "(\'" + PRegion_New_TextField.getText().trim() + "-" + PNo_New_TextField.getText().trim() + "\',\'" + PRegion_New_TextField.getText().trim() + "\',\'" +
-                    PState_New_ChoiceBox.getSelectionModel().getSelectedItem() + "\',\'" + CarNo_New_TextField.getText() + "\',\'" + PNote_New_TextArea.getText() + "\',\'" + ONo_New_TextField.getText() + "\');";
+                    PState_New_ChoiceBox.getSelectionModel().getSelectedItem() + "\',\'" + CarNo_New_TextField.getText() + "\',\'" + PNote_New_TextArea.getText() + "\'," + ONo_New_TextField.getText() + ");";
             query = query_Insert;
             SQL_Connect sql_connect = new SQL_Connect();
             sql_connect.sql_Update(query);
-            ParkingTableView_List.add(new Data_ParkingTable(PRegion_New_TextField.getText().trim() + "-" + PNo_New_TextField.getText().trim(),
-                    PRegion_New_TextField.getText().trim() + "区",
-                    PState_New_ChoiceBox.getSelectionModel().getSelectedItem().toString(),
-                    CarNo_New_TextField.getText(),
-                    PNote_New_TextArea.getText(),
-                    ONo_New_TextField.getText(),
-                    OName_New_TextField.getText(),
-                    OSex_New_ChoiceBox.getSelectionModel().getSelectedItem().toString(),
-                    OTel_New_TextField.getText(),
-                    OID_New_TextField.getText(),
-                    ONote_New_TextArea.getText()));
+            ParkingTableView_List.clear();
+            showParkingTableView("初始化");
             succeedEdit();
         }
     }
@@ -670,21 +646,43 @@ public class Controller_CarMain {
         alert2.showAndWait();
     }
     public void click_IndexToggleButton(){
-        //主界面-房屋管理界面切换
+        //主界面-房屋管理 界面切换
         try {
             Parent Index_Root = FXMLLoader.load(getClass().getResource("/GUI/GUI_IndexMain.fxml"));
-            Main.Login_Stage.setTitle("小区物业管理系统-主界面");
+            Main.Login_Stage.setTitle("小区物业管理系统-房屋管理");
             Main.Login_Stage.setScene(new Scene(Index_Root, 1000, 615));
         }
         catch (Exception e) {
             e.printStackTrace();
         }
     }
+    public void click_OwnerToggleButton(){
+        //业主管理 界面切换
+        try {
+            Parent Family_Root = FXMLLoader.load(getClass().getResource("/GUI/GUI_OwnerMain.fxml"));
+            Main.Login_Stage.setTitle("小区物业管理系统-业主管理界面");
+            Main.Login_Stage.setScene(new Scene(Family_Root, 1000, 615));
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void click_ChargeToggleButton(){
+        //收费管理 界面切换
+        try {
+            Parent Repair_Root = FXMLLoader.load(getClass().getResource("/GUI/GUI_ChargeMain.fxml"));
+            Main.Login_Stage.setTitle("小区物业管理系统-收费管理");
+            Main.Login_Stage.setScene(new Scene(Repair_Root, 1000, 615));
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     public void click_RepairToggleButton(){
-        //维修信息界面切换
+        //报修管理 界面切换
         try {
             Parent Repair_Root = FXMLLoader.load(getClass().getResource("/GUI/GUI_RepairMain.fxml"));
-            Main.Login_Stage.setTitle("小区物业管理系统-维修信息界面");
+            Main.Login_Stage.setTitle("小区物业管理系统-报修管理");
             Main.Login_Stage.setScene(new Scene(Repair_Root, 1000, 615));
         }
         catch (Exception e) {
@@ -692,10 +690,10 @@ public class Controller_CarMain {
         }
     }
     public void click_ComplaintToggleButton(){
-        //投诉信息界面切换
+        //投诉管理 界面切换
         try {
             Parent Complaint_Root = FXMLLoader.load(getClass().getResource("/GUI/GUI_ComplaintMain.fxml"));
-            Main.Login_Stage.setTitle("小区物业管理系统-投诉信息界面");
+            Main.Login_Stage.setTitle("小区物业管理系统-投诉管理");
             Main.Login_Stage.setScene(new Scene(Complaint_Root, 1000, 615));
         }
         catch (Exception e) {

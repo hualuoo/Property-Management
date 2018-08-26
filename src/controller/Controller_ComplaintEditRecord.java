@@ -208,7 +208,7 @@ public class Controller_ComplaintEditRecord{
             return;
         }
         //数据库指令
-        query = "SELECT ONo,OName,OSex,OTel,OID,ONote FROM Owner_Info WHERE ONo=\'" + ONo_TextField.getText().trim() + "\'";
+        query = "SELECT ONo,OName,OSex,OTel,OID,ONote FROM Owner_Info WHERE ONo=" + ONo_TextField.getText().trim();
         //调用SQL方法类获取ResultSet结果
         SQL_Connect sql_connect = new SQL_Connect();
         result = sql_connect.sql_Query(query);
@@ -318,7 +318,8 @@ public class Controller_ComplaintEditRecord{
                 "CText=\'" + CText_TextArea.getText() + "\'," +
                 "CState=\'未处理\'," +
                 "CReply=NULL," +
-                "CSolveDate=NULL " +
+                "CSolveDate=NULL," +
+                "ONo=" + ONo_TextField.getText() + " " +
                 "WHERE CNo=\'" + data_complaintTable.getCNo().get() + "\'";
         SQL_Connect sql_connect = new SQL_Connect();
         sql_connect.sql_Update(query);
@@ -331,8 +332,9 @@ public class Controller_ComplaintEditRecord{
                 "CText=\'" + CText_TextArea.getText() + "\'," +
                 "CState=\'已处理\'," +
                 "CReply=\'" + CReply_TextArea.getText() + "\'," +
-                "CSolveDate=\'" + CSolveDate_DatePicker.getEditor().getText() + "\' " +
-                "WHERE CNo=\'" + data_complaintTable.getCNo().get() + "\'";
+                "CSolveDate=\'" + CSolveDate_DatePicker.getEditor().getText() + "\'," +
+                "ONo=" + ONo_TextField.getText() + " " +
+                "WHERE CNo=" + data_complaintTable.getCNo().get();
         SQL_Connect sql_connect = new SQL_Connect();
         sql_connect.sql_Update(query);
     }

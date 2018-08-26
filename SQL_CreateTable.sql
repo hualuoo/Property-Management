@@ -6,7 +6,7 @@ Password CHAR(32) NOT NULL,
 
 /*业主信息    ONo业主编号    OName业主姓名    OSex业主性别    OTel业主电话    OID业主身份证号码    ONote业主备注*/
 CREATE TABLE Owner_Info(
-ONo CHAR(6) NOT NULL CONSTRAINT O_Prim PRIMARY KEY,
+ONo INT IDENTITY(1,1) NOT NULL CONSTRAINT O_Prim PRIMARY KEY,
 OName CHAR(8) NOT NULL,
 OSex NCHAR(2) NOT NULL,
 OTel CHAR(13) NOT NULL,
@@ -24,7 +24,7 @@ HArea INT NOT NULL,
 HState CHAR(6) NOT NULL,
 HType CHAR(8) NOT NULL,
 HNote CHAR(100),
-ONo CHAR(6) CONSTRAINT House_Owner_Fore FOREIGN KEY REFERENCES Owner_Info(ONo))
+ONo INT CONSTRAINT House_Owner_Fore FOREIGN KEY REFERENCES Owner_Info(ONo))
 
 /*车位信息    PNo车位编号    PRegion车位区域    PState车位状态    CarNo车牌号    PNote车位备注    ONo业主编号*/
 CREATE TABLE Parking_Info(
@@ -33,7 +33,7 @@ PRegion CHAR(1) NOT NULL,
 PState CHAR(6) NOT NULL,
 CarNo CHAR(8),
 PNote CHAR(100),
-ONo CHAR(6) CONSTRAINT Parking_Owner_Fore FOREIGN KEY REFERENCES Owner_Info(ONo)
+ONo INT CONSTRAINT Parking_Owner_Fore FOREIGN KEY REFERENCES Owner_Info(ONo)
 )
 
 /*维修信息    RNo编号    RSubDate提交日期    RTitle标题    RText正文    RState状态    RReply回复    RSolveDate解决日期    ONo业主编号*/
@@ -45,7 +45,7 @@ RText CHAR(200) NOT NULL,
 RState CHAR(6) NOT NULL,
 RReply CHAR(200),
 RSolveDate DATE,
-ONo CHAR(6) CONSTRAINT Repair_Owner_Fore FOREIGN KEY REFERENCES Owner_Info(ONo)
+ONo INT CONSTRAINT Repair_Owner_Fore FOREIGN KEY REFERENCES Owner_Info(ONo)
 )
 
 /*投诉信息    RNo编号    RSubDate提交日期    RTitle标题    RText正文    RState状态    RReply回复    RSolveDate解决日期    ONo业主编号*/
@@ -57,7 +57,7 @@ CText CHAR(200) NOT NULL,
 CState CHAR(6) NOT NULL,
 CReply CHAR(200),
 CSolveDate DATE,
-ONo CHAR(6) CONSTRAINT Complaint_Owner_Fore FOREIGN KEY REFERENCES Owner_Info(ONo)
+ONo INT CONSTRAINT Complaint_Owner_Fore FOREIGN KEY REFERENCES Owner_Info(ONo)
 )
 
 

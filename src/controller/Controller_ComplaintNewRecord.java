@@ -178,7 +178,7 @@ public class Controller_ComplaintNewRecord{
             return;
         }
         //数据库指令
-        query = "SELECT ONo,OName,OSex,OTel,OID,ONote FROM Owner_Info WHERE ONo=\'" + ONo_TextField.getText().trim() + "\'";
+        query = "SELECT ONo,OName,OSex,OTel,OID,ONote FROM Owner_Info WHERE ONo=" + ONo_TextField.getText().trim();
         //调用SQL方法类获取ResultSet结果
         SQL_Connect sql_connect = new SQL_Connect();
         result = sql_connect.sql_Query(query);
@@ -283,7 +283,7 @@ public class Controller_ComplaintNewRecord{
         //添加"未处理"投诉单数据到数据库
         query = "INSERT INTO Complaint_Info VALUES" +
                 "(\'" + CSubDate_DatePicker.getEditor().getText() + "\',\'" + CTitle_TextField.getText() + "\',\'" +
-                CText_TextArea.getText() + "\',\'" + "未处理" + "\',NULL,NULL,\'" + ONo_TextField.getText() + "\');";
+                CText_TextArea.getText() + "\',\'" + "未处理" + "\',NULL,NULL," + ONo_TextField.getText() + ");";
         SQL_Connect sql_connect = new SQL_Connect();
         sql_connect.sql_Update(query);
     }
@@ -291,7 +291,7 @@ public class Controller_ComplaintNewRecord{
         //添加"已处理"投诉单数据到数据库
         query = "INSERT INTO Complaint_Info VALUES" +
                 "(\'" + CSubDate_DatePicker.getEditor().getText() + "\',\'" + CTitle_TextField.getText() + "\',\'" +
-                CText_TextArea.getText() + "\',\'" + "已处理" + "\',\'" + CReply_TextArea.getText() + "\',\'" + CSolveDate_DatePicker.getEditor().getText() + "\',\'" + ONo_TextField.getText() + "\');";
+                CText_TextArea.getText() + "\',\'" + "已处理" + "\',\'" + CReply_TextArea.getText() + "\',\'" + CSolveDate_DatePicker.getEditor().getText() + "\'," + ONo_TextField.getText() + ");";
         SQL_Connect sql_connect = new SQL_Connect();
         sql_connect.sql_Update(query);
     }

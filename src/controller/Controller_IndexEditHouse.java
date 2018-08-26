@@ -281,14 +281,14 @@ public class Controller_IndexEditHouse {
     public void addSQL_SellNo_SellYes(){
         //将数据写入数据库  "未销售"变"已销售"
         query_Insert = "INSERT INTO Owner_Info VALUES" +
-                "(\'" + ONo_TextField.getText().trim() + "\',\'" + OName_TextField.getText().trim() + "\',\'" + OSex_ChoiceBox.getSelectionModel().getSelectedItem() + "\',\'" +
+                "(" + ONo_TextField.getText().trim() + ",\'" + OName_TextField.getText().trim() + "\',\'" + OSex_ChoiceBox.getSelectionModel().getSelectedItem() + "\',\'" +
                 OTel_TextField.getText().trim() + "\',\'" + OID_TextField.getText() + "\',\'" + ONote_TextArea.getText().trim() + "\');";
         query_Update = "UPDATE House_Info SET " +
                 "HArea=" + HArea_TextField.getText() + "," +
                 "HState=\'" + HState_ChoiceBox.getSelectionModel().getSelectedItem() + "\'," +
                 "HType=\'" + HType_TextField.getText().trim() + "\'," +
                 "HNote=\'" + HNote_TextArea.getText() + "\'," +
-                "ONo=\'" + ONo_TextField.getText() + "\' " +
+                "ONo=" + ONo_TextField.getText() + " " +
                 "WHERE HNo=\'" + HNo_Label.getText() + "\'";
         query = query_Insert + " " + query_Update;
         SQL_Connect sql_connect = new SQL_Connect();
@@ -316,7 +316,7 @@ public class Controller_IndexEditHouse {
                 "OTel=\'" + OTel_TextField.getText().trim() + "\'," +
                 "OID=\'" + OID_TextField.getText() + "\'," +
                 "ONote=\'" + ONote_TextArea.getText().trim() + "\' " +
-                "WHERE Owner_Info.ONo=\'" + houseTableData.getONo().getValue().trim() + "\' " +
+                "WHERE Owner_Info.ONo=" + houseTableData.getONo().getValue().trim() + " " +
                 "ALTER TABLE House_Info CHECK CONSTRAINT ALL";
         query_Update2 = "UPDATE House_Info SET " +
                 "HArea=" + HArea_TextField.getText() + "," +

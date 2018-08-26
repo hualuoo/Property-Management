@@ -208,7 +208,7 @@ public class Controller_RepairEditRecord{
             return;
         }
         //数据库指令
-        query = "SELECT ONo,OName,OSex,OTel,OID,ONote FROM Owner_Info WHERE ONo=\'" + ONo_TextField.getText().trim() + "\'";
+        query = "SELECT ONo,OName,OSex,OTel,OID,ONote FROM Owner_Info WHERE ONo=" + ONo_TextField.getText().trim();
         //调用SQL方法类获取ResultSet结果
         SQL_Connect sql_connect = new SQL_Connect();
         result = sql_connect.sql_Query(query);
@@ -318,7 +318,8 @@ public class Controller_RepairEditRecord{
                 "RText=\'" + RText_TextArea.getText() + "\'," +
                 "RState=\'未维修\'," +
                 "RReply=NULL," +
-                "RSolveDate=NULL " +
+                "RSolveDate=NULL," +
+                "ONo=" + ONo_TextField.getText() + " " +
                 "WHERE RNo=\'" + data_repairTable.getRNo().get() + "\'";
         SQL_Connect sql_connect = new SQL_Connect();
         sql_connect.sql_Update(query);
@@ -331,7 +332,8 @@ public class Controller_RepairEditRecord{
                 "RText=\'" + RText_TextArea.getText() + "\'," +
                 "RState=\'已维修\'," +
                 "RReply=\'" + RReply_TextArea.getText() + "\'," +
-                "RSolveDate=\'" + RSolveDate_DatePicker.getEditor().getText() + "\' " +
+                "RSolveDate=\'" + RSolveDate_DatePicker.getEditor().getText() + "\'," +
+                "ONo=" + ONo_TextField.getText() + " " +
                 "WHERE RNo=\'" + data_repairTable.getRNo().get() + "\'";
         SQL_Connect sql_connect = new SQL_Connect();
         sql_connect.sql_Update(query);
