@@ -5,8 +5,16 @@ import data.Data_OwnerTable;
 import data.Data_RepairTable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import util.SQL_Connect;
 import util.StageManager;
 
@@ -64,13 +72,33 @@ public class Controller_OwnerMain {
                 cellData -> cellData.getValue().getParkingCount());
         //从数据库读取数据并显示在TableView中
         showOwnerTableView();
+        //TableView的双击监听
+        Owner_TableView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if (event.getClickCount() > 1) {
+                    click_EditButton();
+                }
+            }
+        });
     }
     public void showOwnerTableView(){
         //从数据库读取数据并显示在TableView中
         //业主信息计数置0
         count = 0;
         //数据库指令
-        query = "SELECT ONo,OName,OSex,OTel,OID,ONote FROM Owner_Info";
+        query = "SELECT Count2.ONo,OName,OSex,OTel,OID,ONote,ISNULL(HouseCount,0) HouseCount,ISNULL(ParkingCount,0) ParkingCount\n" +
+                "FROM (SELECT Owner_Info.ONo,OName,OSex,OTel,OID,ONote,ISNULL(HouseCount,0) HouseCount\n" +
+                "      FROM Owner_Info LEFT JOIN (SELECT Owner_Info.ONo,COUNT(HNo) HouseCount\n" +
+                "                                 FROM Owner_Info,House_Info\n" +
+                "                                 WHERE Owner_Info.ONo=House_Info.ONo\n" +
+                "                                 GROUP BY Owner_Info.ONo) Count1\n" +
+                "      ON Owner_Info.ONo=Count1.ONo) Count2\n" +
+                "LEFT JOIN (SELECT Owner_Info.ONo,COUNT(PNo) ParkingCount\n" +
+                "           FROM Owner_Info,Parking_Info\n" +
+                "           WHERE Owner_Info.ONo=Parking_Info.ONo\n" +
+                "           GROUP BY Owner_Info.ONo) Count3\n" +
+                "ON Count2.ONo=Count3.ONo";
         //调用SQL方法类获取ResultSet结果
         SQL_Connect sql_connect = new SQL_Connect();
         result = sql_connect.sql_Query(query);
@@ -78,20 +106,65 @@ public class Controller_OwnerMain {
         try {
             //while循环分别获取数据直到ResultSet的结尾，并new一个使用Data方法赋值的data变量
             while (result.next()){
-                query2 = "SELECT COUNT(*) HouseCount FROM House_Info WHERE ONo=" + result.getString("ONo");
-                SQL_Connect sql_connect2 = new SQL_Connect();
-                result2 = sql_connect2.sql_Query(query2);
-                result2.next();
                 OwnerTableView_List.add(new Data_OwnerTable(result.getString("ONo"),
                         result.getString("OName"),
                         result.getString("OSex"),
                         result.getString("OTel"),
                         result.getString("OID"),
                         result.getString("ONote"),
-                        result.getString(result2.getString("HouseCount")),
-                        result.getString("OTel")));
+                        result.getString("HouseCount"),
+                        result.getString("ParkingCount")));
                 count++;
             }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void click_NewButton(){
+
+    }
+    public void click_EditButton(){
+        //单击"编辑"按钮
+        //未选择需要编辑的信息的报错
+        if(Owner_TableView.getSelectionModel().getSelectedIndex() < 0){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("小区物业管理系统");
+            alert.setHeaderText("您未选择需要编辑的信息，无法编辑");
+            alert.initOwner(Main.Login_Stage);
+            alert.showAndWait();
+            return;
+        }
+        //FXMLLoader的load方法需要try-catch输出报错
+        try{
+            //创建"业主信息管理-编辑"窗口
+            Stage Stage_OwnerEditRecord;
+            //加载FXML窗口
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Controller_IndexMain.class.getResource("/GUI/GUI_OwnerEditRecord.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+            Stage_OwnerEditRecord = new Stage();
+            Stage_OwnerEditRecord.setTitle("小区物业管理系统-业主信息-修改");
+            Stage_OwnerEditRecord.setScene(new Scene(page, 666, 505));
+            Stage_OwnerEditRecord.getIcons().add(new Image("/image/logo.png"));
+            Stage_OwnerEditRecord.setX((Main.width-666)/2);
+            Stage_OwnerEditRecord.setY((Main.height-505)/2);
+            Stage_OwnerEditRecord.initModality(Modality.APPLICATION_MODAL);
+            Stage_OwnerEditRecord.setResizable(false);
+            Stage_OwnerEditRecord.show();
+            //将"业主信息管理-修改"窗口保存到map中
+            StageManager.STAGE.put("Stage_OwnerEditRecord", Stage_OwnerEditRecord);
+            //从map调取"业主信息管理-修改"控制器并调用setdata_ComplaintTable方法传投诉单数据
+            Controller_OwnerEditRecord controller_ownerEditRecord=(Controller_OwnerEditRecord) StageManager.CONTROLLER.get("Controller_OwnerEditRecord");
+            controller_ownerEditRecord.setdata_ownerTable(Owner_TableView.getSelectionModel().getSelectedItem());
+            //监听"业主信息-修改"窗口如果按窗口右上角X退出，remove"投诉单管理-修改"窗口和其控制器
+            Stage_OwnerEditRecord.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                @Override
+                public void handle(WindowEvent event) {
+                    StageManager.STAGE.remove("Stage_OwnerEditRecord");
+                    StageManager.CONTROLLER.remove("Controller_OwnerEditRecord");
+                }
+            });
         }
         catch (Exception e) {
             e.printStackTrace();

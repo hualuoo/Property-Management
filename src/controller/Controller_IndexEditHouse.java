@@ -8,6 +8,8 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import util.StageManager;
+
 import java.util.Optional;
 import java.util.regex.Pattern;
 
@@ -61,6 +63,8 @@ public class Controller_IndexEditHouse {
     }
     public void initialize() {
         //初始化
+        //将"房屋管理-编辑"控制器保存到map中
+        StageManager.CONTROLLER.put("Controller_IndexEditHouse", this);
         //ChoiceBox加入选择项
         HState_ChoiceBox.setItems(FXCollections.observableArrayList(
                 "已销售", "未销售", "待入住")
