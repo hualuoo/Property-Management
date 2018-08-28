@@ -35,7 +35,7 @@
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4f4f4" height="23.0" layoutX="24.0" layoutY="125.0" stroke="#f2f2f2" strokeType="INSIDE" width="63.0" />
             <Label layoutX="31.0" layoutY="127.0" text="房屋信息" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4f4f4" height="23.0" layoutX="565.0" layoutY="125.0" stroke="#f2f2f2" strokeType="INSIDE" width="33.0" />
-            <Label layoutX="570.0" layoutY="127.0" text="新增" textFill="BLUE" underline="true" />
+            <Label fx:id="HouseNew_Label" layoutX="570.0" layoutY="127.0" onMouseClicked="#click_HouseNewLabel" text="新增" textFill="BLUE" underline="true" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4f4f4" height="23.0" layoutX="608.0" layoutY="125.0" stroke="#f2f2f2" strokeType="INSIDE" width="33.0" />
             <Label fx:id="HouseEdit_Label" layoutX="613.0" layoutY="127.0" onMouseClicked="#click_HouseEditLabel" text="修改" textFill="BLUE" underline="true" />
             <TableView fx:id="House_TableView" layoutX="24.0" layoutY="148.0" prefHeight="80.0" prefWidth="630.0">
@@ -55,9 +55,9 @@
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4f4f4" height="23.0" layoutX="24.0" layoutY="241.0" stroke="#f2f2f2" strokeType="INSIDE" width="63.0" />
             <Label layoutX="31.0" layoutY="243.0" text="车位信息" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4f4f4" height="23.0" layoutX="565.0" layoutY="241.0" stroke="#f2f2f2" strokeType="INSIDE" width="33.0" />
-            <Label layoutX="570.0" layoutY="243.0" text="新增" textFill="BLUE" underline="true" />
+            <Label layoutX="570.0" layoutY="243.0" onMouseClicked="#click_ParkingNewLabel" text="新增" textFill="BLUE" underline="true" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4f4f4" height="23.0" layoutX="608.0" layoutY="241.0" stroke="#f2f2f2" strokeType="INSIDE" width="33.0" />
-            <Label layoutX="613.0" layoutY="243.0" text="修改" textFill="BLUE" underline="true" />
+            <Label layoutX="613.0" layoutY="243.0" onMouseClicked="#click_ParkingEditLabel" text="修改" textFill="BLUE" underline="true" />
             <TableView fx:id="Parking_TableView" layoutX="24.0" layoutY="264.0" prefHeight="80.0" prefWidth="630.0">
                <columns>
                   <TableColumn fx:id="PRegion_TableColumn" prefWidth="100.0" text="车位区域" />

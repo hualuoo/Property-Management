@@ -4,7 +4,6 @@ import application.Main;
 import data.Data_HouseTable;
 import data.Data_OwnerTable;
 import data.Data_ParkingTable;
-import data.Data_RepairTable;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -13,16 +12,12 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.CheckBoxTableCell;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import javafx.util.Callback;
 import util.SQL_Connect;
 import util.StageManager;
 
@@ -157,7 +152,6 @@ public class Controller_OwnerEditRecord {
         PNote_TableColumn.setCellValueFactory(
                 cellData -> cellData.getValue().getPNote() );
         //TableView的双击监听
-        /*
         House_TableView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -166,14 +160,14 @@ public class Controller_OwnerEditRecord {
                 }
             }
         });
-        */
-        HArea_TableColumn.setCellFactory(TextFieldTableCell.<Data_HouseTable>forTableColumn());
-        HArea_TableColumn.setOnEditCommit(
-                (TableColumn.CellEditEvent<Data_HouseTable, String> t) -> {
-                    ((Data_HouseTable) t.getTableView().getItems().get(
-                            t.getTablePosition().getRow())
-                    ).setHArea(t.getNewValue());
-                });
+        Parking_TableView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if (event.getClickCount() > 1) {
+                    click_ParkingEditLabel();
+                }
+            }
+        });
     }
     void showHouseTableView(){
         //从数据库读取数据并显示在TableView中
@@ -308,6 +302,43 @@ public class Controller_OwnerEditRecord {
         SQL_Connect sql_connect = new SQL_Connect();
         sql_connect.sql_Update(query);
     }
+    public void click_HouseNewLabel(){
+        //单击房屋信息-"新增"文本
+        //FXMLLoader的load方法需要try-catch输出报错
+        try{
+            //创建"业主信息管理-编辑-房屋信息-新增"窗口
+            Stage Stage_OwnerEditRecord_NewHouse;
+            //加载FXML窗口
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Controller_IndexMain.class.getResource("/GUI/GUI_OwnerEditRecord_NewHouse.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+            Stage_OwnerEditRecord_NewHouse = new Stage();
+            Stage_OwnerEditRecord_NewHouse.setTitle("小区物业管理系统 - 业主信息管理 - 房屋信息 - 新增");
+            Stage_OwnerEditRecord_NewHouse.setScene(new Scene(page, 350, 66));
+            Stage_OwnerEditRecord_NewHouse.getIcons().add(new Image("/image/logo.png"));
+            Stage_OwnerEditRecord_NewHouse.setX((Main.width-350)/2);
+            Stage_OwnerEditRecord_NewHouse.setY((Main.height-66)/2);
+            Stage_OwnerEditRecord_NewHouse.initModality(Modality.APPLICATION_MODAL);
+            Stage_OwnerEditRecord_NewHouse.setResizable(false);
+            Stage_OwnerEditRecord_NewHouse.show();
+            //将"业主信息管理 - 房屋信息 - 新增"窗口保存到map中
+            StageManager.STAGE.put("Stage_OwnerEditRecord_NewHouse", Stage_OwnerEditRecord_NewHouse);
+            //从map调取"业主信息管理 - 房屋信息 - 新增"控制器并调用set方法传投诉单数据
+            Controller_OwnerEditRecord_NewHouse controller_ownerEditRecord_newHouse=(Controller_OwnerEditRecord_NewHouse) StageManager.CONTROLLER.get("Controller_OwnerEditRecord_NewHouse");
+            controller_ownerEditRecord_newHouse.setONo(data_ownerTable.getONo().get());
+            //监听"业主信息-修改"窗口如果按窗口右上角X退出，remove"业主信息管理 - 房屋信息 - 新增"窗口和其控制器
+            Stage_OwnerEditRecord_NewHouse.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                @Override
+                public void handle(WindowEvent event) {
+                    StageManager.STAGE.remove("Stage_OwnerEditRecord_NewHouse");
+                    StageManager.CONTROLLER.remove("Controller_OwnerEditRecord_NewHouse");
+                }
+            });
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     public void click_HouseEditLabel(){
         //单击房屋信息-"编辑"文本
         //未选择需要编辑的信息的报错
@@ -321,38 +352,118 @@ public class Controller_OwnerEditRecord {
         }
         //FXMLLoader的load方法需要try-catch输出报错
         try{
-            //创建"业主信息管理-编辑"窗口
-            Stage Stage_OwnerEditHouse;
+            //创建"业主信息管理-编辑-房屋信息-新增"窗口
+            Stage Stage_OwnerEditRecord_EditHouse;
             //加载FXML窗口
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Controller_IndexMain.class.getResource("/GUI/GUI_IndexEditHouse.fxml"));
+            loader.setLocation(Controller_IndexMain.class.getResource("/GUI/GUI_OwnerEditRecord_EditHouse.fxml"));
             AnchorPane page = (AnchorPane) loader.load();
-            Stage_OwnerEditHouse = new Stage();
-            Stage_OwnerEditHouse.setTitle("小区物业管理系统-业主信息-房屋信息-修改");
-            Stage_OwnerEditHouse.setScene(new Scene(page, 333, 505));
-            Stage_OwnerEditHouse.getIcons().add(new Image("/image/logo.png"));
-            Stage_OwnerEditHouse.setX((Main.width-333)/2);
-            Stage_OwnerEditHouse.setY((Main.height-505)/2);
-            Stage_OwnerEditHouse.initModality(Modality.APPLICATION_MODAL);
-            Stage_OwnerEditHouse.setResizable(false);
-            Stage_OwnerEditHouse.show();
-            //将"业主信息管理-房屋信息-修改"窗口保存到map中
-            StageManager.STAGE.put("Stage_OwnerEditHouse", Stage_OwnerEditHouse);
-            //从map调取"业主信息管理-房屋信息-修改"控制器并调用set方法传投诉单数据
-            Controller_IndexEditHouse controller_indexEditHouse=(Controller_IndexEditHouse) StageManager.CONTROLLER.get("Controller_IndexEditHouse");
-            controller_indexEditHouse.setHouse(House_TableView.getSelectionModel().getSelectedItem());
-            controller_indexEditHouse.ONo_TextField.setDisable(true);
-            controller_indexEditHouse.OName_TextField.setDisable(true);
-            controller_indexEditHouse.OSex_ChoiceBox.setDisable(true);
-            controller_indexEditHouse.OTel_TextField.setDisable(true);
-            controller_indexEditHouse.OID_TextField.setDisable(true);
-            controller_indexEditHouse.ONote_TextArea.setDisable(true);
-            //监听"业主信息-修改"窗口如果按窗口右上角X退出，remove"投诉单管理-修改"窗口和其控制器
-            Stage_OwnerEditHouse.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            Stage_OwnerEditRecord_EditHouse = new Stage();
+            Stage_OwnerEditRecord_EditHouse.setTitle("小区物业管理系统 - 业主信息管理 - 房屋信息 - 修改");
+            Stage_OwnerEditRecord_EditHouse.setScene(new Scene(page, 350, 66));
+            Stage_OwnerEditRecord_EditHouse.getIcons().add(new Image("/image/logo.png"));
+            Stage_OwnerEditRecord_EditHouse.setX((Main.width-350)/2);
+            Stage_OwnerEditRecord_EditHouse.setY((Main.height-66)/2);
+            Stage_OwnerEditRecord_EditHouse.initModality(Modality.APPLICATION_MODAL);
+            Stage_OwnerEditRecord_EditHouse.setResizable(false);
+            Stage_OwnerEditRecord_EditHouse.show();
+            //将"业主信息管理 - 房屋信息 - 修改"窗口保存到map中
+            StageManager.STAGE.put("Stage_OwnerEditRecord_EditHouse", Stage_OwnerEditRecord_EditHouse);
+            //从map调取"业主信息管理 - 房屋信息 - 修改"控制器并调用set方法传投诉单数据
+            Controller_OwnerEditRecord_EditHouse controller_ownerEditRecord_editHouse=(Controller_OwnerEditRecord_EditHouse) StageManager.CONTROLLER.get("Controller_OwnerEditRecord_EditHouse");
+            controller_ownerEditRecord_editHouse.setHNo(House_TableView.getSelectionModel().getSelectedItem().getHNo().get());
+            controller_ownerEditRecord_editHouse.setHState(House_TableView.getSelectionModel().getSelectedItem().getHState().get());
+            //监听"业主信息-修改"窗口如果按窗口右上角X退出，remove"业主信息管理 - 房屋信息 - 修改"窗口和其控制器
+            Stage_OwnerEditRecord_EditHouse.setOnCloseRequest(new EventHandler<WindowEvent>() {
                 @Override
                 public void handle(WindowEvent event) {
-                    StageManager.STAGE.remove("Stage_OwnerEditHouse");
-                    StageManager.CONTROLLER.remove("Controller_IndexEditHouse");
+                    StageManager.STAGE.remove("Controller_OwnerEditRecord_EditHouse");
+                    StageManager.CONTROLLER.remove("Controller_OwnerEditRecord_EditHouse");
+                }
+            });
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void click_ParkingNewLabel(){
+        //单击车位信息-"新增"文本
+        //FXMLLoader的load方法需要try-catch输出报错
+        try{
+            //创建"业主信息管理-编辑-车位信息-新增"窗口
+            Stage Stage_OwnerEditRecord_NewParking;
+            //加载FXML窗口
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Controller_IndexMain.class.getResource("/GUI/GUI_OwnerEditRecord_NewParking.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+            Stage_OwnerEditRecord_NewParking = new Stage();
+            Stage_OwnerEditRecord_NewParking.setTitle("小区物业管理系统 - 业主信息管理 - 车位信息 - 新增");
+            Stage_OwnerEditRecord_NewParking.setScene(new Scene(page, 500, 66));
+            Stage_OwnerEditRecord_NewParking.getIcons().add(new Image("/image/logo.png"));
+            Stage_OwnerEditRecord_NewParking.setX((Main.width-500)/2);
+            Stage_OwnerEditRecord_NewParking.setY((Main.height-66)/2);
+            Stage_OwnerEditRecord_NewParking.initModality(Modality.APPLICATION_MODAL);
+            Stage_OwnerEditRecord_NewParking.setResizable(false);
+            Stage_OwnerEditRecord_NewParking.show();
+            //将"业主信息管理 - 车位信息 - 新增"窗口保存到map中
+            StageManager.STAGE.put("Stage_OwnerEditRecord_NewParking", Stage_OwnerEditRecord_NewParking);
+            //从map调取"业主信息管理 - 房屋信息 - 新增"控制器并调用set方法传投诉单数据
+            Controller_OwnerEditRecord_NewParking controller_ownerEditRecord_newParking =(Controller_OwnerEditRecord_NewParking) StageManager.CONTROLLER.get("Controller_OwnerEditRecord_NewParking");
+            controller_ownerEditRecord_newParking.setONo(data_ownerTable.getONo().get());
+            //监听"业主信息-修改"窗口如果按窗口右上角X退出，remove"业主信息管理 - 房屋信息 - 新增"窗口和其控制器
+            Stage_OwnerEditRecord_NewParking.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                @Override
+                public void handle(WindowEvent event) {
+                    StageManager.STAGE.remove("Stage_OwnerEditRecord_NewParking");
+                    StageManager.CONTROLLER.remove("Controller_OwnerEditRecord_NewParking");
+                }
+            });
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void click_ParkingEditLabel(){
+        //单击车位信息-"编辑"文本
+        //未选择需要编辑的信息的报错
+        if(Parking_TableView.getSelectionModel().getSelectedIndex() < 0){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("小区物业管理系统");
+            alert.setHeaderText("您未选择需要编辑的信息，无法编辑");
+            alert.initOwner(StageManager.STAGE.get("Stage_OwnerEditRecord"));
+            alert.showAndWait();
+            return;
+        }
+        //FXMLLoader的load方法需要try-catch输出报错
+        try{
+            //创建"业主信息管理-编辑-车位信息-新增"窗口
+            Stage Stage_OwnerEditRecord_EditParking;
+            //加载FXML窗口
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Controller_IndexMain.class.getResource("/GUI/GUI_OwnerEditRecord_EditParking.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+            Stage_OwnerEditRecord_EditParking = new Stage();
+            Stage_OwnerEditRecord_EditParking.setTitle("小区物业管理系统 - 业主信息管理 - 车位信息 - 修改");
+            Stage_OwnerEditRecord_EditParking.setScene(new Scene(page, 500, 66));
+            Stage_OwnerEditRecord_EditParking.getIcons().add(new Image("/image/logo.png"));
+            Stage_OwnerEditRecord_EditParking.setX((Main.width-500)/2);
+            Stage_OwnerEditRecord_EditParking.setY((Main.height-66)/2);
+            Stage_OwnerEditRecord_EditParking.initModality(Modality.APPLICATION_MODAL);
+            Stage_OwnerEditRecord_EditParking.setResizable(false);
+            Stage_OwnerEditRecord_EditParking.show();
+            //将"业主信息管理 - 车位信息 - 修改"窗口保存到map中
+            StageManager.STAGE.put("Stage_OwnerEditRecord_EditParking", Stage_OwnerEditRecord_EditParking);
+            //从map调取"业主信息管理 - 车位信息 - 修改"控制器并调用set方法传投诉单数据
+            Controller_OwnerEditRecord_EditParking controller_ownerEditRecord_editParking=(Controller_OwnerEditRecord_EditParking) StageManager.CONTROLLER.get("Controller_OwnerEditRecord_EditParking");
+            controller_ownerEditRecord_editParking.setPNo(Parking_TableView.getSelectionModel().getSelectedItem().getPNo().get());
+            controller_ownerEditRecord_editParking.setPState(Parking_TableView.getSelectionModel().getSelectedItem().getPState().get());
+            controller_ownerEditRecord_editParking.setCarNo(Parking_TableView.getSelectionModel().getSelectedItem().getCarNo().get());
+            //监听"业主信息-修改"窗口如果按窗口右上角X退出，remove"主信息管理 - 车位信息 - 修改"窗口和其控制器
+            Stage_OwnerEditRecord_EditParking.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                @Override
+                public void handle(WindowEvent event) {
+                    StageManager.STAGE.remove("Controller_OwnerEditRecord_EditParking");
+                    StageManager.CONTROLLER.remove("Controller_OwnerEditRecord_EditParking");
                 }
             });
         }

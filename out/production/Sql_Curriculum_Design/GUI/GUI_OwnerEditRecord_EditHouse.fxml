@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="66.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller_OwnerEditRecord_EditHouse">
+   <children>
+      <AnchorPane prefHeight="66.0" prefWidth="350.0">
+         <children>
+            <Label layoutX="14.0" layoutY="14.0" text="房屋编号：" />
+            <TextField fx:id="HNo_TextField" layoutX="74.0" layoutY="10.0" prefHeight="23.0" prefWidth="103.0" />
+            <Label layoutX="200.0" layoutY="14.0" text="房屋状态：" />
+            <ChoiceBox fx:id="HState_ChoiceBox" layoutX="260.0" layoutY="10.0" prefHeight="23.0" prefWidth="86.0" />
+            <Button fx:id="Confirm_Button" layoutX="252.0" layoutY="41.0" mnemonicParsing="false" onAction="#click_ConfirmButton" text="确定" />
+            <Button fx:id="Cancel_Button" layoutX="305.0" layoutY="41.0" mnemonicParsing="false" onAction="#click_CancelButton" text="取消" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

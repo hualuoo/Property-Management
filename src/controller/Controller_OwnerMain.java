@@ -161,6 +161,8 @@ public class Controller_OwnerMain {
             Stage_OwnerEditRecord.setOnCloseRequest(new EventHandler<WindowEvent>() {
                 @Override
                 public void handle(WindowEvent event) {
+                    OwnerTableView_List.clear();
+                    showOwnerTableView();
                     StageManager.STAGE.remove("Stage_OwnerEditRecord");
                     StageManager.CONTROLLER.remove("Controller_OwnerEditRecord");
                 }
