@@ -137,14 +137,6 @@ public class Controller_OwnerEditRecord_EditFamily {
         alert.initOwner(Confirm_Button.getScene().getWindow());
         alert.showAndWait();
     }
-    void error_NullFSex(){
-        //未选择家庭成员性别时的错误弹窗
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("小区物业管理系统");
-        alert.setHeaderText("您未选择家庭成员性别，请选择性别！");
-        alert.initOwner(Confirm_Button.getScene().getWindow());
-        alert.showAndWait();
-    }
     void error_NullFTel(){
         //未输入家庭成员联系方式的错误弹窗
         Alert alert = new Alert(Alert.AlertType.ERROR);

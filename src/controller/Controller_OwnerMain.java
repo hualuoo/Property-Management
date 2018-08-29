@@ -2,7 +2,9 @@ package controller;
 
 import application.Main;
 import data.Data_OwnerTable;
-import data.Data_RepairTable;
+import util.SQL_Connect;
+import util.StageManager;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -13,13 +15,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import util.SQL_Connect;
-import util.StageManager;
-
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-
 import java.sql.ResultSet;
 
 public class Controller_OwnerMain {
@@ -40,8 +38,8 @@ public class Controller_OwnerMain {
     //搜索框组件
     public TextField Search_RNo_TextField,Search_RName_TextField;
     //数据库代码以及返回结果
-    String query,query2,query3;
-    ResultSet result,result2,result3;
+    String query;
+    ResultSet result;
     //计数有多少条业主信息
     int count;
     public void initialize() {
@@ -121,7 +119,43 @@ public class Controller_OwnerMain {
         }
     }
     public void click_NewButton(){
-
+        //单击"新增"按钮
+        //FXMLLoader的load方法需要try-catch输出报错
+        try{
+            //创建"业主信息管理 - 新增"窗口
+            Stage Stage_OwnerNewRecord;
+            //加载FXML窗口
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Controller_IndexMain.class.getResource("/GUI/GUI_OwnerNewRecord.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+            Stage_OwnerNewRecord = new Stage();
+            Stage_OwnerNewRecord.setTitle("小区物业管理系统 - 业主信息 - 新增");
+            Stage_OwnerNewRecord.setScene(new Scene(page, 666, 158));
+            Stage_OwnerNewRecord.getIcons().add(new Image("/image/logo.png"));
+            Stage_OwnerNewRecord.setX((Main.width-666)/2);
+            Stage_OwnerNewRecord.setY((Main.height-158)/2);
+            Stage_OwnerNewRecord.initModality(Modality.APPLICATION_MODAL);
+            Stage_OwnerNewRecord.setResizable(false);
+            Stage_OwnerNewRecord.show();
+            //将"业主信息管理 - 新增"窗口保存到map中
+            StageManager.STAGE.put("Stage_OwnerNewRecord", Stage_OwnerNewRecord);
+            //从map调取"业主信息管理 - 新增"控制器并调用setcount方法传业主个数
+            Controller_OwnerNewRecord controller_ownerNewRecord=(Controller_OwnerNewRecord) StageManager.CONTROLLER.get("Controller_OwnerNewRecord");
+            controller_ownerNewRecord.setcount(count);
+            //监听"业主信息管理 - 新增"窗口如果按窗口右上角X退出，remove"业主信息管理 - 新增"窗口和其控制器
+            Stage_OwnerNewRecord.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                @Override
+                public void handle(WindowEvent event) {
+                    OwnerTableView_List.clear();
+                    showOwnerTableView();
+                    StageManager.STAGE.remove("Controller_OwnerNewRecord");
+                    StageManager.CONTROLLER.remove("Controller_OwnerNewRecord");
+                }
+            });
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     public void click_EditButton(){
         //单击"编辑"按钮
@@ -143,7 +177,7 @@ public class Controller_OwnerMain {
             loader.setLocation(Controller_IndexMain.class.getResource("/GUI/GUI_OwnerEditRecord.fxml"));
             AnchorPane page = (AnchorPane) loader.load();
             Stage_OwnerEditRecord = new Stage();
-            Stage_OwnerEditRecord.setTitle("小区物业管理系统-业主信息-修改");
+            Stage_OwnerEditRecord.setTitle("小区物业管理系统 - 业主信息 - 修改");
             Stage_OwnerEditRecord.setScene(new Scene(page, 666, 505));
             Stage_OwnerEditRecord.getIcons().add(new Image("/image/logo.png"));
             Stage_OwnerEditRecord.setX((Main.width-666)/2);
@@ -153,10 +187,10 @@ public class Controller_OwnerMain {
             Stage_OwnerEditRecord.show();
             //将"业主信息管理-修改"窗口保存到map中
             StageManager.STAGE.put("Stage_OwnerEditRecord", Stage_OwnerEditRecord);
-            //从map调取"业主信息管理-修改"控制器并调用setdata_ComplaintTable方法传投诉单数据
+            //从map调取"业主信息管理 - 修改"控制器并调用setdata_ownerTable方法传业主数据
             Controller_OwnerEditRecord controller_ownerEditRecord=(Controller_OwnerEditRecord) StageManager.CONTROLLER.get("Controller_OwnerEditRecord");
             controller_ownerEditRecord.setdata_ownerTable(Owner_TableView.getSelectionModel().getSelectedItem());
-            //监听"业主信息-修改"窗口如果按窗口右上角X退出，remove"投诉单管理-修改"窗口和其控制器
+            //监听"业主信息管理 - 修改"窗口如果按窗口右上角X退出，remove"业主信息管理 - 修改"窗口和其控制器
             Stage_OwnerEditRecord.setOnCloseRequest(new EventHandler<WindowEvent>() {
                 @Override
                 public void handle(WindowEvent event) {

@@ -373,7 +373,7 @@ public class Controller_OwnerEditRecord {
             loader.setLocation(Controller_IndexMain.class.getResource("/GUI/GUI_OwnerEditRecord_NewHouse.fxml"));
             AnchorPane page = (AnchorPane) loader.load();
             Stage_OwnerEditRecord_NewHouse = new Stage();
-            Stage_OwnerEditRecord_NewHouse.setTitle("小区物业管理系统 - 业主信息管理 - 房屋信息 - 新增");
+            Stage_OwnerEditRecord_NewHouse.setTitle("业主信息管理 - 房屋信息 - 新增");
             Stage_OwnerEditRecord_NewHouse.setScene(new Scene(page, 350, 66));
             Stage_OwnerEditRecord_NewHouse.getIcons().add(new Image("/image/logo.png"));
             Stage_OwnerEditRecord_NewHouse.setX((Main.width-350)/2);
@@ -419,7 +419,7 @@ public class Controller_OwnerEditRecord {
             loader.setLocation(Controller_IndexMain.class.getResource("/GUI/GUI_OwnerEditRecord_EditHouse.fxml"));
             AnchorPane page = (AnchorPane) loader.load();
             Stage_OwnerEditRecord_EditHouse = new Stage();
-            Stage_OwnerEditRecord_EditHouse.setTitle("小区物业管理系统 - 业主信息管理 - 房屋信息 - 修改");
+            Stage_OwnerEditRecord_EditHouse.setTitle("业主信息管理 - 房屋信息 - 修改");
             Stage_OwnerEditRecord_EditHouse.setScene(new Scene(page, 350, 66));
             Stage_OwnerEditRecord_EditHouse.getIcons().add(new Image("/image/logo.png"));
             Stage_OwnerEditRecord_EditHouse.setX((Main.width-350)/2);
@@ -457,7 +457,7 @@ public class Controller_OwnerEditRecord {
             loader.setLocation(Controller_IndexMain.class.getResource("/GUI/GUI_OwnerEditRecord_NewParking.fxml"));
             AnchorPane page = (AnchorPane) loader.load();
             Stage_OwnerEditRecord_NewParking = new Stage();
-            Stage_OwnerEditRecord_NewParking.setTitle("小区物业管理系统 - 业主信息管理 - 车位信息 - 新增");
+            Stage_OwnerEditRecord_NewParking.setTitle("业主信息管理 - 车位信息 - 新增");
             Stage_OwnerEditRecord_NewParking.setScene(new Scene(page, 500, 66));
             Stage_OwnerEditRecord_NewParking.getIcons().add(new Image("/image/logo.png"));
             Stage_OwnerEditRecord_NewParking.setX((Main.width-500)/2);
@@ -503,7 +503,7 @@ public class Controller_OwnerEditRecord {
             loader.setLocation(Controller_IndexMain.class.getResource("/GUI/GUI_OwnerEditRecord_EditParking.fxml"));
             AnchorPane page = (AnchorPane) loader.load();
             Stage_OwnerEditRecord_EditParking = new Stage();
-            Stage_OwnerEditRecord_EditParking.setTitle("小区物业管理系统 - 业主信息管理 - 车位信息 - 修改");
+            Stage_OwnerEditRecord_EditParking.setTitle("业主信息管理 - 车位信息 - 修改");
             Stage_OwnerEditRecord_EditParking.setScene(new Scene(page, 500, 66));
             Stage_OwnerEditRecord_EditParking.getIcons().add(new Image("/image/logo.png"));
             Stage_OwnerEditRecord_EditParking.setX((Main.width-500)/2);
@@ -542,7 +542,7 @@ public class Controller_OwnerEditRecord {
             loader.setLocation(Controller_IndexMain.class.getResource("/GUI/GUI_OwnerEditRecord_NewFamily.fxml"));
             AnchorPane page = (AnchorPane) loader.load();
             Stage_OwnerEditRecord_NewFamily = new Stage();
-            Stage_OwnerEditRecord_NewFamily.setTitle("小区物业管理系统 - 业主信息管理 - 家庭管理信息 - 新增");
+            Stage_OwnerEditRecord_NewFamily.setTitle("业主信息管理 - 家庭成员信息 - 新增");
             Stage_OwnerEditRecord_NewFamily.setScene(new Scene(page, 333, 245));
             Stage_OwnerEditRecord_NewFamily.getIcons().add(new Image("/image/logo.png"));
             Stage_OwnerEditRecord_NewFamily.setX((Main.width-333)/2);
@@ -588,7 +588,7 @@ public class Controller_OwnerEditRecord {
             loader.setLocation(Controller_IndexMain.class.getResource("/GUI/GUI_OwnerEditRecord_EditFamily.fxml"));
             AnchorPane page = (AnchorPane) loader.load();
             Stage_OwnerEditRecord_EditFamily = new Stage();
-            Stage_OwnerEditRecord_EditFamily.setTitle("小区物业管理系统 - 业主信息管理 - 家庭成员信息 - 修改");
+            Stage_OwnerEditRecord_EditFamily.setTitle("业主信息管理 - 家庭成员信息 - 修改");
             Stage_OwnerEditRecord_EditFamily.setScene(new Scene(page, 333, 245));
             Stage_OwnerEditRecord_EditFamily.getIcons().add(new Image("/image/logo.png"));
             Stage_OwnerEditRecord_EditFamily.setX((Main.width - 333) / 2);

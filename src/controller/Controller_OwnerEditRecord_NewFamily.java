@@ -133,10 +133,10 @@ public class Controller_OwnerEditRecord_NewFamily {
         alert.showAndWait();
     }
     void error_NullFTel(){
-        //未输入家庭成员联系方式的错误弹窗
+        //未输入家庭成员联系电话的错误弹窗
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("小区物业管理系统");
-        alert.setHeaderText("家庭成员联系方式不能为空，请输入家庭成员联系方式！");
+        alert.setHeaderText("家庭成员联系电话不能为空，请输入联系电话！");
         alert.initOwner(Confirm_Button.getScene().getWindow());
         alert.showAndWait();
     }
@@ -145,6 +145,22 @@ public class Controller_OwnerEditRecord_NewFamily {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("小区物业管理系统");
         alert.setHeaderText("检测到家庭成员联系电话输入错误，请输入正确的电话号码！");
+        alert.initOwner(Confirm_Button.getScene().getWindow());
+        alert.showAndWait();
+    }
+    void error_NullFID(){
+        //未输入家庭成员身份证号码的错误弹窗
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("小区物业管理系统");
+        alert.setHeaderText("家庭成员身份证号码不能为空，请输入身份证号码！");
+        alert.initOwner(Confirm_Button.getScene().getWindow());
+        alert.showAndWait();
+    }
+    void error_WrongFID(){
+        //家庭成员身份证号码输入错误的错误弹窗
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("小区物业管理系统");
+        alert.setHeaderText("检测到家庭成员身份证号码输入错误，请输入正确的身份证号码！");
         alert.initOwner(Confirm_Button.getScene().getWindow());
         alert.showAndWait();
     }
@@ -161,22 +177,6 @@ public class Controller_OwnerEditRecord_NewFamily {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("小区物业管理系统");
         alert.setHeaderText("家庭成员与业主关系超出长度，仅能输入10个字符(每个汉字占2个字符)！");
-        alert.initOwner(Confirm_Button.getScene().getWindow());
-        alert.showAndWait();
-    }
-    void error_WrongFID(){
-        //家庭成员身份证号码输入错误的错误弹窗
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("小区物业管理系统");
-        alert.setHeaderText("检测到家庭成员身份证号码输入错误，请输入正确的身份证号码！");
-        alert.initOwner(Confirm_Button.getScene().getWindow());
-        alert.showAndWait();
-    }
-    void error_NullFID(){
-        //未输入家庭成员身份证号码的错误弹窗
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("小区物业管理系统");
-        alert.setHeaderText("家庭成员身份证号码不能为空，请输入身份证号码！");
         alert.initOwner(Confirm_Button.getScene().getWindow());
         alert.showAndWait();
     }
