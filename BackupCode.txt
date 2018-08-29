@@ -34,3 +34,19 @@
                 };
             }
         });
+
+
+
+
+    public void addSQL_SellYes(){
+        query_Insert = "INSERT INTO Owner_Info VALUES" +
+                "(" + ONo_TextField.getText().trim() + ",\'" + OName_TextField.getText().trim() + "\',\'" + OSex_ChoiceBox.getSelectionModel().getSelectedItem() + "\',\'" +
+                OTel_TextField.getText().trim() + "\',\'" + OID_TextField.getText().trim() + "\',\'" + ONote_TextArea.getText().trim() + "\');";
+        query_Insert2 = "INSERT INTO House_Info VALUES" +
+                "(\'" + HNo_Label.getText().trim() + "\'," + HBuild_TextField.getText().trim() + "," + HPark_TextField.getText().trim() + "," +
+                HFloor_TextField.getText().trim() + "," + HRoom_TextField.getText().trim() + "," + HArea_TextField.getText().trim() + ",\'" +
+                HState_ChoiceBox.getSelectionModel().getSelectedItem() + "\',\'" + HType_TextField.getText().trim() + "\',\'" + HNote_TextArea.getText().trim() + "\'," + ONo_TextField.getText().trim() + ");";
+        query = query_Insert + " " + query_Insert2;
+        SQL_Connect sql_connect = new SQL_Connect();
+        sql_connect.sql_Update(query);
+    }

@@ -148,7 +148,7 @@ public class Controller_OwnerMain {
                 public void handle(WindowEvent event) {
                     OwnerTableView_List.clear();
                     showOwnerTableView();
-                    StageManager.STAGE.remove("Controller_OwnerNewRecord");
+                    StageManager.STAGE.remove("Stage_OwnerNewRecord");
                     StageManager.CONTROLLER.remove("Controller_OwnerNewRecord");
                 }
             });

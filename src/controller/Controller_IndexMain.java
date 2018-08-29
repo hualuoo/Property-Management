@@ -2,6 +2,7 @@ package controller;
 
 import data.Data_HouseTable;
 import javafx.collections.ObservableList;
+import javafx.stage.WindowEvent;
 import util.SQL_Connect;
 import util.StageManager;
 import application.Main;
@@ -213,6 +214,39 @@ public class Controller_IndexMain {
         }
     }
     public void click_NewButton() {
+        //单击"新增"按钮
+        //FXMLLoader的load方法需要try-catch输出报错
+        try{
+            //创建"房屋信息管理 - 新增"窗口
+            Stage Stage_IndexNewHouse;
+            //加载FXML窗口
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Controller_IndexMain.class.getResource("/GUI/GUI_IndexNewHouse.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+            Stage_IndexNewHouse = new Stage();
+            Stage_IndexNewHouse.setTitle("小区物业管理系统 - 房屋信息 - 新增");
+            Stage_IndexNewHouse.setScene(new Scene(page, 333, 505));
+            Stage_IndexNewHouse.getIcons().add(new Image("/image/logo.png"));
+            Stage_IndexNewHouse.setX((Main.width-333)/2);
+            Stage_IndexNewHouse.setY((Main.height-505)/2);
+            Stage_IndexNewHouse.initModality(Modality.APPLICATION_MODAL);
+            Stage_IndexNewHouse.setResizable(false);
+            Stage_IndexNewHouse.show();
+            //将"房屋信息管理 - 新增"窗口保存到map中
+            StageManager.STAGE.put("Stage_IndexNewHouse", Stage_IndexNewHouse);
+            //监听"房屋信息管理 - 新增"窗口如果按窗口右上角X退出，remove"房屋信息管理 - 新增"窗口和其控制器
+            Stage_IndexNewHouse.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                @Override
+                public void handle(WindowEvent event) {
+                    StageManager.STAGE.remove("Stage_IndexNewHouse");
+                    StageManager.CONTROLLER.remove("Controller_IndexNewHouse");
+                }
+            });
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        /*
         //单击"新建"按钮
         try{
             Stage New_Stage;
@@ -238,6 +272,7 @@ public class Controller_IndexMain {
         catch (Exception e) {
             e.printStackTrace();
         }
+        */
     }
     public void click_EditButton(){
         if(House_TableView.getSelectionModel().getSelectedIndex() < 0){
