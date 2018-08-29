@@ -72,7 +72,7 @@
             <Label layoutX="104.0" layoutY="554.0" text="业主编号：" />
             <TextField fx:id="Search_RNo_TextField" alignment="CENTER" layoutX="167.0" layoutY="550.0" prefWidth="60.0" />
             <Label layoutX="246.0" layoutY="554.0" text="业主姓名：" />
-            <TextField fx:id="Search_RNo_TextField1" alignment="CENTER" layoutX="309.0" layoutY="550.0" prefHeight="23.0" prefWidth="82.0" />
+            <TextField fx:id="Search_RName_TextField" alignment="CENTER" layoutX="309.0" layoutY="550.0" prefHeight="23.0" prefWidth="82.0" />
             <Button fx:id="Edit_Button" layoutX="929.0" layoutY="547.0" mnemonicParsing="false" onAction="#click_EditButton" prefHeight="30.0" prefWidth="50.0" text="修改" />
             <Button fx:id="New_Button" layoutX="864.0" layoutY="547.0" mnemonicParsing="false" onAction="#click_NewButton" prefHeight="30.0" prefWidth="50.0" text="新增" />
          </children>

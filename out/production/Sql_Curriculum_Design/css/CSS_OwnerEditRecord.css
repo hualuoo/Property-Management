@@ -5,3 +5,6 @@
 #Parking_TableView .table-column{
   -fx-alignment: center;
 }
+#Family_TableView .table-column{
+  -fx-alignment: center;
+}

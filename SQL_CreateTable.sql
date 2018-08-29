@@ -60,6 +60,16 @@ CSolveDate DATE,
 ONo INT CONSTRAINT Complaint_Owner_Fore FOREIGN KEY REFERENCES Owner_Info(ONo)
 )
 
+/*家庭成员信息    FNo家庭成员编号    FName家庭成员姓名    FSex家庭成员性别    FTel家庭成员电话    FID家庭成员身份证号码    FRelation与业主关系    FNote家庭成员备注    ONo业主编号*/
+CREATE TABLE Family_Info(
+FNo INT IDENTITY(1,1) NOT NULL CONSTRAINT F_Prim PRIMARY KEY,
+FName CHAR(8) NOT NULL,
+FSex NCHAR(2) NOT NULL,
+FTel CHAR(13) NOT NULL,
+FID CHAR(18) NOT NULL,
+FRelation CHAR(10) NOT NULL,
+FNote CHAR(100),
+ONo INT CONSTRAINT Family_Owner_Fore FOREIGN KEY REFERENCES Owner_Info(ONo))
 
 /*删除房屋的同时删除业主信息*/
 USE Sql_Curriculum_Design

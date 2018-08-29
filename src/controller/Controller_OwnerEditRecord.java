@@ -1,9 +1,11 @@
 package controller;
 
 import application.Main;
+import data.Data_FamilyTable;
 import data.Data_HouseTable;
 import data.Data_OwnerTable;
 import data.Data_ParkingTable;
+
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -20,7 +22,6 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import util.SQL_Connect;
 import util.StageManager;
-
 import java.sql.ResultSet;
 import java.util.Optional;
 import java.util.regex.Pattern;
@@ -55,7 +56,16 @@ public class Controller_OwnerEditRecord {
     public TableColumn<Data_ParkingTable ,String> CarNo_TableColumn;
     public TableColumn<Data_ParkingTable ,String> PNote_TableColumn;
     ObservableList<Data_ParkingTable> ParkingTableView_List = FXCollections.observableArrayList();
-
+    //家庭成员信息组件
+    /*家庭成员信息    FNo家庭成员编号    FName家庭成员姓名    FSex家庭成员性别    FTel家庭成员电话    FID家庭成员身份证号码    FRelation与业主关系    FNote家庭成员备注*/
+    public TableView<Data_FamilyTable> Family_TableView;
+    public TableColumn<Data_FamilyTable ,String> FName_TableColumn;
+    public TableColumn<Data_FamilyTable ,String> FSex_TableColumn;
+    public TableColumn<Data_FamilyTable ,String> FTel_TableColumn;
+    public TableColumn<Data_FamilyTable ,String> FID_TableColumn;
+    public TableColumn<Data_FamilyTable ,String> FRelation_TableColumn;
+    public TableColumn<Data_FamilyTable ,String> FNote_TableColumn;
+    ObservableList<Data_FamilyTable> FamilyTableView_List = FXCollections.observableArrayList();
     //数据库代码以及返回结果
     String query;
     ResultSet result;
@@ -77,6 +87,8 @@ public class Controller_OwnerEditRecord {
         showHouseTableView();
         //从数据库读取数据并显示在Parking_TableView中
         showParkingTableView();
+        //从数据库读取数据并显示在Family_TableView中
+        showFamilyTableView();
     }
     public void initialize(){
         //初始化
@@ -151,6 +163,21 @@ public class Controller_OwnerEditRecord {
                 cellData -> cellData.getValue().getCarNo() );
         PNote_TableColumn.setCellValueFactory(
                 cellData -> cellData.getValue().getPNote() );
+        //设置TableView数据来自ObservableList
+        Family_TableView.setItems(FamilyTableView_List);
+        //将每个TableColumn列分别与对应的Data的get方法绑定
+        FName_TableColumn.setCellValueFactory(
+                cellData -> cellData.getValue().getFName());
+        FSex_TableColumn.setCellValueFactory(
+                cellData -> cellData.getValue().getFSex() );
+        FTel_TableColumn.setCellValueFactory(
+                cellData -> cellData.getValue().getFTel() );
+        FID_TableColumn.setCellValueFactory(
+                cellData -> cellData.getValue().getFID() );
+        FRelation_TableColumn.setCellValueFactory(
+                cellData -> cellData.getValue().getFRelation() );
+        FNote_TableColumn.setCellValueFactory(
+                cellData -> cellData.getValue().getFNote() );
         //TableView的双击监听
         House_TableView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -165,6 +192,14 @@ public class Controller_OwnerEditRecord {
             public void handle(MouseEvent event) {
                 if (event.getClickCount() > 1) {
                     click_ParkingEditLabel();
+                }
+            }
+        });
+        Family_TableView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if (event.getClickCount() > 1) {
+                    click_FamilyEditLabel();
                 }
             }
         });
@@ -223,6 +258,31 @@ public class Controller_OwnerEditRecord {
                         data_ownerTable.getOTel().get(),
                         data_ownerTable.getOID().get(),
                         data_ownerTable.getONote().get()));
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    void showFamilyTableView(){
+        //从数据库读取数据并显示在Family_TableView中
+        //数据库指令
+        query = "SELECT FNo,FName,FSex,FTel,FID,FRelation,FNote,ONo FROM Family_Info WHERE ONo=" + data_ownerTable.getONo().get();
+        //调用SQL方法类获取ResultSet结果
+        SQL_Connect sql_connect = new SQL_Connect();
+        result = sql_connect.sql_Query(query);
+        //ResultSet的next方法需要try-catch输出报错
+        try {
+            //while循环分别获取数据直到ResultSet的结尾，并new一个使用Data方法赋值的data变量
+            while (result.next()){
+                FamilyTableView_List.add(new Data_FamilyTable(result.getString("FNo"),
+                        result.getString("FName"),
+                        result.getString("FSex"),
+                        result.getString("FTel"),
+                        result.getString("FID"),
+                        result.getString("FRelation"),
+                        result.getString("FNote"),
+                        result.getString("ONo")));
             }
         }
         catch (Exception e) {
@@ -470,6 +530,109 @@ public class Controller_OwnerEditRecord {
         catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    public void click_FamilyNewLabel(){
+        //单击家庭成员信息-"新增"文本
+        //FXMLLoader的load方法需要try-catch输出报错
+        try{
+            //创建"业主信息管理 - 编辑 - 家庭成员信息 - 新增"窗口
+            Stage Stage_OwnerEditRecord_NewFamily;
+            //加载FXML窗口
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Controller_IndexMain.class.getResource("/GUI/GUI_OwnerEditRecord_NewFamily.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+            Stage_OwnerEditRecord_NewFamily = new Stage();
+            Stage_OwnerEditRecord_NewFamily.setTitle("小区物业管理系统 - 业主信息管理 - 家庭管理信息 - 新增");
+            Stage_OwnerEditRecord_NewFamily.setScene(new Scene(page, 333, 245));
+            Stage_OwnerEditRecord_NewFamily.getIcons().add(new Image("/image/logo.png"));
+            Stage_OwnerEditRecord_NewFamily.setX((Main.width-333)/2);
+            Stage_OwnerEditRecord_NewFamily.setY((Main.height-245)/2);
+            Stage_OwnerEditRecord_NewFamily.initModality(Modality.APPLICATION_MODAL);
+            Stage_OwnerEditRecord_NewFamily.setResizable(false);
+            Stage_OwnerEditRecord_NewFamily.show();
+            //将"业主信息管理 - 家庭成员信息 - 新增"窗口保存到map中
+            StageManager.STAGE.put("Stage_OwnerEditRecord_NewFamily", Stage_OwnerEditRecord_NewFamily);
+            //从map调取"业主信息管理 - 家庭成员信息 - 新增"控制器并调用set方法传投诉单数据
+            Controller_OwnerEditRecord_NewFamily controller_ownerEditRecord_newFamily =(Controller_OwnerEditRecord_NewFamily) StageManager.CONTROLLER.get("Controller_OwnerEditRecord_NewFamily");
+            controller_ownerEditRecord_newFamily.setONo(data_ownerTable.getONo().get());
+            //监听"业主信息-修改"窗口如果按窗口右上角X退出，remove"业主信息管理 - 房屋信息 - 新增"窗口和其控制器
+            Stage_OwnerEditRecord_NewFamily.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                @Override
+                public void handle(WindowEvent event) {
+                    StageManager.STAGE.remove("Stage_OwnerEditRecord_NewFamily");
+                    StageManager.CONTROLLER.remove("Controller_OwnerEditRecord_NewFamily");
+                }
+            });
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void click_FamilyEditLabel() {
+        //单击家庭成员信息-"编辑"文本
+        //未选择需要编辑的信息的报错
+        if (Family_TableView.getSelectionModel().getSelectedIndex() < 0) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("小区物业管理系统");
+            alert.setHeaderText("您未选择需要编辑的信息，无法编辑");
+            alert.initOwner(StageManager.STAGE.get("Stage_OwnerEditRecord"));
+            alert.showAndWait();
+            return;
+        }
+        //FXMLLoader的load方法需要try-catch输出报错
+        try {
+            //创建"业主信息管理-编辑-家庭成员信息-新增"窗口
+            Stage Stage_OwnerEditRecord_EditFamily;
+            //加载FXML窗口
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Controller_IndexMain.class.getResource("/GUI/GUI_OwnerEditRecord_EditFamily.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+            Stage_OwnerEditRecord_EditFamily = new Stage();
+            Stage_OwnerEditRecord_EditFamily.setTitle("小区物业管理系统 - 业主信息管理 - 家庭成员信息 - 修改");
+            Stage_OwnerEditRecord_EditFamily.setScene(new Scene(page, 333, 245));
+            Stage_OwnerEditRecord_EditFamily.getIcons().add(new Image("/image/logo.png"));
+            Stage_OwnerEditRecord_EditFamily.setX((Main.width - 333) / 2);
+            Stage_OwnerEditRecord_EditFamily.setY((Main.height - 245) / 2);
+            Stage_OwnerEditRecord_EditFamily.initModality(Modality.APPLICATION_MODAL);
+            Stage_OwnerEditRecord_EditFamily.setResizable(false);
+            Stage_OwnerEditRecord_EditFamily.show();
+            //将"业主信息管理 - 家庭成员信息 - 修改"窗口保存到map中
+            StageManager.STAGE.put("Stage_OwnerEditRecord_EditFamily", Stage_OwnerEditRecord_EditFamily);
+            //从map调取"业主信息管理 - 家庭成员信息 - 修改"控制器并调用set方法传数据
+            Controller_OwnerEditRecord_EditFamily controller_ownerEditRecord_editFamily = (Controller_OwnerEditRecord_EditFamily) StageManager.CONTROLLER.get("Controller_OwnerEditRecord_EditFamily");
+            controller_ownerEditRecord_editFamily.setFNo(Family_TableView.getSelectionModel().getSelectedItem().getFNo().get());
+            controller_ownerEditRecord_editFamily.setFame(Family_TableView.getSelectionModel().getSelectedItem().getFName().get());
+            controller_ownerEditRecord_editFamily.setFSex(Family_TableView.getSelectionModel().getSelectedItem().getFSex().get());
+            controller_ownerEditRecord_editFamily.setFTel(Family_TableView.getSelectionModel().getSelectedItem().getFTel().get());
+            controller_ownerEditRecord_editFamily.setFID(Family_TableView.getSelectionModel().getSelectedItem().getFID().get());
+            controller_ownerEditRecord_editFamily.setFRelation(Family_TableView.getSelectionModel().getSelectedItem().getFRelation().get());
+            controller_ownerEditRecord_editFamily.setFNote(Family_TableView.getSelectionModel().getSelectedItem().getFNote().get());
+            //监听"业主信息-修改"窗口如果按窗口右上角X退出，remove"业主信息管理 - 家庭成员信息信息 - 修改"窗口和其控制器
+            Stage_OwnerEditRecord_EditFamily.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                @Override
+                public void handle(WindowEvent event) {
+                    StageManager.STAGE.remove("Controller_OwnerEditRecord_EditFamily");
+                    StageManager.CONTROLLER.remove("Controller_OwnerEditRecord_EditFamily");
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void click_FamilyDelLabel(){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("小区物业管理系统");
+        alert.setHeaderText("您确认是否删除该家庭成员信息？");
+        alert.initOwner(Family_TableView.getScene().getWindow());
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() != ButtonType.OK) {
+            return;
+        }
+        query = "DELETE Family_Info WHERE FNo=" + Family_TableView.getSelectionModel().getSelectedItem().getFNo().get();
+        SQL_Connect sql_connect = new SQL_Connect();
+        sql_connect.sql_Update(query);
+        FamilyTableView_List.clear();
+        showFamilyTableView();
     }
     void flush_TableView(){
         //刷新"维修单管理-主界面"窗口的TableView

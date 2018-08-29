@@ -6,9 +6,7 @@ import data.Data_RepairTable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -21,7 +19,6 @@ import util.StageManager;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 
 import java.sql.ResultSet;
 
@@ -40,6 +37,8 @@ public class Controller_OwnerMain {
     public TableColumn<Data_OwnerTable ,String> HouseCount_TableColumn;
     public TableColumn<Data_OwnerTable ,String> ParkingCount_TableColumn;
     ObservableList<Data_OwnerTable> OwnerTableView_List = FXCollections.observableArrayList();
+    //搜索框组件
+    public TextField Search_RNo_TextField,Search_RName_TextField;
     //数据库代码以及返回结果
     String query,query2,query3;
     ResultSet result,result2,result3;
