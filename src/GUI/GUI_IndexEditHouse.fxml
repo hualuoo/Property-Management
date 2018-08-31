@@ -34,9 +34,9 @@
                     </rowConstraints>
                      <children>
                         <Label text="广东省东莞市光明小区" />
-                        <TextField fx:id="HBuild_TextField" alignment="CENTER" GridPane.columnIndex="1" />
+                        <TextField fx:id="HBuild_TextField" alignment="CENTER" disable="true" GridPane.columnIndex="1" />
                         <Label text="幢" GridPane.columnIndex="2" />
-                        <TextField fx:id="HPark_TextField" alignment="CENTER" GridPane.columnIndex="3" />
+                        <TextField fx:id="HPark_TextField" alignment="CENTER" disable="true" GridPane.columnIndex="3" />
                         <Label text="单元" GridPane.columnIndex="4" />
                      </children>
                   </GridPane>
@@ -52,10 +52,6 @@
                      <children>
                         <TextField fx:id="HArea_TextField" alignment="CENTER" prefHeight="23.0" prefWidth="48.0" />
                         <Label text="㎡" GridPane.columnIndex="1" />
-                        <Label fx:id="HAreaError_Label" textFill="RED" GridPane.columnIndex="2">
-                           <font>
-                              <Font size="11.0" />
-                           </font></Label>
                      </children>
                   </GridPane>
                   <GridPane GridPane.columnIndex="1" GridPane.rowIndex="4">
@@ -85,14 +81,10 @@
                       <RowConstraints minHeight="10.0" prefHeight="22.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <TextField fx:id="HFloor_TextField" alignment="CENTER" prefHeight="23.0" prefWidth="25.0" />
+                        <TextField fx:id="HFloor_TextField" alignment="CENTER" disable="true" prefHeight="23.0" prefWidth="25.0" />
                         <Label text="层" GridPane.columnIndex="1" />
-                        <TextField fx:id="HRoom_TextField" alignment="CENTER" prefHeight="23.0" prefWidth="38.0" GridPane.columnIndex="2" />
+                        <TextField fx:id="HRoom_TextField" alignment="CENTER" disable="true" prefHeight="23.0" prefWidth="38.0" GridPane.columnIndex="2" />
                         <Label text="室" GridPane.columnIndex="3" />
-                        <Label fx:id="HInfoError_Label" textFill="RED" GridPane.columnIndex="4">
-                           <font>
-                              <Font size="11.0" />
-                           </font></Label>
                      </children>
                   </GridPane>
                </children>
@@ -132,20 +124,8 @@
                   <Label text="联系电话：" GridPane.rowIndex="3" />
                   <Label text="身份证号：" GridPane.rowIndex="4" />
                   <Label text="备　　注：" GridPane.rowIndex="5" />
-                  <TextArea fx:id="ONote_TextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <ChoiceBox fx:id="OSex_ChoiceBox" prefHeight="23.0" prefWidth="85.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <GridPane GridPane.columnIndex="1">
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="113.0" minWidth="10.0" prefWidth="73.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="177.0" minWidth="10.0" prefWidth="162.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                     <children>
-                        <TextField fx:id="ONo_TextField" prefHeight="23.0" prefWidth="200.0" />
-                     </children>
-                  </GridPane>
+                  <TextArea fx:id="ONote_TextArea" disable="true" prefHeight="200.0" prefWidth="200.0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <ChoiceBox fx:id="OSex_ChoiceBox" disable="true" prefHeight="23.0" prefWidth="85.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <GridPane GridPane.columnIndex="1" GridPane.rowIndex="1">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="113.0" minWidth="10.0" prefWidth="100.0" />
@@ -155,7 +135,7 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <TextField fx:id="OName_TextField" prefHeight="23.0" prefWidth="97.0" />
+                        <TextField fx:id="OName_TextField" disable="true" prefHeight="23.0" prefWidth="97.0" />
                      </children>
                   </GridPane>
                   <GridPane GridPane.columnIndex="1" GridPane.rowIndex="3">
@@ -167,7 +147,7 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <TextField fx:id="OTel_TextField" />
+                        <TextField fx:id="OTel_TextField" disable="true" />
                      </children>
                   </GridPane>
                   <GridPane GridPane.columnIndex="1" GridPane.rowIndex="4">
@@ -179,13 +159,22 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <TextField fx:id="OID_TextField" prefHeight="23.0" prefWidth="152.0" />
-                        <Label fx:id="OIDError_Label" textFill="RED" GridPane.columnIndex="1">
-                           <font>
-                              <Font size="11.0" />
-                           </font>
-                        </Label>
+                        <TextField fx:id="OID_TextField" disable="true" prefHeight="23.0" prefWidth="152.0" />
                      </children>
+                  </GridPane>
+                  <GridPane GridPane.columnIndex="1">
+                     <children>
+                        <TextField fx:id="ONo_TextField" prefHeight="23.0" prefWidth="200.0" />
+                        <Button fx:id="Search_Button" mnemonicParsing="false" onAction="#click_SearchButton" text="搜索" GridPane.columnIndex="2" />
+                     </children>
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="115.0" minWidth="10.0" prefWidth="87.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="177.0" minWidth="2.0" prefWidth="12.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="177.0" minWidth="10.0" prefWidth="154.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
                   </GridPane>
                </children>
             </GridPane>

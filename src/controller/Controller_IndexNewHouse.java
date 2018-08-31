@@ -1,6 +1,6 @@
 package controller;
 
-import data.Data_HouseTable;
+import util.StageManager;
 import util.SQL_Connect;
 
 import javafx.beans.value.ChangeListener;
@@ -8,14 +8,12 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import util.StageManager;
-
 import java.sql.ResultSet;
 import java.util.Optional;
 import java.util.regex.Pattern;
 
 public class Controller_IndexNewHouse {
-    public Label HNo_Label,HAreaError_Label,HInfoError_Label,OIDError_Label;
+    public Label HNo_Label;
     public TextField HBuild_TextField,HPark_TextField,HFloor_TextField,HRoom_TextField,HArea_TextField,HType_TextField;
     public TextField ONo_TextField,OName_TextField,OTel_TextField,OID_TextField;
     public TextArea HNote_TextArea,ONote_TextArea;

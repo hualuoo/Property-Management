@@ -50,3 +50,179 @@
         SQL_Connect sql_connect = new SQL_Connect();
         sql_connect.sql_Update(query);
     }
+
+
+
+
+public void click_ConfirmButton(){
+        //按下"确认"按钮
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("小区物业管理系统");
+        alert.setHeaderText("您确认是否编辑该条信息？");
+        alert.initOwner(Confirm_Button.getScene().getWindow());
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() != ButtonType.OK) {
+            return;
+        }
+        if(HState_ChoiceBox.getSelectionModel().getSelectedItem().toString().equals("未销售") && houseTableData.getHState().getValue().trim().equals("未销售")){
+            //房屋状态"未销售"不变("未销售"变"未销售")
+            if(check_HArea == 1){
+                //将数据写入数据库  "未销售"不变("未销售"变"未销售")
+                addSQL_SellNo_SellNo();
+                //houseTableData数据修改  "未销售"不变("未销售"变"未销售")
+                editHouseTableData_SellNo_SellNo();
+                //修改成功信息框
+                succeedEdit();
+            }
+            else {
+                errorEdit();
+            }
+        }
+        if(HState_ChoiceBox.getSelectionModel().getSelectedItem().toString().equals("未销售") && houseTableData.getHState().getValue().trim().equals("未销售")==false){
+            //房屋状态"已销售"变"未销售"
+            if(check_HArea == 1){
+                //将数据写入数据库  "已销售"变"未销售"
+                addSQL_SellYes_SellNo();
+                //houseTableData数据修改  "已销售"变"未销售"
+                editHouseTableData_SellYes_SellNo();
+                //修改成功信息框
+                succeedEdit();
+            }
+            else {
+                errorEdit();
+            }
+        }
+        if(HState_ChoiceBox.getSelectionModel().getSelectedItem().toString().equals("未销售")==false && houseTableData.getHState().getValue().trim().equals("未销售")){
+            //房屋状态"未销售"变"已销售"
+            if(check_HArea == 1 && check_OID == 1){
+                //将数据写入数据库  "未销售"变"已销售"
+                addSQL_SellNo_SellYes();
+                //houseTableData数据修改  "未销售"变"已销售"
+                editHouseTableData_SellNo_SellYes();
+                //修改成功信息框
+                succeedEdit();
+            }
+            else {
+                errorEdit();
+            }
+        }
+        if(HState_ChoiceBox.getSelectionModel().getSelectedItem().toString().equals("未销售")==false && houseTableData.getHState().getValue().trim().equals("未销售")==false){
+            //房屋状态"已销售"不变("已销售"变"已销售")
+            if(check_HArea == 1 && check_OID == 1){
+                //将数据写入数据库  "已销售"不变("已销售"变"已销售")
+                addSQL_SellYes_SellYes();
+                //houseTableData数据修改  "已销售"不变("已销售"变"已销售")
+                editHouseTableData_SellYes_SellYes();
+                //修改成功信息框
+                succeedEdit();
+            }
+            else {
+                errorEdit();
+            }
+        }
+    }
+    public void addSQL_SellNo_SellNo(){
+        //将数据写入数据库  "未销售"不变("未销售"变"未销售")
+        query_Update = "UPDATE House_Info SET " +
+                "HArea=" + HArea_TextField.getText() + "," +
+                "HType=\'" + HType_TextField.getText().trim() + "\'," +
+                "HNote=\'" + HNote_TextArea.getText() + "\' " +
+                "WHERE HNo=\'" + HNo_Label.getText() + "\' ";
+        query = query_Update;
+        SQL_Connect sql_connect = new SQL_Connect();
+        sql_connect.sql_Update(query);
+    }
+    public void editHouseTableData_SellNo_SellNo(){
+        //houseTableData数据修改  "未销售"不变("未销售"变"未销售")
+        houseTableData.setHArea(HArea_TextField.getText() + "㎡");
+        houseTableData.setHType(HType_TextField.getText().trim());
+        houseTableData.setHNote(HNote_TextArea.getText());
+    }
+    public void addSQL_SellYes_SellNo(){
+        //将数据写入数据库  "已销售"变"未销售"
+        query_Update = "UPDATE House_Info SET " +
+                "HArea=" + HArea_TextField.getText() + "," +
+                "HState=\'" + HState_ChoiceBox.getSelectionModel().getSelectedItem() + "\'," +
+                "HType=\'" + HType_TextField.getText().trim() + "\'," +
+                "HNote=\'" + HNote_TextArea.getText() + "\'," +
+                "ONo = NULL " +
+                "WHERE HNo=\'" + HNo_Label.getText() + "\'";
+        query_Delete = "DELETE FROM Owner_Info WHERE ONo=\'" + houseTableData.getONo().getValue().trim() + "\'";
+        query = query_Update + " " + query_Delete;
+        SQL_Connect sql_connect = new SQL_Connect();
+        sql_connect.sql_Update(query);
+    }
+    public void editHouseTableData_SellYes_SellNo(){
+        //houseTableData数据修改  "已销售"变"未销售"
+        houseTableData.setHArea(HArea_TextField.getText() + "㎡");
+        houseTableData.setHType(HType_TextField.getText().trim());
+        houseTableData.setHNote(HNote_TextArea.getText());
+        houseTableData.setHState(HState_ChoiceBox.getSelectionModel().getSelectedItem().toString());
+        houseTableData.setONo("");
+        houseTableData.setOName("");
+        houseTableData.setOSex("");
+        houseTableData.setOTel("");
+        houseTableData.setOID("");
+        houseTableData.setONote("");
+    }
+    public void addSQL_SellNo_SellYes(){
+        //将数据写入数据库  "未销售"变"已销售"
+        query_Insert = "INSERT INTO Owner_Info VALUES" +
+                "(" + ONo_TextField.getText().trim() + ",\'" + OName_TextField.getText().trim() + "\',\'" + OSex_ChoiceBox.getSelectionModel().getSelectedItem() + "\',\'" +
+                OTel_TextField.getText().trim() + "\',\'" + OID_TextField.getText() + "\',\'" + ONote_TextArea.getText().trim() + "\');";
+        query_Update = "UPDATE House_Info SET " +
+                "HArea=" + HArea_TextField.getText() + "," +
+                "HState=\'" + HState_ChoiceBox.getSelectionModel().getSelectedItem() + "\'," +
+                "HType=\'" + HType_TextField.getText().trim() + "\'," +
+                "HNote=\'" + HNote_TextArea.getText() + "\'," +
+                "ONo=" + ONo_TextField.getText() + " " +
+                "WHERE HNo=\'" + HNo_Label.getText() + "\'";
+        query = query_Insert + " " + query_Update;
+        SQL_Connect sql_connect = new SQL_Connect();
+        sql_connect.sql_Update(query);
+    }
+    public void editHouseTableData_SellNo_SellYes(){
+        //houseTableData数据修改  "未销售"变"已销售"
+        houseTableData.setHArea(HArea_TextField.getText() + "㎡");
+        houseTableData.setHType(HType_TextField.getText().trim());
+        houseTableData.setHNote(HNote_TextArea.getText());
+        houseTableData.setHState(HState_ChoiceBox.getSelectionModel().getSelectedItem().toString());
+        houseTableData.setONo(ONo_TextField.getText().trim());
+        houseTableData.setOName(OName_TextField.getText().trim());
+        houseTableData.setOSex(OSex_ChoiceBox.getSelectionModel().getSelectedItem().toString());
+        houseTableData.setOTel(OTel_TextField.getText());
+        houseTableData.setOID(OID_TextField.getText().trim());
+        houseTableData.setONote(ONote_TextArea.getText());
+    }
+    public void addSQL_SellYes_SellYes(){
+        //将数据写入数据库  "已销售"不变("已销售"变"已销售")
+        query_Update = "ALTER TABLE House_Info NOCHECK CONSTRAINT ALL " +
+                "UPDATE Owner_Info SET ONo=\'" + ONo_TextField.getText().trim() + "\',"+
+                "OName=\'" + OName_TextField.getText().trim() + "\'," +
+                "OSex=\'" + OSex_ChoiceBox.getSelectionModel().getSelectedItem() + "\'," +
+                "OTel=\'" + OTel_TextField.getText().trim() + "\'," +
+                "OID=\'" + OID_TextField.getText() + "\'," +
+                "ONote=\'" + ONote_TextArea.getText().trim() + "\' " +
+                "WHERE Owner_Info.ONo=" + houseTableData.getONo().getValue().trim() + " " +
+                "ALTER TABLE House_Info CHECK CONSTRAINT ALL";
+        query_Update2 = "UPDATE House_Info SET " +
+                "HArea=" + HArea_TextField.getText() + "," +
+                "HType=\'" + HType_TextField.getText().trim() + "\'," +
+                "HNote=\'" + HNote_TextArea.getText() + "\' " +
+                "WHERE HNo=\'" + HNo_Label.getText() + "\'";
+        query = query_Update + " " + query_Update2;
+        SQL_Connect sql_connect = new SQL_Connect();
+        sql_connect.sql_Update(query);
+    }
+    public void editHouseTableData_SellYes_SellYes(){
+        //houseTableData数据修改  "已销售"不变("已销售"变"已销售")
+        houseTableData.setHArea(HArea_TextField.getText() + "㎡");
+        houseTableData.setHType(HType_TextField.getText().trim());
+        houseTableData.setHNote(HNote_TextArea.getText());
+        houseTableData.setONo(ONo_TextField.getText().trim());
+        houseTableData.setOName(OName_TextField.getText().trim());
+        houseTableData.setOSex(OSex_ChoiceBox.getSelectionModel().getSelectedItem().toString());
+        houseTableData.setOTel(OTel_TextField.getText());
+        houseTableData.setOID(OID_TextField.getText().trim());
+        houseTableData.setONote(ONote_TextArea.getText());
+    }

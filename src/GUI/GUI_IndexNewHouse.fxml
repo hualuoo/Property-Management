@@ -85,10 +85,6 @@
                         <Label text="层" GridPane.columnIndex="1" />
                         <TextField fx:id="HRoom_TextField" alignment="CENTER" prefHeight="23.0" prefWidth="38.0" GridPane.columnIndex="2" />
                         <Label text="室" GridPane.columnIndex="3" />
-                        <Label fx:id="HInfoError_Label" textFill="RED" GridPane.columnIndex="4">
-                           <font>
-                              <Font size="11.0" />
-                           </font></Label>
                      </children>
                   </GridPane>
                </children>

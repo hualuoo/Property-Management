@@ -275,13 +275,50 @@ public class Controller_IndexMain {
         */
     }
     public void click_EditButton(){
+        //单击"新增"按钮
         if(House_TableView.getSelectionModel().getSelectedIndex() < 0){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("小区物业管理系统");
             alert.setHeaderText("您未选择需要编辑的信息，无法编辑");
             alert.initOwner(Main.Login_Stage);
             alert.showAndWait();
+            return;
         }
+        //FXMLLoader的load方法需要try-catch输出报错
+        try{
+            //创建"房屋信息管理 - 修改"窗口
+            Stage Stage_IndexEditHouse;
+            //加载FXML窗口
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Controller_IndexMain.class.getResource("/GUI/GUI_IndexEditHouse.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+            Stage_IndexEditHouse = new Stage();
+            Stage_IndexEditHouse.setTitle("小区物业管理系统 - 房屋信息 - 修改");
+            Stage_IndexEditHouse.setScene(new Scene(page, 333, 505));
+            Stage_IndexEditHouse.getIcons().add(new Image("/image/logo.png"));
+            Stage_IndexEditHouse.setX((Main.width-333)/2);
+            Stage_IndexEditHouse.setY((Main.height-505)/2);
+            Stage_IndexEditHouse.initModality(Modality.APPLICATION_MODAL);
+            Stage_IndexEditHouse.setResizable(false);
+            Stage_IndexEditHouse.show();
+            //将"房屋信息管理 - 修改"窗口保存到map中
+            StageManager.STAGE.put("Stage_IndexEditHouse", Stage_IndexEditHouse);
+            //从map调取"房屋信息管理 - 修改"控制器并调用setdata_houseTable方法传房屋数据
+            Controller_IndexEditHouse controller_indexEditHouse=(Controller_IndexEditHouse) StageManager.CONTROLLER.get("Controller_IndexEditHouse");
+            controller_indexEditHouse.setdata_houseTable(House_TableView.getSelectionModel().getSelectedItem());
+            //监听"房屋信息管理 - 修改"窗口如果按窗口右上角X退出，remove"房屋信息管理 - 修改"窗口和其控制器
+            Stage_IndexEditHouse.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                @Override
+                public void handle(WindowEvent event) {
+                    StageManager.STAGE.remove("Stage_IndexEditHouse");
+                    StageManager.CONTROLLER.remove("Controller_IndexEditHouse");
+                }
+            });
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        /*
         else{
             try{
                 Stage Edit_Stage;
@@ -305,6 +342,7 @@ public class Controller_IndexMain {
                 e.printStackTrace();
             }
         }
+        */
     }
     public void click_DelButton(){
         //SQL语句
