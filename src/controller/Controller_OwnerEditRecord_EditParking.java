@@ -1,9 +1,9 @@
 package controller;
 
-import javafx.scene.control.Alert;
 import util.SQL_Connect;
 import util.StageManager;
 
+import javafx.scene.control.Alert;
 import javafx.collections.FXCollections;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;

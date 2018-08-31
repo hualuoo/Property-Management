@@ -11,7 +11,6 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.control.*;
 import javafx.scene.paint.Color;
-
 import java.security.MessageDigest;
 
 public class Controller_LoginMain {

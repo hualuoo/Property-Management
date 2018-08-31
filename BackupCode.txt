@@ -226,3 +226,10 @@ public void click_ConfirmButton(){
         houseTableData.setOID(OID_TextField.getText().trim());
         houseTableData.setONote(ONote_TextArea.getText());
     }
+
+
+
+
+
+//Ô­É¾³ý·¿ÎÝ´¥·¢Æ÷sqlÓï¾ä
+query = "ALTER TABLE Owner_Info NOCHECK CONSTRAINT ALL DELETE House_Info WHERE HNo=\'" + HNo_Label.getText().trim() + "\'" + "ALTER TABLE Owner_Info CHECK CONSTRAINT ALL";

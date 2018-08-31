@@ -3,13 +3,10 @@ package controller;
 import data.Data_HouseTable;
 import util.SQL_Connect;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import util.StageManager;
-
 import java.sql.ResultSet;
 import java.util.Optional;
 import java.util.regex.Pattern;

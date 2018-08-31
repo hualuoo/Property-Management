@@ -246,33 +246,6 @@ public class Controller_IndexMain {
         catch (Exception e) {
             e.printStackTrace();
         }
-        /*
-        //单击"新建"按钮
-        try{
-            Stage New_Stage;
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Controller_IndexMain.class.getResource("/GUI/GUI_IndexNewHouse.fxml"));
-            AnchorPane page = (AnchorPane) loader.load();
-            New_Stage = new Stage();
-            New_Stage.setTitle("小区物业管理系统-新增");
-            New_Stage.setScene(new Scene(page, 333, 505));
-            New_Stage.getIcons().add(new Image("/image/logo.png"));
-            New_Stage.setX((Main.width-333)/2);
-            New_Stage.setY((Main.height-505)/2);
-            New_Stage.initModality(Modality.APPLICATION_MODAL);
-            New_Stage.show();
-            New_Stage.setResizable(false);
-            Controller_IndexNewHouse controller = loader.getController();
-            controller.setDialogStage(New_Stage);
-            Data_HouseTable newhouseTableData = new Data_HouseTable("","","","","","","","","","","","","","","");
-            controller.setHouseTableData(newhouseTableData);
-            newhouseTableData = controller.getHouseTableData();
-            HouseTableData_List.add(newhouseTableData);
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-        */
     }
     public void click_EditButton(){
         //单击"新增"按钮
@@ -318,31 +291,6 @@ public class Controller_IndexMain {
         catch (Exception e) {
             e.printStackTrace();
         }
-        /*
-        else{
-            try{
-                Stage Edit_Stage;
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(Controller_IndexMain.class.getResource("/GUI/GUI_IndexEditHouse.fxml"));
-                AnchorPane page = (AnchorPane) loader.load();
-                Edit_Stage = new Stage();
-                Edit_Stage.setTitle("小区物业管理系统-修改");
-                Edit_Stage.setScene(new Scene(page, 333, 505));
-                Edit_Stage.getIcons().add(new Image("/image/logo.png"));
-                Edit_Stage.setX((Main.width-333)/2);
-                Edit_Stage.setY((Main.height-505)/2);
-                Edit_Stage.initModality(Modality.APPLICATION_MODAL);
-                Edit_Stage.show();
-                Edit_Stage.setResizable(false);
-                Controller_IndexEditHouse controller = loader.getController();
-                controller.setDialogStage(Edit_Stage);
-                controller.setHouse(House_TableView.getSelectionModel().getSelectedItem());
-            }
-            catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        */
     }
     public void click_DelButton(){
         //SQL语句
@@ -361,9 +309,7 @@ public class Controller_IndexMain {
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
                 //确认删除
-                //已写触发器
-                query = "ALTER TABLE Owner_Info NOCHECK CONSTRAINT ALL DELETE House_Info WHERE HNo=\'" + HNo_Label.getText().trim() + "\'" + "ALTER TABLE Owner_Info CHECK CONSTRAINT ALL";
-                System.out.print(query);
+                query = "DELETE House_Info WHERE HNo=\'" + HNo_Label.getText().trim() + "\'";
                 try{
                     SQL_Connect sql_connect = new SQL_Connect();
                     int sqlresult = sql_connect.sql_Update(query);

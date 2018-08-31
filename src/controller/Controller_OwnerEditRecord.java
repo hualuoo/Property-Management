@@ -5,6 +5,8 @@ import data.Data_FamilyTable;
 import data.Data_HouseTable;
 import data.Data_OwnerTable;
 import data.Data_ParkingTable;
+import util.SQL_Connect;
+import util.StageManager;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -20,8 +22,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import util.SQL_Connect;
-import util.StageManager;
 import java.sql.ResultSet;
 import java.util.Optional;
 import java.util.regex.Pattern;

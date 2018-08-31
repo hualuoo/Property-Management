@@ -1,11 +1,11 @@
 package controller;
 
-import javafx.collections.FXCollections;
-import javafx.scene.control.*;
-import javafx.stage.Stage;
 import util.SQL_Connect;
 import util.StageManager;
 
+import javafx.collections.FXCollections;
+import javafx.scene.control.*;
+import javafx.stage.Stage;
 import java.util.regex.Pattern;
 
 public class Controller_OwnerNewRecord{
