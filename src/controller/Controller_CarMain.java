@@ -649,7 +649,7 @@ public class Controller_CarMain {
         //主界面-房屋管理 界面切换
         try {
             Parent Index_Root = FXMLLoader.load(getClass().getResource("/GUI/GUI_IndexMain.fxml"));
-            Main.Login_Stage.setTitle("小区物业管理系统-房屋管理");
+            Main.Login_Stage.setTitle("小区物业管理系统 - 房屋管理");
             Main.Login_Stage.setScene(new Scene(Index_Root, 1000, 615));
         }
         catch (Exception e) {
@@ -660,7 +660,7 @@ public class Controller_CarMain {
         //业主管理 界面切换
         try {
             Parent Family_Root = FXMLLoader.load(getClass().getResource("/GUI/GUI_OwnerMain.fxml"));
-            Main.Login_Stage.setTitle("小区物业管理系统-业主管理界面");
+            Main.Login_Stage.setTitle("小区物业管理系统 - 业主管理界面");
             Main.Login_Stage.setScene(new Scene(Family_Root, 1000, 615));
         }
         catch (Exception e) {
@@ -671,7 +671,7 @@ public class Controller_CarMain {
         //收费管理 界面切换
         try {
             Parent Repair_Root = FXMLLoader.load(getClass().getResource("/GUI/GUI_ChargeMain.fxml"));
-            Main.Login_Stage.setTitle("小区物业管理系统-收费管理");
+            Main.Login_Stage.setTitle("小区物业管理系统 - 收费管理");
             Main.Login_Stage.setScene(new Scene(Repair_Root, 1000, 615));
         }
         catch (Exception e) {
@@ -682,7 +682,7 @@ public class Controller_CarMain {
         //报修管理 界面切换
         try {
             Parent Repair_Root = FXMLLoader.load(getClass().getResource("/GUI/GUI_RepairMain.fxml"));
-            Main.Login_Stage.setTitle("小区物业管理系统-报修管理");
+            Main.Login_Stage.setTitle("小区物业管理系统 - 报修管理");
             Main.Login_Stage.setScene(new Scene(Repair_Root, 1000, 615));
         }
         catch (Exception e) {
@@ -693,7 +693,7 @@ public class Controller_CarMain {
         //投诉管理 界面切换
         try {
             Parent Complaint_Root = FXMLLoader.load(getClass().getResource("/GUI/GUI_ComplaintMain.fxml"));
-            Main.Login_Stage.setTitle("小区物业管理系统-投诉管理");
+            Main.Login_Stage.setTitle("小区物业管理系统 - 投诉管理");
             Main.Login_Stage.setScene(new Scene(Complaint_Root, 1000, 615));
         }
         catch (Exception e) {

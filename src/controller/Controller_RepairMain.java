@@ -291,7 +291,7 @@ public class Controller_RepairMain {
             loader.setLocation(Controller_IndexMain.class.getResource("/GUI/GUI_RepairNewRecord.fxml"));
             AnchorPane page = (AnchorPane) loader.load();
             Stage_RepairNewRecord = new Stage();
-            Stage_RepairNewRecord.setTitle("小区物业管理系统-维修单-新增");
+            Stage_RepairNewRecord.setTitle("小区物业管理系统 - 维修单 - 新增");
             Stage_RepairNewRecord.setScene(new Scene(page, 333, 505));
             Stage_RepairNewRecord.getIcons().add(new Image("/image/logo.png"));
             Stage_RepairNewRecord.setX((Main.width-333)/2);
@@ -337,7 +337,7 @@ public class Controller_RepairMain {
             loader.setLocation(Controller_IndexMain.class.getResource("/GUI/GUI_RepairEditRecord.fxml"));
             AnchorPane page = (AnchorPane) loader.load();
             Stage_RepairEditRecord = new Stage();
-            Stage_RepairEditRecord.setTitle("小区物业管理系统-维修单-修改");
+            Stage_RepairEditRecord.setTitle("小区物业管理系统 - 维修单 - 修改");
             Stage_RepairEditRecord.setScene(new Scene(page, 333, 505));
             Stage_RepairEditRecord.getIcons().add(new Image("/image/logo.png"));
             Stage_RepairEditRecord.setX((Main.width-333)/2);
@@ -367,7 +367,7 @@ public class Controller_RepairMain {
         //主界面-房屋管理 界面切换
         try {
             Parent Index_Root = FXMLLoader.load(getClass().getResource("/GUI/GUI_IndexMain.fxml"));
-            Main.Login_Stage.setTitle("小区物业管理系统-房屋管理");
+            Main.Login_Stage.setTitle("小区物业管理系统 - 房屋管理");
             Main.Login_Stage.setScene(new Scene(Index_Root, 1000, 615));
             StageManager.CONTROLLER.remove("Controller_OwnerMain");
         }
@@ -379,7 +379,7 @@ public class Controller_RepairMain {
         //业主管理 界面切换
         try {
             Parent Family_Root = FXMLLoader.load(getClass().getResource("/GUI/GUI_OwnerMain.fxml"));
-            Main.Login_Stage.setTitle("小区物业管理系统-业主管理界面");
+            Main.Login_Stage.setTitle("小区物业管理系统 - 业主管理界面");
             Main.Login_Stage.setScene(new Scene(Family_Root, 1000, 615));
             StageManager.CONTROLLER.remove("Controller_RepairMain");
         }
@@ -391,7 +391,7 @@ public class Controller_RepairMain {
         //车位管理 界面切换
         try {
             Parent Car_Root = FXMLLoader.load(getClass().getResource("/GUI/GUI_CarMain.fxml"));
-            Main.Login_Stage.setTitle("小区物业管理系统-车位管理");
+            Main.Login_Stage.setTitle("小区物业管理系统 - 车位管理");
             Main.Login_Stage.setScene(new Scene(Car_Root, 1000, 615));
             StageManager.CONTROLLER.remove("Controller_RepairMain");
         }
@@ -403,7 +403,7 @@ public class Controller_RepairMain {
         //收费管理 界面切换
         try {
             Parent Repair_Root = FXMLLoader.load(getClass().getResource("/GUI/GUI_ChargeMain.fxml"));
-            Main.Login_Stage.setTitle("小区物业管理系统-收费管理");
+            Main.Login_Stage.setTitle("小区物业管理系统 - 收费管理");
             Main.Login_Stage.setScene(new Scene(Repair_Root, 1000, 615));
             StageManager.CONTROLLER.remove("Controller_RepairMain");
         }
@@ -415,7 +415,7 @@ public class Controller_RepairMain {
         //投诉管理 界面切换
         try {
             Parent Complaint_Root = FXMLLoader.load(getClass().getResource("/GUI/GUI_ComplaintMain.fxml"));
-            Main.Login_Stage.setTitle("小区物业管理系统-投诉管理");
+            Main.Login_Stage.setTitle("小区物业管理系统 - 投诉管理");
             Main.Login_Stage.setScene(new Scene(Complaint_Root, 1000, 615));
             StageManager.CONTROLLER.remove("Controller_RepairMain");
         }

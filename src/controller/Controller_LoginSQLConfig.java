@@ -63,7 +63,7 @@ public class Controller_LoginSQLConfig {
         //返回登录主窗口
         try {
             Parent Login_Root = FXMLLoader.load(getClass().getResource("/GUI/GUI_LoginMain.fxml"));
-            Main.Login_Stage.setTitle("小区物业管理系统-登录");
+            Main.Login_Stage.setTitle("小区物业管理系统 - 登录");
             Main.Login_Stage.setScene(new Scene(Login_Root, 300, 250));
             Main.Login_Stage.getIcons().setAll(new Image("/image/logo.png"));
         }

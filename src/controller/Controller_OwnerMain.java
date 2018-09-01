@@ -2,6 +2,8 @@ package controller;
 
 import application.Main;
 import data.Data_OwnerTable;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import util.SQL_Connect;
 import util.StageManager;
 
@@ -36,7 +38,7 @@ public class Controller_OwnerMain {
     public TableColumn<Data_OwnerTable ,String> ParkingCount_TableColumn;
     ObservableList<Data_OwnerTable> OwnerTableView_List = FXCollections.observableArrayList();
     //搜索框组件
-    public TextField Search_RNo_TextField,Search_RName_TextField;
+    public TextField Search_ONo_TextField,Search_OName_TextField,Search_OTel_TextField;
     //数据库代码以及返回结果
     String query;
     ResultSet result;
@@ -76,6 +78,27 @@ public class Controller_OwnerMain {
                 if (event.getClickCount() > 1) {
                     click_EditButton();
                 }
+            }
+        });
+        //搜索栏-业主编号-文本框 变动监听
+        Search_ONo_TextField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                search_Owner();
+            }
+        });
+        //搜索栏-业主姓名-文本框 变动监听
+        Search_OName_TextField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                search_Owner();
+            }
+        });
+        //搜索栏-业主电话-文本框 变动监听
+        Search_OTel_TextField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                search_Owner();
             }
         });
     }
@@ -205,11 +228,55 @@ public class Controller_OwnerMain {
             e.printStackTrace();
         }
     }
+    void search_Owner() {
+        //搜索栏输入框变动调用的搜索方法
+        //清空ObservableList内数据
+        OwnerTableView_List.clear();
+        query = "SELECT Count2.ONo,OName,OSex,OTel,OID,ONote,ISNULL(HouseCount,0) HouseCount,ISNULL(ParkingCount,0) ParkingCount\n" +
+                "FROM (SELECT Owner_Info.ONo,OName,OSex,OTel,OID,ONote,ISNULL(HouseCount,0) HouseCount\n" +
+                "      FROM Owner_Info LEFT JOIN (SELECT Owner_Info.ONo,COUNT(HNo) HouseCount\n" +
+                "                                 FROM Owner_Info,House_Info\n" +
+                "                                 WHERE Owner_Info.ONo=House_Info.ONo\n" +
+                "                                 GROUP BY Owner_Info.ONo) Count1\n" +
+                "      ON Owner_Info.ONo=Count1.ONo) Count2\n" +
+                "LEFT JOIN (SELECT Owner_Info.ONo,COUNT(PNo) ParkingCount\n" +
+                "           FROM Owner_Info,Parking_Info\n" +
+                "           WHERE Owner_Info.ONo=Parking_Info.ONo\n" +
+                "           GROUP BY Owner_Info.ONo) Count3\n" +
+                "ON Count2.ONo=Count3.ONo WHERE " +
+                "Count2.ONo LIKE \'%" + Search_ONo_TextField.getText() + "%\' AND " +
+                "Count2.OName LIKE \'%" + Search_OName_TextField.getText() + "%\' AND " +
+                "Count2.OTel LIKE \'%" + Search_OTel_TextField.getText() + "%\'";
+        //调用SQL方法类获取ResultSet结果
+        SQL_Connect sql_connect = new SQL_Connect();
+        result = sql_connect.sql_Query(query);
+        //ResultSet的next方法需要try-catch输出报错
+        try {
+            //while循环分别获取数据直到ResultSet的结尾，并new一个使用Data方法赋值的data变量
+            while (result.next()){
+                OwnerTableView_List.add(new Data_OwnerTable(result.getString("ONo"),
+                        result.getString("OName"),
+                        result.getString("OSex"),
+                        result.getString("OTel"),
+                        result.getString("OID"),
+                        result.getString("ONote"),
+                        result.getString("HouseCount"),
+                        result.getString("ParkingCount")));
+                count++;
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void click_DelButton() {
+        //单击"编辑"按钮
+    }
     public void click_IndexToggleButton(){
         //主界面-房屋管理 界面切换
         try {
             Parent Index_Root = FXMLLoader.load(getClass().getResource("/GUI/GUI_IndexMain.fxml"));
-            Main.Login_Stage.setTitle("小区物业管理系统-房屋管理");
+            Main.Login_Stage.setTitle("小区物业管理系统 - 房屋管理");
             Main.Login_Stage.setScene(new Scene(Index_Root, 1000, 615));
             StageManager.CONTROLLER.remove("Controller_OwnerMain");
         }
@@ -221,7 +288,7 @@ public class Controller_OwnerMain {
         //车位管理 界面切换
         try {
             Parent Car_Root = FXMLLoader.load(getClass().getResource("/GUI/GUI_CarMain.fxml"));
-            Main.Login_Stage.setTitle("小区物业管理系统-车位管理");
+            Main.Login_Stage.setTitle("小区物业管理系统 - 车位管理");
             Main.Login_Stage.setScene(new Scene(Car_Root, 1000, 615));
             StageManager.CONTROLLER.remove("Controller_OwnerMain");
         }
@@ -233,7 +300,7 @@ public class Controller_OwnerMain {
         //收费管理 界面切换
         try {
             Parent Repair_Root = FXMLLoader.load(getClass().getResource("/GUI/GUI_ChargeMain.fxml"));
-            Main.Login_Stage.setTitle("小区物业管理系统-收费管理");
+            Main.Login_Stage.setTitle("小区物业管理系统 - 收费管理");
             Main.Login_Stage.setScene(new Scene(Repair_Root, 1000, 615));
             StageManager.CONTROLLER.remove("Controller_OwnerMain");
         }
@@ -245,7 +312,7 @@ public class Controller_OwnerMain {
         //报修管理 界面切换
         try {
             Parent Repair_Root = FXMLLoader.load(getClass().getResource("/GUI/GUI_RepairMain.fxml"));
-            Main.Login_Stage.setTitle("小区物业管理系统-报修管理");
+            Main.Login_Stage.setTitle("小区物业管理系统 - 报修管理");
             Main.Login_Stage.setScene(new Scene(Repair_Root, 1000, 615));
             StageManager.CONTROLLER.remove("Controller_OwnerMain");
         }
@@ -257,7 +324,7 @@ public class Controller_OwnerMain {
         //投诉管理 界面切换
         try {
             Parent Complaint_Root = FXMLLoader.load(getClass().getResource("/GUI/GUI_ComplaintMain.fxml"));
-            Main.Login_Stage.setTitle("小区物业管理系统-投诉管理");
+            Main.Login_Stage.setTitle("小区物业管理系统 - 投诉管理");
             Main.Login_Stage.setScene(new Scene(Complaint_Root, 1000, 615));
             StageManager.CONTROLLER.remove("Controller_OwnerMain");
         }

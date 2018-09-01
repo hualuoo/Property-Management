@@ -18,10 +18,10 @@ public class Controller_ChargeMain {
         LoginUser_Label.setText("操作员：" + Main.loginUser);
     }
     public void click_IndexToggleButton(){
-        //主界面-房屋管理 界面切换
+        //主界面 - 房屋管理 界面切换
         try {
             Parent Index_Root = FXMLLoader.load(getClass().getResource("/GUI/GUI_IndexMain.fxml"));
-            Main.Login_Stage.setTitle("小区物业管理系统-房屋管理");
+            Main.Login_Stage.setTitle("小区物业管理系统 - 房屋管理");
             Main.Login_Stage.setScene(new Scene(Index_Root, 1000, 615));
             StageManager.CONTROLLER.remove("Controller_ChargeMain");
         }
@@ -33,7 +33,7 @@ public class Controller_ChargeMain {
         //业主管理 界面切换
         try {
             Parent Family_Root = FXMLLoader.load(getClass().getResource("/GUI/GUI_OwnerMain.fxml"));
-            Main.Login_Stage.setTitle("小区物业管理系统-业主管理界面");
+            Main.Login_Stage.setTitle("小区物业管理系统 - 业主管理界面");
             Main.Login_Stage.setScene(new Scene(Family_Root, 1000, 615));
             StageManager.CONTROLLER.remove("Controller_ChargeMain");
         }
@@ -45,7 +45,7 @@ public class Controller_ChargeMain {
         //车位管理 界面切换
         try {
             Parent Car_Root = FXMLLoader.load(getClass().getResource("/GUI/GUI_CarMain.fxml"));
-            Main.Login_Stage.setTitle("小区物业管理系统-车位管理");
+            Main.Login_Stage.setTitle("小区物业管理系统 - 车位管理");
             Main.Login_Stage.setScene(new Scene(Car_Root, 1000, 615));
             StageManager.CONTROLLER.remove("Controller_ChargeMain");
         }
@@ -57,7 +57,7 @@ public class Controller_ChargeMain {
         //报修管理 界面切换
         try {
             Parent Repair_Root = FXMLLoader.load(getClass().getResource("/GUI/GUI_RepairMain.fxml"));
-            Main.Login_Stage.setTitle("小区物业管理系统-报修管理");
+            Main.Login_Stage.setTitle("小区物业管理系统 - 报修管理");
             Main.Login_Stage.setScene(new Scene(Repair_Root, 1000, 615));
             StageManager.CONTROLLER.remove("Controller_ChargeMain");
         }
@@ -69,7 +69,7 @@ public class Controller_ChargeMain {
         //投诉管理 界面切换
         try {
             Parent Complaint_Root = FXMLLoader.load(getClass().getResource("/GUI/GUI_ComplaintMain.fxml"));
-            Main.Login_Stage.setTitle("小区物业管理系统-投诉管理");
+            Main.Login_Stage.setTitle("小区物业管理系统 - 投诉管理");
             Main.Login_Stage.setScene(new Scene(Complaint_Root, 1000, 615));
             StageManager.CONTROLLER.remove("Controller_ChargeMain");
         }
