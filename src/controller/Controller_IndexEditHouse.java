@@ -132,7 +132,7 @@ public class Controller_IndexEditHouse {
         //按下"确认"按钮
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("小区物业管理系统");
-        alert.setHeaderText("您确认是否添加该条信息？");
+        alert.setHeaderText("您确认是否编辑该条信息？");
         alert.initOwner(Confirm_Button.getScene().getWindow());
         Optional<ButtonType> alertresult = alert.showAndWait();
         if (alertresult.get() != ButtonType.OK) {

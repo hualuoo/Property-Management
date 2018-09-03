@@ -301,64 +301,89 @@ public class Controller_OwnerEditRecord {
             //如果选择了"否"
             return;
         }
-        if (OName_TextField.getText() == null || OName_TextField.getText().length()==0){
-            //如果业主姓名为空报错
+        if (OName_TextField.getText()==null || OName_TextField.getText().length()==0){
+            //如果未输入业主姓名
             error_NullOName();
             return;
         }
-        if (OTel_TextField.getText() == null || OTel_TextField.getText().length()==0){
-            //如果业主联系电话为空报错
+        if (length(OName_TextField.getText())>8){
+            //业主姓名超出长度
+            error_LangOName();
+            return;
+        }
+        if (OTel_TextField.getText()==null || OTel_TextField.getText().length()==0){
+            //如果未输入业主联系电话(手机号码或者固定电话)
             error_NullOTel();
             return;
         }
         String regex = "^((13[0-9])|(14[5|7])|(15([0-3]|[5-9]))|(18[0,5-9]))\\d{8}$";      //手机号码正则
         String regex2 = "^(0\\d{2}-\\d{8}(-\\d{1,4})?)|(0\\d{3}-\\d{7,8}(-\\d{1,4})?)$";  //固定电话正则
         if (Pattern.compile(regex).matcher(OTel_TextField.getText()).matches() == false && Pattern.compile(regex2).matcher(OTel_TextField.getText()).matches() == false){
-            //业主联系电话正则判断不通过报错
+            //业主联系电话(手机号码或者固定电话)输入错误
             error_WrongOTel();
             return;
         }
-        if (OID_TextField.getText() == null || OID_TextField.getText().length()==0){
-            //如果业主身份证号码为空报错
+        if (OID_TextField.getText()==null || OID_TextField.getText().length()==0){
+            //如果未输入业主身份证号码
             error_NullOID();
             return;
         }
         regex = "(^[1-9]\\d{5}(18|19|20)\\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\\d{3}[0-9Xx]$)|" +
-                "(^[1-9]\\d{5}\\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\\d{3}$)";
+                "(^[1-9]\\d{5}\\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\\d{3}$)";    //身份证号码正则
         if (Pattern.compile(regex).matcher(OID_TextField.getText()).matches() == false){
-            //业主身份证号码正则判断不通过报错
+            //业主身份证号码输入错误
             error_WrongOID();
             return;
         }
-        //修改数据库中的数据
-        editDataToSQL();
-        //成功修改弹窗
-        succeed_Edit();
-        //置业主信息已修改
-        cheak_OwnerSave = 1;
-        //刷新"业主信息管理-主界面"窗口的TableView
-        flush_TableView();
-    }
-    void editDataToSQL(){
-        //修改数据库中的数据
-        if (ONote_TextArea.getText() == null || ONote_TextArea.getText().length()==0){
-            query = "UPDATE Owner_Info SET " +
-                    "OName=\'" + OName_TextField.getText() + "\'," +
-                    "OSex=\'" + OSex_ChoiceBox.getSelectionModel().getSelectedItem().toString() + "\'," +
-                    "OTel=\'" + OTel_TextField.getText() + "\'," +
-                    "OID=\'" + OID_TextField.getText() + "\'," +
-                    "ONote=NULL " +
-                    "WHERE ONo=" + data_ownerTable.getONo().get();
+        if (ONote_TextArea.getText()==null || ONote_TextArea.getText().length()==0){
+            //业主备注为空时
+            //修改数据到数据库(业主备注为空)
+            editOwnerInfoToSQL_NullONote();
+            //刷新"业主信息管理"窗口的TableView
+            flush_TableView();
+            //成功修改弹窗
+            succeed_Edit();
+            //置业主信息已修改
+            cheak_OwnerSave = 1;
         }
         else {
-            query = "UPDATE Owner_Info SET " +
-                    "OName=\'" + OName_TextField.getText() + "\'," +
-                    "OSex=\'" + OSex_ChoiceBox.getSelectionModel().getSelectedItem().toString() + "\'," +
-                    "OTel=\'" + OTel_TextField.getText() + "\'," +
-                    "OID=\'" + OID_TextField.getText() + "\'," +
-                    "ONote=\'" + ONote_TextArea.getText() + "\' " +
-                    "WHERE ONo=" + data_ownerTable.getONo().get();
+            if (length(ONote_TextArea.getText())>100){
+                //业主备注超出长度
+                error_LangONote();
+                return;
+            }
+            //业主备注不为空时
+            //修改数据到数据库(业主备注不为空)
+            editOwnerInfoToSQL_FullONote();
+            //刷新"业主信息管理"窗口的TableView
+            flush_TableView();
+            //成功修改弹窗
+            succeed_Edit();
+            //置业主信息已修改
+            cheak_OwnerSave = 1;
         }
+    }
+    void editOwnerInfoToSQL_NullONote(){
+        //修改数据到数据库(业主备注为空)
+        query = "UPDATE Owner_Info SET " +
+                "OName=\'" + OName_TextField.getText() + "\'," +
+                "OSex=\'" + OSex_ChoiceBox.getSelectionModel().getSelectedItem().toString() + "\'," +
+                "OTel=\'" + OTel_TextField.getText() + "\'," +
+                "OID=\'" + OID_TextField.getText() + "\'," +
+                "ONote=NULL " +
+                "WHERE ONo=" + data_ownerTable.getONo().get();
+        SQL_Connect sql_connect = new SQL_Connect();
+        sql_connect.sql_Update(query);
+    }
+    void editOwnerInfoToSQL_FullONote(){
+        //修改数据到数据库(业主备注不为空)
+        query = "UPDATE Owner_Info SET " +
+                "OName=\'" + OName_TextField.getText() + "\'," +
+                "OSex=\'" + OSex_ChoiceBox.getSelectionModel().getSelectedItem().toString() + "\'," +
+                "OTel=\'" + OTel_TextField.getText() + "\'," +
+                "OID=\'" + OID_TextField.getText() + "\'," +
+                "ONote=\'" + ONote_TextArea.getText() + "\' " +
+                "WHERE ONo=" + data_ownerTable.getONo().get();
         SQL_Connect sql_connect = new SQL_Connect();
         sql_connect.sql_Update(query);
     }
@@ -644,39 +669,55 @@ public class Controller_OwnerEditRecord {
         //未输入业主姓名时的错误弹窗
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("小区物业管理系统");
-        alert.setHeaderText("请输入业主姓名！");
+        alert.setHeaderText("业主姓名不能为空，请输入姓名！");
+        alert.initOwner(OwnerSave_Label.getScene().getWindow());
+        alert.showAndWait();
+    }
+    void error_LangOName(){
+        //业主姓名超出长度时的错误弹窗
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("小区物业管理系统");
+        alert.setHeaderText("业主姓名超出长度，仅能输入8个字符(每个汉字占2个字符)！");
         alert.initOwner(OwnerSave_Label.getScene().getWindow());
         alert.showAndWait();
     }
     void error_NullOTel(){
-        //未输入业主联系电话时的错误弹窗
+        //未输入业主联系方式的错误弹窗
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("小区物业管理系统");
-        alert.setHeaderText("请输入业主联系电话！");
+        alert.setHeaderText("业主联系电话不能为空，请输入联系电话！");
         alert.initOwner(OwnerSave_Label.getScene().getWindow());
         alert.showAndWait();
     }
     void error_WrongOTel(){
-        //业主联系电话输入错误时的错误弹窗
+        //业主联系电话(手机号码或者固定电话)输入错误的错误弹窗
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("小区物业管理系统");
-        alert.setHeaderText("业主联系电话输入错误，请重新输入！");
+        alert.setHeaderText("检测到业主联系电话输入错误，请输入正确的电话号码！");
         alert.initOwner(OwnerSave_Label.getScene().getWindow());
         alert.showAndWait();
     }
     void error_NullOID(){
-        //未输入业主身份证号码时的错误弹窗
+        //未输入业主身份证号码的错误弹窗
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("小区物业管理系统");
-        alert.setHeaderText("请输入业主身份证号码！");
+        alert.setHeaderText("业主身份证号码不能为空，请输入身份证号码！");
         alert.initOwner(OwnerSave_Label.getScene().getWindow());
         alert.showAndWait();
     }
     void error_WrongOID(){
-        //业主身份证号码输入错误时的错误弹窗
+        //业主身份证号码输入错误的错误弹窗
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("小区物业管理系统");
-        alert.setHeaderText("业主身份证号码输入错误，请重新输入！");
+        alert.setHeaderText("检测到业主身份证号码输入错误，请输入正确的身份证号码！");
+        alert.initOwner(OwnerSave_Label.getScene().getWindow());
+        alert.showAndWait();
+    }
+    void error_LangONote(){
+        //业主备注超出长度时的错误弹窗
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("小区物业管理系统");
+        alert.setHeaderText("业主备注超出长度，仅能输入100个字符(每个汉字占2个字符)！");
         alert.initOwner(OwnerSave_Label.getScene().getWindow());
         alert.showAndWait();
     }
@@ -684,8 +725,26 @@ public class Controller_OwnerEditRecord {
         //成功修改弹窗
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("小区物业管理系统");
-        alert.setHeaderText("业主信息保存成功");
+        alert.setHeaderText("业主修改成功");
         alert.initOwner(OwnerSave_Label.getScene().getWindow());
         alert.showAndWait();
+    }
+    public static int length(String value) {
+        int valueLength = 0;
+        String chinese = "[\u0391-\uFFE5]";
+        /* 获取字段值的长度，如果含中文字符，则每个中文字符长度为2，否则为1 */
+        for (int i = 0; i < value.length(); i++) {
+            //获取一个字符
+            String temp = value.substring(i, i + 1);
+            //判断是否为中文字符
+            if (temp.matches(chinese)) {
+                //中文字符长度为2
+                valueLength += 2;
+            } else {
+                //其他字符长度为1
+                valueLength ++;
+            }
+        }
+        return valueLength;
     }
 }

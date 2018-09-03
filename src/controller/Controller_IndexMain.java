@@ -181,7 +181,7 @@ public class Controller_IndexMain {
                         result.getString("HRoom") + "室",
                         result.getString("HArea") + "㎡",
                         result.getString("HState"),
-                        result.getString("HType"),
+                        result.getString("HType").trim(),
                         result.getString("HNote"),
                         result.getString("ONo"),
                         result.getString("OName"),
