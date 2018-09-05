@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="505.0" prefWidth="333.0" stylesheets="@../css/CSS_OwnerEditRecord.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller_OwnerEditRecord">
+   <children>
+      <AnchorPane prefHeight="505.0" prefWidth="666.0">
+         <children>
+            <Label layoutX="285.0" layoutY="14.0" text="业主信息">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="ONo_Label" layoutX="380.0" layoutY="30.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4f4f4" height="68.0" layoutX="14.0" layoutY="55.0" stroke="BLACK" strokeType="INSIDE" width="650.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4f4f4" height="23.0" layoutX="24.0" layoutY="46.0" stroke="#f2f2f2" strokeType="INSIDE" width="63.0" />
+            <Label layoutX="31.0" layoutY="48.0" text="业主信息" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4f4f4" height="23.0" layoutX="583.0" layoutY="46.0" stroke="#f2f2f2" strokeType="INSIDE" width="33.0" />
+            <Label fx:id="OwnerSave_Label" layoutX="588.0" layoutY="48.0" onMouseClicked="#click_OwnerSaveLabel" text="保存" textFill="BLUE" underline="true" />
+            <Label layoutX="24.0" layoutY="69.0" text="姓　　名：" />
+            <TextField fx:id="OName_TextField" layoutX="84.0" layoutY="65.0" prefHeight="23.0" prefWidth="78.0" />
+            <Label layoutX="24.0" layoutY="94.0" text="性　　别：" />
+            <ChoiceBox fx:id="OSex_ChoiceBox" layoutX="84.0" layoutY="90.0" prefHeight="23.0" prefWidth="70.0" />
+            <Label layoutX="188.0" layoutY="69.0" text="联系电话：" />
+            <TextField fx:id="OTel_TextField" layoutX="248.0" layoutY="65.0" prefHeight="23.0" prefWidth="110.0" />
+            <Label layoutX="188.0" layoutY="94.0" text="身份证号：" />
+            <TextField fx:id="OID_TextField" layoutX="248.0" layoutY="90.0" prefHeight="23.0" prefWidth="157.0" />
+            <Label layoutX="422.0" layoutY="69.0" text="备　　注：" />
+            <TextArea fx:id="ONote_TextArea" layoutX="482.0" layoutY="64.0" prefHeight="47.0" prefWidth="172.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4f4f4" height="105.0" layoutX="14.0" layoutY="134.0" stroke="BLACK" strokeType="INSIDE" width="650.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4f4f4" height="23.0" layoutX="24.0" layoutY="125.0" stroke="#f2f2f2" strokeType="INSIDE" width="63.0" />
+            <Label layoutX="31.0" layoutY="127.0" text="房屋信息" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4f4f4" height="23.0" layoutX="561.0" layoutY="125.0" stroke="#f2f2f2" strokeType="INSIDE" width="33.0" />
+            <Label fx:id="HouseNew_Label" layoutX="566.0" layoutY="127.0" onMouseClicked="#click_HouseNewLabel" text="新增" textFill="BLUE" underline="true" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4f4f4" height="23.0" layoutX="604.0" layoutY="125.0" stroke="#f2f2f2" strokeType="INSIDE" width="33.0" />
+            <Label fx:id="HouseEdit_Label" layoutX="609.0" layoutY="127.0" onMouseClicked="#click_HouseEditLabel" text="修改" textFill="BLUE" underline="true" />
+            <TableView fx:id="House_TableView" layoutX="24.0" layoutY="148.0" prefHeight="80.0" prefWidth="630.0">
+               <columns>
+                  <TableColumn fx:id="HNo_TableColumn" prefWidth="75.0" text="房屋编号" />
+                  <TableColumn fx:id="HBuild_TableColumn" prefWidth="50.0" text="楼宇" />
+                  <TableColumn fx:id="HPark_TableColumn" prefWidth="50.0" text="单元" />
+                  <TableColumn fx:id="HFloor_TableColumn" prefWidth="50.0" text="楼层" />
+                  <TableColumn fx:id="HRoom_TableColumn" prefWidth="50.0" text="门牌号" />
+                  <TableColumn fx:id="HArea_TableColumn" prefWidth="60.0" text="面积" />
+                  <TableColumn fx:id="HType_TableColumn" text="房屋户型" />
+                  <TableColumn fx:id="HState_TableColumn" prefWidth="75.0" text="当前状态" />
+                  <TableColumn fx:id="HNote_TableColumn" prefWidth="136.0" text="备注" />
+               </columns>
+            </TableView>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4f4f4" height="105.0" layoutX="14.0" layoutY="250.0" stroke="BLACK" strokeType="INSIDE" width="650.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4f4f4" height="23.0" layoutX="24.0" layoutY="241.0" stroke="#f2f2f2" strokeType="INSIDE" width="63.0" />
+            <Label layoutX="31.0" layoutY="243.0" text="车位信息" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4f4f4" height="23.0" layoutX="561.0" layoutY="241.0" stroke="#f2f2f2" strokeType="INSIDE" width="33.0" />
+            <Label layoutX="566.0" layoutY="243.0" onMouseClicked="#click_ParkingNewLabel" text="新增" textFill="BLUE" underline="true" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4f4f4" height="23.0" layoutX="604.0" layoutY="241.0" stroke="#f2f2f2" strokeType="INSIDE" width="33.0" />
+            <Label layoutX="609.0" layoutY="243.0" onMouseClicked="#click_ParkingEditLabel" text="修改" textFill="BLUE" underline="true" />
+            <TableView fx:id="Parking_TableView" layoutX="24.0" layoutY="264.0" prefHeight="80.0" prefWidth="630.0">
+               <columns>
+                  <TableColumn fx:id="PRegion_TableColumn" prefWidth="100.0" text="车位区域" />
+                  <TableColumn fx:id="PNo_TableColumn" prefWidth="100.0" text="车位编号" />
+                  <TableColumn fx:id="PState_TableColumn" prefWidth="100.0" text="车位状态" />
+                  <TableColumn fx:id="CarNo_TableColumn" prefWidth="150.0" text="车牌号" />
+                  <TableColumn fx:id="PNote_TableColumn" prefWidth="176.0" text="备注" />
+               </columns>
+            </TableView>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4f4f4" height="135.0" layoutX="14.0" layoutY="366.0" stroke="BLACK" strokeType="INSIDE" width="650.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4f4f4" height="23.0" layoutX="24.0" layoutY="357.0" stroke="#f2f2f2" strokeType="INSIDE" width="63.0" />
+            <Label layoutX="31.0" layoutY="359.0" text="家庭成员" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4f4f4" height="23.0" layoutX="539.0" layoutY="357.0" stroke="#f2f2f2" strokeType="INSIDE" width="33.0" />
+            <Label layoutX="544.0" layoutY="359.0" onMouseClicked="#click_FamilyNewLabel" text="新增" textFill="BLUE" underline="true" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4f4f4" height="23.0" layoutX="582.0" layoutY="357.0" stroke="#f2f2f2" strokeType="INSIDE" width="33.0" />
+            <Label layoutX="587.0" layoutY="359.0" onMouseClicked="#click_FamilyEditLabel" text="修改" textFill="BLUE" underline="true" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4f4f4" height="23.0" layoutX="625.0" layoutY="357.0" stroke="#f2f2f2" strokeType="INSIDE" width="33.0" />
+            <Label layoutX="630.0" layoutY="359.0" onMouseClicked="#click_FamilyDelLabel" text="删除" textFill="BLUE" underline="true" />
+            <TableView fx:id="Family_TableView" layoutX="24.0" layoutY="380.0" prefHeight="111.0" prefWidth="630.0">
+               <columns>
+                  <TableColumn fx:id="FName_TableColumn" prefWidth="100.0" text="姓名" />
+                  <TableColumn fx:id="FSex_TableColumn" prefWidth="60.0" text="性别" />
+                  <TableColumn fx:id="FTel_TableColumn" prefWidth="100.0" text="联系电话" />
+                  <TableColumn fx:id="FID_TableColumn" prefWidth="150.0" text="身份证号码" />
+                  <TableColumn fx:id="FRelation_TableColumn" prefWidth="100.0" text="与业主关系" />
+                  <TableColumn fx:id="FNote_TableColumn" prefWidth="116.0" text="备注" />
+               </columns>
+            </TableView>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

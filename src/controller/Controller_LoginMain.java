@@ -12,27 +12,38 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 import java.security.MessageDigest;
+import java.util.Random;
 
 public class Controller_LoginMain {
     public Button Login_Button;
-    public Label login_info,SQL_Info;
-    public TextField User_TextField;
+    public Label login_info,SQL_Info,Captha_Label;
+    public TextField User_TextField,Captha_TextField;
     public PasswordField Password_PasswordField;
     public int checksql, checkloin;
     public void initialize() {
         //初始化
+        Captha_Label.setText(getStringRandom(4));
         check_SQL();
         User_TextField.setOnKeyPressed(new EventHandler<javafx.scene.input.KeyEvent>() {
-            //用户名输入框的回车键盘监听
+            //用户名输入框的回车键盘监听，焦点换行
             @Override
             public void handle(javafx.scene.input.KeyEvent event) {
                 if (event.getCode() == KeyCode.ENTER) {
-                    login_ButtonClick();
+                    Password_PasswordField.requestFocus();
                 }
             }
         });
         Password_PasswordField.setOnKeyPressed(new EventHandler<javafx.scene.input.KeyEvent>() {
-            //密码框的回车键盘监听
+            //密码框的回车键盘监听，焦点换行
+            @Override
+            public void handle(javafx.scene.input.KeyEvent event) {
+                if (event.getCode() == KeyCode.ENTER) {
+                    Captha_TextField.requestFocus();
+                }
+            }
+        });
+        Captha_TextField.setOnKeyPressed(new EventHandler<javafx.scene.input.KeyEvent>() {
+            //验证码输入框的回车键盘监听，执行登录
             @Override
             public void handle(javafx.scene.input.KeyEvent event) {
                 if (event.getCode() == KeyCode.ENTER) {
@@ -67,37 +78,48 @@ public class Controller_LoginMain {
             e.printStackTrace();
         }
     }
+    public void click_CapthaLabel(){
+        //单击重新生成验证码
+        Captha_Label.setText(getStringRandom(4));
+    }
     public void login_ButtonClick() {
         //单击"登录"按钮
-        SQL_Connect sql_connect = new SQL_Connect();
+        if (Captha_TextField.getText().toLowerCase().equals(Captha_Label.getText().toLowerCase())==false){
+            login_info.setText("验证码错误请重新输入");
+            login_info.setTextFill(Color.web("#ff1a00"));
+            return;
+        }
         if (User_TextField.getText() == null || User_TextField.getText().length() == 0) {
             login_info.setText("请输入用户名");
             login_info.setTextFill(Color.web("#ff1a00"));
-        } else if (Password_PasswordField.getText() == null || Password_PasswordField.getText().length() == 0) {
+            return;
+        }
+        if (Password_PasswordField.getText() == null || Password_PasswordField.getText().length() == 0) {
             login_info.setText("请输入密码");
             login_info.setTextFill(Color.web("#ff1a00"));
-        } else {
-            checkloin = sql_connect.login(User_TextField.getText().toLowerCase(), stringToMD5(Password_PasswordField.getText()));
-            switch (checkloin) {
-                case 1:
-                    login_info.setText("恭喜，登录成功。");
-                    login_info.setTextFill(Color.web("#2E8B57"));
-                    Main.loginUser = User_TextField.getText().toLowerCase();
-                    Load_IndexGUI();
-                    break;
-                case 2:
-                    login_info.setText("抱歉，密码错误。");
-                    login_info.setTextFill(Color.web("#ff1a00"));
-                    break;
-                case 3:
-                    login_info.setText("未查询到该用户名");
-                    login_info.setTextFill(Color.web("#ff1a00"));
-                    break;
-                case 0:
-                    login_info.setText("数据库出现异常。");
-                    login_info.setTextFill(Color.web("#ff1a00"));
-                    break;
-            }
+            return;
+        }
+        SQL_Connect sql_connect = new SQL_Connect();
+        checkloin = sql_connect.login(User_TextField.getText().toLowerCase(), stringToMD5(Password_PasswordField.getText()));
+        switch (checkloin) {
+            case 1:
+                login_info.setText("恭喜，登录成功。");
+                login_info.setTextFill(Color.web("#2E8B57"));
+                Main.loginUser = User_TextField.getText().toLowerCase();
+                Load_IndexGUI();
+                break;
+            case 2:
+                login_info.setText("抱歉，密码错误。");
+                login_info.setTextFill(Color.web("#ff1a00"));
+                break;
+            case 3:
+                login_info.setText("未查询到该用户名");
+                login_info.setTextFill(Color.web("#ff1a00"));
+                break;
+            case 0:
+                login_info.setText("数据库出现异常。");
+                login_info.setTextFill(Color.web("#ff1a00"));
+                break;
         }
     }
     void Load_IndexGUI() {
@@ -137,5 +159,22 @@ public class Controller_LoginMain {
             hexValue.append(Integer.toHexString(val));
         }
         return hexValue.toString();
+    }
+    public String getStringRandom(int length) {
+        String val = "";
+        Random random = new Random();
+        //参数length，表示生成几位随机数
+        for(int i = 0; i < length; i++) {
+            String charOrNum = random.nextInt(2) % 2 == 0 ? "char" : "num";
+            //输出字母还是数字
+            if( "char".equalsIgnoreCase(charOrNum) ) {
+                //输出是大写字母还是小写字母
+                int temp = random.nextInt(2) % 2 == 0 ? 65 : 97;
+                val += (char)(random.nextInt(26) + temp);
+            } else if( "num".equalsIgnoreCase(charOrNum) ) {
+                val += String.valueOf(random.nextInt(10));
+            }
+        }
+        return val;
     }
 }

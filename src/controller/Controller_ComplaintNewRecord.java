@@ -216,12 +216,17 @@ public class Controller_ComplaintNewRecord{
         }
         if (CTitle_TextField.getText() == null || CTitle_TextField.getText().length()==0){
             //如果标题为空报错
-            error_NullRTitle();
+            error_NullCTitle();
+            return;
+        }
+        if (CTitle_TextField.getText().length()>20){
+            //投诉单标题超出长度
+            error_LangCTitle();
             return;
         }
         if (CSubDate_DatePicker.getEditor().getText() == null || CSubDate_DatePicker.getEditor().getText().length()==0){
             //如果提交日期为空报错
-            error_NullRSubDate();
+            error_NullCSubDate();
             return;
         }
         if (check_Search !=1){
@@ -231,7 +236,12 @@ public class Controller_ComplaintNewRecord{
         }
         if (CText_TextArea.getText() == null || CText_TextArea.getText().length()==0){
             //如果内容为空报错
-            error_NullRText();
+            error_NullCText();
+            return;
+        }
+        if (CText_TextArea.getText().length()>200){
+            //投诉单内容超出长度
+            error_LangCText();
             return;
         }
         if (NoComplaint_RadioButton.selectedProperty().getValue()==true){
@@ -249,12 +259,17 @@ public class Controller_ComplaintNewRecord{
         if (YesComplaint_RadioButton.selectedProperty().getValue()==true){
             if (CReply_TextArea.getText() == null || CReply_TextArea.getText().length()==0){
                 //如果回复为空报错
-                error_NullRReply();
+                error_NullCReply();
+                return;
+            }
+            if (CReply_TextArea.getText().length()>200){
+                //投诉单回复超出长度
+                error_LangCReply();
                 return;
             }
             if (CSolveDate_DatePicker.getEditor().getText() == null || CSolveDate_DatePicker.getEditor().getText().length()==0){
                 //如果解决日期为空报错
-                error_NullRSolveDate();
+                error_NullCSolveDate();
                 return;
             }
             //添加"已处理"投诉单数据到数据库
@@ -310,7 +325,7 @@ public class Controller_ComplaintNewRecord{
         alert.initOwner(Confirm_Button.getScene().getWindow());
         alert.showAndWait();
     }
-    void error_NullRTitle(){
+    void error_NullCTitle(){
         //未输入投诉单编号时的错误弹窗
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("小区物业管理系统");
@@ -318,7 +333,15 @@ public class Controller_ComplaintNewRecord{
         alert.initOwner(Confirm_Button.getScene().getWindow());
         alert.showAndWait();
     }
-    void error_NullRSubDate(){
+    void error_LangCTitle(){
+        //投诉单标题超出长度时的错误弹窗
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("小区物业管理系统");
+        alert.setHeaderText("投诉单标题超出长度，仅能输入20个字符(每个汉字占2个字符)！");
+        alert.initOwner(Confirm_Button.getScene().getWindow());
+        alert.showAndWait();
+    }
+    void error_NullCSubDate(){
         //未选择投诉单提交日期的错误弹窗
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("小区物业管理系统");
@@ -334,7 +357,7 @@ public class Controller_ComplaintNewRecord{
         alert.initOwner(Confirm_Button.getScene().getWindow());
         alert.showAndWait();
     }
-    void error_NullRText(){
+    void error_NullCText(){
         //未输入投诉单内容时的错误弹窗
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("小区物业管理系统");
@@ -342,7 +365,15 @@ public class Controller_ComplaintNewRecord{
         alert.initOwner(Confirm_Button.getScene().getWindow());
         alert.showAndWait();
     }
-    void error_NullRReply(){
+    void error_LangCText(){
+        //投诉单内容超出长度时的错误弹窗
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("小区物业管理系统");
+        alert.setHeaderText("投诉单内容超出长度，仅能输入200个字符(每个汉字占2个字符)！");
+        alert.initOwner(Confirm_Button.getScene().getWindow());
+        alert.showAndWait();
+    }
+    void error_NullCReply(){
         //未输入投诉单回复时的错误弹窗
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("小区物业管理系统");
@@ -350,7 +381,15 @@ public class Controller_ComplaintNewRecord{
         alert.initOwner(Confirm_Button.getScene().getWindow());
         alert.showAndWait();
     }
-    void error_NullRSolveDate(){
+    void error_LangCReply(){
+        //投诉单回复超出长度时的错误弹窗
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("小区物业管理系统");
+        alert.setHeaderText("投诉单回复超出长度，仅能输入200个字符(每个汉字占2个字符)！");
+        alert.initOwner(Confirm_Button.getScene().getWindow());
+        alert.showAndWait();
+    }
+    void error_NullCSolveDate(){
         //未选择投诉单解决回复时的错误弹窗
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("小区物业管理系统");
@@ -374,5 +413,23 @@ public class Controller_ComplaintNewRecord{
         //关闭窗口
         Stage stage = (Stage)Back_Button.getScene().getWindow();
         stage.close();
+    }
+    public static int length(String value) {
+        int valueLength = 0;
+        String chinese = "[\u0391-\uFFE5]";
+        /* 获取字段值的长度，如果含中文字符，则每个中文字符长度为2，否则为1 */
+        for (int i = 0; i < value.length(); i++) {
+            //获取一个字符
+            String temp = value.substring(i, i + 1);
+            //判断是否为中文字符
+            if (temp.matches(chinese)) {
+                //中文字符长度为2
+                valueLength += 2;
+            } else {
+                //其他字符长度为1
+                valueLength ++;
+            }
+        }
+        return valueLength;
     }
 }

@@ -61,7 +61,7 @@ public class Controller_IndexMain {
         //显示操作员用户名
         LoginUser_Label.setText("操作员：" + Main.loginUser);
         //设置TreeTableView的根TreeItem
-        HBuild_Root = new TreeItem<>("光明小区");
+        HBuild_Root = new TreeItem<>("显示所有");
         HBuild_Root.setGraphic(new ImageView (new Image(getClass().getResourceAsStream("/image/building.png"))));
         HBuild_Root.setExpanded(true);
         //定义列的单元格内容
@@ -116,7 +116,7 @@ public class Controller_IndexMain {
         Search_OName_TextField.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                search_OName(newValue);
+                search_House();
             }
         });
         Search_HBuild_TextField.textProperty().addListener(new ChangeListener<String>() {
@@ -162,7 +162,7 @@ public class Controller_IndexMain {
         //加载TableView数据
         //清空原有数据
         HouseTableData_List.clear();
-        if(buildNum.equals("初始化")|| buildNum.equals("光明小区")) {
+        if(buildNum.equals("初始化")|| buildNum.equals("显示所有")) {
             //初始化时数据库指令
             query = "SELECT HNo,HBuild,HPark,HFloor,HRoom,HArea,HState,HType,HNote,House_Info.ONo,OName,OSex,OTel,OID,ONote FROM House_Info LEFT JOIN Owner_Info ON House_Info.ONo=Owner_Info.ONo";
         }
@@ -344,48 +344,11 @@ public class Controller_IndexMain {
         OID_Label.setText("");
         ONote_Label.setText("");
     }
-    public void search_OName(String OName){
-        HouseTableData_List.clear();
-        if(OName==null || OName.length()==0) {
-            query = "SELECT HNo,HBuild,HPark,HFloor,HRoom,HArea,HState,HType,HNote,House_Info.ONo,OName,OSex,OTel,OID,ONote FROM House_Info LEFT JOIN Owner_Info ON House_Info.ONo=Owner_Info.ONo";
-        }
-        else {
-            query = "SELECT HNo,HBuild,HPark,HFloor,HRoom,HArea,HState,HType,HNote,House_Info.ONo,OName,OSex,OTel,OID,ONote FROM House_Info LEFT JOIN Owner_Info ON House_Info.ONo=Owner_Info.ONo WHERE OName LIKE \'%" + OName.trim() + "%\'";
-        }
-        SQL_Connect sql_connect = new SQL_Connect();
-        result = sql_connect.sql_Query(query);
-        try {
-            while (result.next()){
-                HouseTableData_List.add(new Data_HouseTable(result.getString("HNo").trim(),
-                        result.getString("HBuild").trim() + "幢",
-                        result.getString("HPark").trim() + "单元",
-                        result.getString("HFloor").trim() + "层",
-                        result.getString("HRoom").trim() + "室",
-                        result.getString("HArea").trim() + "㎡",
-                        result.getString("HState"),
-                        result.getString("HType").trim(),
-                        result.getString("HNote"),
-                        result.getString("ONo"),
-                        result.getString("OName"),
-                        result.getString("OSex"),
-                        result.getString("OTel"),
-                        result.getString("OID"),
-                        result.getString("ONote")));
-            }
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
     public void search_House(){
-        String search_HBuild,search_HPark,search_HFloor,search_HRoom;
-        search_HBuild = Search_HBuild_TextField.getText().trim();
-        search_HPark = Search_HPark_TextField.getText().trim();
-        search_HFloor = Search_HFloor_TextField.getText().trim();
-        search_HRoom = Search_HRoom_TextField.getText().trim();
         HouseTableData_List.clear();
-        query = "SELECT HNo,HBuild,HPark,HFloor,HRoom,HArea,HState,HType,HNote,House_Info.ONo,OName,OSex,OTel,OID,ONote FROM House_Info LEFT JOIN Owner_Info ON House_Info.ONo=Owner_Info.ONo WHERE HBuild LIKE \'" +
-                search_HBuild + "%\' AND HPark LIKE \'" + search_HPark + "%\' AND HFloor LIKE \'" + search_HFloor + "%\' AND HRoom LIKE \'" + search_HRoom + "%\'";
+        query = "SELECT HNo,HBuild,HPark,HFloor,HRoom,HArea,HState,HType,HNote,House_Info.ONo,OName,OSex,OTel,OID,ONote FROM House_Info LEFT JOIN Owner_Info ON House_Info.ONo=Owner_Info.ONo WHERE HBuild LIKE \'%" +
+                Search_HBuild_TextField.getText() + "%\' AND HPark LIKE \'%" + Search_HPark_TextField.getText() + "%\' AND HFloor LIKE \'%" + Search_HFloor_TextField.getText() +
+                "%\' AND HRoom LIKE \'%" + Search_HRoom_TextField.getText() + "%\' AND OName LIKE \'%" + Search_OName_TextField.getText() + "%\'";
         SQL_Connect sql_connect = new SQL_Connect();
         result = sql_connect.sql_Query(query);
         try {

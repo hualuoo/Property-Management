@@ -219,6 +219,11 @@ public class Controller_RepairNewRecord{
             error_NullRTitle();
             return;
         }
+        if (RTitle_TextField.getText().length()>20){
+            //报修单标题超出长度
+            error_LangRTitle();
+            return;
+        }
         if (RSubDate_DatePicker.getEditor().getText() == null || RSubDate_DatePicker.getEditor().getText().length()==0){
             //如果提交日期为空报错
             error_NullRSubDate();
@@ -232,6 +237,11 @@ public class Controller_RepairNewRecord{
         if (RText_TextArea.getText() == null || RText_TextArea.getText().length()==0){
             //如果内容为空报错
             error_NullRText();
+            return;
+        }
+        if (RText_TextArea.getText().length()>200){
+            //报修单内容超出长度
+            error_LangRText();
             return;
         }
         if (NoRepair_RadioButton.selectedProperty().getValue()==true){
@@ -250,6 +260,11 @@ public class Controller_RepairNewRecord{
             if (RReply_TextArea.getText() == null || RReply_TextArea.getText().length()==0){
                 //如果回复为空报错
                 error_NullRReply();
+                return;
+            }
+            if (RReply_TextArea.getText().length()>200){
+                //报修单回复超出长度
+                error_LangRReply();
                 return;
             }
             if (RSolveDate_DatePicker.getEditor().getText() == null || RSolveDate_DatePicker.getEditor().getText().length()==0){
@@ -318,6 +333,14 @@ public class Controller_RepairNewRecord{
         alert.initOwner(Confirm_Button.getScene().getWindow());
         alert.showAndWait();
     }
+    void error_LangRTitle(){
+        //报修单标题超出长度时的错误弹窗
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("小区物业管理系统");
+        alert.setHeaderText("报修单标题超出长度，仅能输入20个字符(每个汉字占2个字符)！");
+        alert.initOwner(Confirm_Button.getScene().getWindow());
+        alert.showAndWait();
+    }
     void error_NullRSubDate(){
         //未选择维修单提交日期的错误弹窗
         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -342,11 +365,27 @@ public class Controller_RepairNewRecord{
         alert.initOwner(Confirm_Button.getScene().getWindow());
         alert.showAndWait();
     }
+    void error_LangRText(){
+        //报修单内容超出长度时的错误弹窗
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("小区物业管理系统");
+        alert.setHeaderText("报修单内容超出长度，仅能输入200个字符(每个汉字占2个字符)！");
+        alert.initOwner(Confirm_Button.getScene().getWindow());
+        alert.showAndWait();
+    }
     void error_NullRReply(){
         //未输入维修单回复时的错误弹窗
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("小区物业管理系统");
         alert.setHeaderText("请输入维修单回复！");
+        alert.initOwner(Confirm_Button.getScene().getWindow());
+        alert.showAndWait();
+    }
+    void error_LangRReply(){
+        //维修单回复超出长度时的错误弹窗
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("小区物业管理系统");
+        alert.setHeaderText("报修单回复超出长度，仅能输入200个字符(每个汉字占2个字符)！");
         alert.initOwner(Confirm_Button.getScene().getWindow());
         alert.showAndWait();
     }
@@ -374,5 +413,23 @@ public class Controller_RepairNewRecord{
         //关闭窗口
         Stage stage = (Stage)Back_Button.getScene().getWindow();
         stage.close();
+    }
+    public static int length(String value) {
+        int valueLength = 0;
+        String chinese = "[\u0391-\uFFE5]";
+        /* 获取字段值的长度，如果含中文字符，则每个中文字符长度为2，否则为1 */
+        for (int i = 0; i < value.length(); i++) {
+            //获取一个字符
+            String temp = value.substring(i, i + 1);
+            //判断是否为中文字符
+            if (temp.matches(chinese)) {
+                //中文字符长度为2
+                valueLength += 2;
+            } else {
+                //其他字符长度为1
+                valueLength ++;
+            }
+        }
+        return valueLength;
     }
 }

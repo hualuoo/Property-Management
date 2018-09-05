@@ -6,7 +6,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.image.Image;
-
 import java.awt.*;
 
 public class Main extends Application {
@@ -19,6 +18,7 @@ public class Main extends Application {
     public static String SQLUserName = "sa";
     public static String SQLPassword = "Qq111111";
     public static String loginUser;
+
     public void start(Stage primaryStage) throws Exception{
         Parent Login_Root = FXMLLoader.load(getClass().getResource("/GUI/GUI_LoginMain.fxml"));
         Login_Stage = new Stage();

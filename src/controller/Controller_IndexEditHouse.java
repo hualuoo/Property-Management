@@ -2,11 +2,13 @@ package controller;
 
 import data.Data_HouseTable;
 import util.SQL_Connect;
+import util.StageManager;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import util.StageManager;
 import java.sql.ResultSet;
 import java.util.Optional;
 import java.util.regex.Pattern;
@@ -28,7 +30,6 @@ public class Controller_IndexEditHouse {
     public void setdata_houseTable(Data_HouseTable data_houseTable){
         //设置修改数据
         this.data_houseTable = data_houseTable;
-        check_Search = 1;
         HNo_Label.setText(data_houseTable.getHNo().getValue().trim());
         HBuild_TextField.setText(data_houseTable.getHBuild().getValue().replace("幢",""));
         HPark_TextField.setText(data_houseTable.getHPark().getValue().replace("单元",""));
@@ -52,6 +53,13 @@ public class Controller_IndexEditHouse {
             OID_TextField.setText(data_houseTable.getOID().getValue());
             ONote_TextArea.setText(data_houseTable.getONote().getValue());
         }
+        check_Search = 1;
+        //文本框变动监听
+        ONo_TextField.textProperty().addListener(new ChangeListener<String>() {
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                change_ONoTextField();
+            }
+        });
     }
     public void initialize() {
         //初始化
@@ -70,7 +78,7 @@ public class Controller_IndexEditHouse {
                 changeHState_ChoiceBox(newValue));
     }
 
-    public void changeHState_ChoiceBox(Number newValue) {
+    void changeHState_ChoiceBox(Number newValue) {
         //房屋销售情况选择框变更
         if (newValue.intValue() == 1) {
             //选择第2项"未销售"
@@ -88,6 +96,14 @@ public class Controller_IndexEditHouse {
             Search_Button.setDisable(false);
             check_Search = 0;
         }
+    }
+    void change_ONoTextField(){
+        //业主编号文本框变动
+        OName_TextField.setText("");
+        OTel_TextField.setText("");
+        OID_TextField.setText("");
+        ONote_TextArea.setText("");
+        check_Search = 0;
     }
     public void click_SearchButton(){
         //单击"搜索"按钮
@@ -164,15 +180,20 @@ public class Controller_IndexEditHouse {
             error_NullHType();
             return;
         }
-        if (length(HType_TextField.getText()) > 13) {
+        if (length(HType_TextField.getText()) > 12) {
             //房屋户型超出长度
             error_LangHType();
+            return;
+        }
+        if (length(HNote_TextArea.getText()) > 100) {
+            //房屋备注超出长度
+            error_LangHNote();
             return;
         }
         //ResultSet的next方法需要try-catch输出报错
         if(HState_ChoiceBox.getSelectionModel().getSelectedItem().toString().equals("未销售")){
             //房屋状态"未销售"
-            if (HNote_TextArea.getText()==null || HType_TextField.getText().length()==0){
+            if (HNote_TextArea.getText()==null || HNote_TextArea.getText().length()==0){
                 //修改数据到数据库(未销售,备注为空)
                 editHouseInfoToSQL_NoSellNullNote();
                 //刷新"房屋信息管理"窗口的TableView
@@ -200,7 +221,7 @@ public class Controller_IndexEditHouse {
                 error_NullSearch();
                 return;
             }
-            if (HNote_TextArea.getText()==null || HType_TextField.getText().length()==0){
+            if (HNote_TextArea.getText()==null || HNote_TextArea.getText().length()==0){
                 //修改数据到数据库(已销售,备注为空)
                 editHouseInfoToSQL_YesSellNullNote();
                 //刷新"房屋信息管理"窗口的TableView
@@ -286,6 +307,14 @@ public class Controller_IndexEditHouse {
         alert.initOwner(Confirm_Button.getScene().getWindow());
         alert.showAndWait();
     }
+    void error_LangHNote(){
+        //房屋备注超出长度时的错误弹窗
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("小区物业管理系统");
+        alert.setHeaderText("房屋备注超出长度，仅能输入100个字符(每个汉字占2个字符)！");
+        alert.initOwner(Confirm_Button.getScene().getWindow());
+        alert.showAndWait();
+    }
     void error_NullSearch(){
         //未先获取业主数据时的错误弹窗
         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -345,15 +374,10 @@ public class Controller_IndexEditHouse {
     void flush_TableView(){
         //刷新"房屋信息管理"窗口的TableView
         Controller_IndexMain controller_indexMain=(Controller_IndexMain) StageManager.CONTROLLER.get("Controller_IndexMain");
+        controller_indexMain.HBuild_Root.getChildren().clear();
+        controller_indexMain.showHouseTreeTable();
         controller_indexMain.HouseTableData_List.clear();
         controller_indexMain.showHouseTable("初始化");
-    }
-    public void errorEdit(){
-        Alert alert2 = new Alert(Alert.AlertType.ERROR);
-        alert2.setTitle("小区物业管理系统");
-        alert2.setHeaderText("输入数据检测异常，修改数据失败！");
-        alert2.initOwner(Confirm_Button.getScene().getWindow());
-        alert2.showAndWait();
     }
     public void succeedEdit(){
         Alert alert2 = new Alert(Alert.AlertType.INFORMATION);

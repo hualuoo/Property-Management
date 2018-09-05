@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="158.0" prefWidth="666.0" stylesheets="@../css/CSS_OwnerEditRecord.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller_OwnerNewRecord">
+   <children>
+      <AnchorPane prefHeight="158.0" prefWidth="666.0">
+         <children>
+            <Label layoutX="285.0" layoutY="14.0" text="业主信息">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="ONo_Label" layoutX="380.0" layoutY="30.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4f4f4" height="68.0" layoutX="14.0" layoutY="55.0" stroke="BLACK" strokeType="INSIDE" width="650.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4f4f4" height="23.0" layoutX="24.0" layoutY="46.0" stroke="#f2f2f2" strokeType="INSIDE" width="63.0" />
+            <Label layoutX="31.0" layoutY="48.0" text="业主信息" />
+            <Label layoutX="24.0" layoutY="69.0" text="姓　　名：" />
+            <TextField fx:id="OName_TextField" layoutX="84.0" layoutY="65.0" prefHeight="23.0" prefWidth="78.0" />
+            <Label layoutX="24.0" layoutY="94.0" text="性　　别：" />
+            <ChoiceBox fx:id="OSex_ChoiceBox" layoutX="84.0" layoutY="90.0" prefHeight="23.0" prefWidth="70.0" />
+            <Label layoutX="188.0" layoutY="69.0" text="联系电话：" />
+            <TextField fx:id="OTel_TextField" layoutX="248.0" layoutY="65.0" prefHeight="23.0" prefWidth="110.0" />
+            <Label layoutX="188.0" layoutY="94.0" text="身份证号：" />
+            <TextField fx:id="OID_TextField" layoutX="248.0" layoutY="90.0" prefHeight="23.0" prefWidth="157.0" />
+            <Label layoutX="422.0" layoutY="69.0" text="备　　注：" />
+            <TextArea fx:id="ONote_TextArea" layoutX="482.0" layoutY="64.0" prefHeight="47.0" prefWidth="172.0" />
+            <Button fx:id="Confirm_Button" layoutX="570.0" layoutY="132.0" mnemonicParsing="false" onAction="#click_ConfirmButton" text="确认" />
+            <Button fx:id="Cancel_Button" layoutX="623.0" layoutY="132.0" mnemonicParsing="false" onAction="#click_CancelButton" text="返回" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

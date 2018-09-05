@@ -65,9 +65,14 @@ public class Controller_IndexNewHouse {
                 create_HNo();
             }
         });
+        ONo_TextField.textProperty().addListener(new ChangeListener<String>() {
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                change_ONoTextField();
+            }
+        });
     }
 
-    public void changeHState_ChoiceBox(Number newValue) {
+    void changeHState_ChoiceBox(Number newValue) {
         //房屋销售情况选择框变更
         if (newValue.intValue() == 1) {
             //选择第2项"未销售"
@@ -86,9 +91,17 @@ public class Controller_IndexNewHouse {
             check_Search = 0;
         }
     }
-    public void create_HNo(){
+    void create_HNo(){
         //根据输入的房屋信息生成编号
         HNo_Label.setText(HBuild_TextField.getText() + "#" + HPark_TextField.getText() + "-" + HRoom_TextField.getText());
+    }
+    void change_ONoTextField(){
+        //业主编号文本框变动
+        OName_TextField.setText("");
+        OTel_TextField.setText("");
+        OID_TextField.setText("");
+        ONote_TextArea.setText("");
+        check_Search = 0;
     }
     public void click_SearchButton(){
         //单击"搜索"按钮
@@ -228,6 +241,11 @@ public class Controller_IndexNewHouse {
         if (length(HType_TextField.getText())>13){
             //房屋户型超出长度
             error_LangHType();
+            return;
+        }
+        if (length(HNote_TextArea.getText()) > 100) {
+            //房屋备注超出长度
+            error_LangHNote();
             return;
         }
         query = "SELECT * FROM House_Info WHERE HNo=\'" + HNo_Label.getText() + "\'";
@@ -456,6 +474,14 @@ public class Controller_IndexNewHouse {
         alert.initOwner(Confirm_Button.getScene().getWindow());
         alert.showAndWait();
     }
+    void error_LangHNote(){
+        //房屋备注超出长度时的错误弹窗
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("小区物业管理系统");
+        alert.setHeaderText("房屋备注超出长度，仅能输入100个字符(每个汉字占2个字符)！");
+        alert.initOwner(Confirm_Button.getScene().getWindow());
+        alert.showAndWait();
+    }
     void error_NullSearch(){
         //未先获取业主数据时的错误弹窗
         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -511,6 +537,8 @@ public class Controller_IndexNewHouse {
     void flush_TableView(){
         //刷新"房屋信息管理"窗口的TableView
         Controller_IndexMain controller_indexMain=(Controller_IndexMain) StageManager.CONTROLLER.get("Controller_IndexMain");
+        controller_indexMain.HBuild_Root.getChildren().clear();
+        controller_indexMain.showHouseTreeTable();
         controller_indexMain.HouseTableData_List.clear();
         controller_indexMain.showHouseTable("初始化");
     }
